@@ -14,10 +14,11 @@ class Project(db.Model):
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
-    projectUser = db.relationship('User', back_populates='projectUser')
-    category = db.relationship('Category', back_populates='')
+    user = db.relationship('User', back_populates='projectUser')
+    category = db.relationship('Category', back_populates='projectCategory')
     album = db.relationship('Album', back_populates='projectPics')
-    questions = db.relationship('Question', back_populates='project')
+    comments = db.relationship('Comment', back_populates='project')
+    favProject = db.relationship('Favorite', back_populates='project')
 
     def to_dict(self):
         return {
@@ -28,4 +29,7 @@ class Project(db.Model):
             'albumId': self.albumId,
             'tags': self.tags,
             'description': self.description,
+            'photos': [{
+                
+                } for obj in self.album]
         }
