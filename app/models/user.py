@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
 
     albumUser = db.relationship('Album', back_populates='albumUser')
     projectUser = db.relationship('User', back_populates='projectUser')
-    questionUser = db.relatinoship('Question', back_populates='questionUser')
+    questionUser = db.relationship('Question', back_populates='questionUser')
 
     @property
     def password(self):
