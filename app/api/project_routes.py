@@ -1,14 +1,14 @@
 from flask import Blueprint, jsonify, request
 
 from app.models import db, Project, Comment
-from app.forms import NewProjectForm, EditProjectForm
+from app.forms import NewProjectForm, EditProjectForm, NewCommentForm, EditCommentForm
 
 from .auth_routes import validation_errors_to_error_messages
 
 project_routes = Blueprint('projects', __name__)
 
 @project_routes.route('/')
-def projects():
+def get_projects():
     projects = Project.query.all()
     return {'projects': [project.to_dict() for project in projects]}
 
@@ -18,8 +18,8 @@ def post_project():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         newProject = Project(title=form.data['title'], categoryId=form.data['categoryId'],
-                            userId=form.data['userId'], albumId=form.data['albumId'],
-                            tags=form.data['tags'], description=form.data['description'])
+                            userId=form.data['userId'], tags=form.data['tags'],
+                            description=form.data['description'])
         db.session.add(newProject)
         db.session.commit()
         return newProject.to_dict()
@@ -27,5 +27,42 @@ def post_project():
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 @project_routes.route('/<int:id>', method=['PUT'])
-def edit_project():
-    form = Edit_Project_Form()
+def edit_project(id):
+    form = EditProjectForm()
+    project = Project.query.get(int(id))
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        project.title = form.data['title']
+        project.categoryId = form.data['categoryId']
+        project.tags = form.data['tags']
+        project.description = form.data['description']
+
+        db.session.commit()
+        return project.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@project_routes.route('/<int:id', method=['DELETE'])
+def delete_project(id):
+    project = Project.query.get(int(id))
+    db.session.delete(project)
+    db.session.commit()
+    return {'message': 'Deleted review'}
+
+
+# --------------------- comments ------------------------
+
+@project_routes.route('/<int:id>/comments')
+def post_comments(id):
+    form = NewCommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        comment = Comment(content=form.data['content'],
+            projectId = id,
+            userId = form.data['userId']
+            )
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400

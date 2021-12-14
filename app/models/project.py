@@ -8,7 +8,6 @@ class Project(db.Model):
     title = db.Column(db.String, nullable=False)
     categoryId = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    albumId = db.Column(db.Integer, db.ForeignKey('albums.id'))
     tags = db.Column(db.String)
     description = db.Column(db.String)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
@@ -26,10 +25,12 @@ class Project(db.Model):
             'title': self.title,
             'categoryId': self.categoryId,
             'userId': self.userId,
-            'albumId': self.albumId,
             'tags': self.tags,
             'description': self.description,
+            'comments': {obj.id: {
+                'content': obj.content
+                } for obj in self.comments},
             'photos': [{
-                
+                'photo': obj.photo
                 } for obj in self.album]
         }

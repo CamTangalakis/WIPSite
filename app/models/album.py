@@ -6,6 +6,7 @@ class Album(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
     projectId = db.Column(db.Integer, db.ForeignKey('projects.id'))
+    photo = db.Column(db.String, nullable=False)
 
     albumUser = db.relationship('User', back_populates='albumUser')
     projectPics = db.relationship('Project', back_populates='album')
@@ -14,5 +15,6 @@ class Album(db.Model):
         return {
             'id': self.id,
             'userId': self.userId,
-            'projectId': self.projectId
+            'projectId': self.projectId,
+            'photo': self.photo
         }

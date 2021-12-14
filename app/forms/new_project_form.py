@@ -6,7 +6,6 @@ class NewProjectForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()])
     categoryId = IntegerField('categoryId', validators=[DataRequired()])
     userId = IntegerField('userId', validators=[DataRequired()])
-    albumId = IntegerField('albumId')
     tags = StringField('tags')
     description = StringField('description', validators=[DataRequired()])
 
@@ -14,7 +13,5 @@ class NewProjectForm(FlaskForm):
 class EditProjectForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()])
     categoryId = IntegerField('categoryId', validators=[DataRequired()])
-    userId = IntegerField('userId', validators=[DataRequired()])
-    albumId = IntegerField('albumId')
     tags = StringField('tags')
     description = StringField('description', validators=[DataRequired()])
