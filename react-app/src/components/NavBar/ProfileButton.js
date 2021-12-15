@@ -76,13 +76,13 @@ function ProfileButton() {
         <div className="profile-dropdown">
           {sessionUser ? (
             <div className='profileButtons'>
-              <li className="WelcomeUser">Welcome, {sessionUser.firstName}!</li>
-              <NavLink to='/profile' exact={true} activeClassName='active' className='NavHome' onClick={closeMenu}>
-                My Profile
+              <li className="WelcomeUser">Welcome, {sessionUser.username}!</li>
+              <NavLink to='/profile' exact={true} activeClassName='active' className='NavHomeButton' onClick={closeMenu}>
+                Profile
               </NavLink>
 
-              <NavLink to='/favorites' exact={true} activeClassName='active' className='NavHome' onClick={closeMenu}>
-                My Favorites
+              <NavLink to='/favorites' exact={true} activeClassName='active' className='NavHomeButton' onClick={closeMenu}>
+                Favorites
               </NavLink>
             </div>
           ) : null}

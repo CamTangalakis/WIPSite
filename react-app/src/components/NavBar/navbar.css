@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px black;
+    background-color: rgb(59, 82, 126);
+    padding: 20px;
+    margin: -10px;
+    height: 50px;
 }
 
 .profile-dropdown {
@@ -39,7 +45,19 @@
     background-color: lightgray;
     border-radius: 2px;
     width: 90px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
+    margin: 10px 15px;
+}
+
+.NavHomeButton {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    background-color: lightgray;
+    border-radius: 2px;
+    width: 90px;
+    /* margin-left: 15px; */
+    margin: 20px 5px 5px 5px;
 }
 
 .NavButton {
@@ -50,7 +68,7 @@
     border-radius: 2px;
 }
 
-.NavHome:hover, .NavButton:hover {
+.NavHome:hover, .NavButton:hover, .NavHomeButton:hover {
     background-color: grey;
     color: white;
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);

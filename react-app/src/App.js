@@ -6,6 +6,8 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
+import SplashPage from './components/SplashPage/SplashPage';
+import HomePage from './components/HomePage/HomePage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +28,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -38,9 +43,9 @@ function App() {
         <Route path='/profile'>
           <h1>My Profile</h1>
         </Route>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/home' exact={true} >
+          <HomePage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
