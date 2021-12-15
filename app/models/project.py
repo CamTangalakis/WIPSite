@@ -27,10 +27,6 @@ class Project(db.Model):
             'userId': self.userId,
             'tags': self.tags,
             'description': self.description,
-            'comments': {obj.id: {
-                'content': obj.content
-                } for obj in self.comments},
-            'photos': [{
-                'photo': obj.photo
-                } for obj in self.album]
+            'comments': {obj.id: {'content': obj.content} for obj in self.comments},
+            'photos': [{'photo': obj.photo} for obj in self.album]
         }

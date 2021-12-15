@@ -1,0 +1,57 @@
+.NavBarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile-dropdown {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    background-color: rgba(226, 226, 226, 0.7);
+    padding: 10px 10px;
+    padding-top: 20px;
+    right: 15px;
+    top: 75px;
+    list-style: none;
+    border-radius: 2px;
+}
+
+.profileButtons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.NavButtons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 100px;
+}
+
+.NavHome {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    background-color: lightgray;
+    border-radius: 2px;
+    width: 90px;
+    margin-left: 15px;
+}
+
+.NavButton {
+    margin: 5px;
+    padding: 3px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 2px;
+}
+
+.NavHome:hover, .NavButton:hover {
+    background-color: grey;
+    color: white;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
+}
