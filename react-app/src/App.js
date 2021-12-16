@@ -9,6 +9,10 @@ import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import HomePage from './components/HomePage/HomePage';
 import { getProjects } from './store/project';
+import { getCategories } from './store/category';
+import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
+import EditProjectPage from './components/ProjectPages/EditProjectPage'
+import { getAlbums } from './store/album';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -17,7 +21,9 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getProjects())
+      await dispatch(getProjects());
+      await dispatch(getCategories())
+      await dispatch(getAlbums())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -38,6 +44,12 @@ function App() {
         </Route>
         <Route path='/signup' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/newProject' exact={true}>
+          <MakeProjectPage />
+        </Route>
+        <Route path='/editProject' exact={true}>
+          <EditProjectPage />
         </Route>
         <Route path='/favorites' >
           <h1>My Favorites</h1>

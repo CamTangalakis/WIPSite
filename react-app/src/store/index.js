@@ -2,10 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import ProjectReducer from './project';
+import CategoriesReducer from './category';
+import AlbumsReducer from './album';
 
 const rootReducer = combineReducers({
   session,
-  projects: ProjectReducer
+  projects: ProjectReducer,
+  categories: CategoriesReducer,
+  albums: AlbumsReducer
 });
 
 

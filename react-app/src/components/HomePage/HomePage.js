@@ -1,15 +1,19 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { getProjects } from '../../store/project'
-import MakeProjectModal from '../CreateProject/CreateProjectModal'
 import './homePage.css'
 
 const HomePage = () => {
     const dispatch = useDispatch()
     let projects = useSelector(state => state.projects)
+    const userId = useSelector(state => state.session.user.id)
     projects = projects.projects
     const User = useSelector(state => state.session.user)
     console.log(projects, "<<<----")
+    useEffect(()=>{
+        dispatch(getProjects())
+    }, [dispatch])
 
     return (
         <div className='homePageContainer'>
@@ -22,7 +26,7 @@ const HomePage = () => {
                 <div className='userOptionsContainer'>
                     <div className='userHeader'>{User.username}</div>
                     <div className='userButtons'>
-                        <MakeProjectModal />
+                        <NavLink to='/newProject' >Start a Project</NavLink>
                         <button type='button' className='userButton'>Search Projects</button>
                     </div>
                 </div>
@@ -46,6 +50,9 @@ const HomePage = () => {
 
                             <div className='cardFooter'>
                                 <p>#{project.tags.split(' ').join(' #')}</p>
+                                {userId == project.userId ? (
+                                    <NavLink to='/editProject'>Edit</NavLink>
+                                ): null}
                             </div>
                         </div>
                     </div>
