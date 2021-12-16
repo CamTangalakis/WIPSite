@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <nav className='NavBarContainer'>
       <NavLink to='/home'>LOGO</NavLink>
-      <ProfileButton />
+      <ProfileButton className="NavProfileDropdown"/>
     </nav>
   );
 }

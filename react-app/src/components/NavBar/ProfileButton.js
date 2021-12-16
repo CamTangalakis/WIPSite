@@ -4,8 +4,6 @@ import * as sessionActions from '../../store/session';
 import { NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import { useHistory } from 'react-router';
-import SignupModal from '../auth/SignupModal';
-import LoginModal from '../auth/LoginModal';
 
 function ProfileButton() {
     const history = useHistory();
@@ -34,6 +32,14 @@ function ProfileButton() {
         return history.push('/home');
     };
 
+    useEffect(() => {
+      if (!showMenu) return;
+
+      document.addEventListener('click', closeMenu);
+
+      return () => document.removeEventListener('click', closeMenu);
+    }, []);
+
     let sessionLinks;
 
     if (sessionUser) {
@@ -47,9 +53,8 @@ function ProfileButton() {
     } else {
         sessionLinks = (
         <div className="NavButtons">
-            <LoginModal className="NavButton" />
-
-            <SignupModal className="NavButton" />
+            <NavLink to='/signup' className='NavButton'>Sign Up</NavLink>
+            <NavLink to='/login' className='NavButton'>Log In</NavLink>
 
             <button type="button" onClick={loginGuest} className="NavButton">
                 Guest User
@@ -63,7 +68,7 @@ function ProfileButton() {
       {!showMenu ? (
         <div>
           <button className="MenuButton" onClick={openMenu}>
-            open
+            menu
           </button>
         </div>
       ) : (
@@ -96,7 +101,5 @@ function ProfileButton() {
     </div>
   );
 }
-
-
 
 export default ProfileButton;

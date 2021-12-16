@@ -11,8 +11,9 @@ const MAKE_FAV = 'favorites/MAKE_FAV'
 const DEL_FAV = 'favorites/DEL_FAV'
 
 
-export const getProj = () => ({
-    type: GET_PROJECTS
+export const getProj = (projects) => ({
+    type: GET_PROJECTS,
+    projects
 })
 
 export const makeProj = (content) => ({
@@ -33,7 +34,8 @@ export const delProj = (id) => ({
 export const getProjects = () => async(dispatch) => {
     const response = await fetch('/api/projects/', {
         headers: {'Content-Type': 'application/json' }
-      })
+    })
+
 
     if (response.ok) {
         const projects = await response.json()
@@ -107,9 +109,9 @@ export const delProject = (id) => async(dispatch) => {
 
 // ----------------- comments -------------------
 
-export const makeComm = (content) => ({
+export const makeComm = (contents) => ({
     type: MAKE_COMMENT,
-    content
+    contents
 })
 
 export const putComm = (contents) => ({
@@ -122,8 +124,8 @@ export const delComm = (id) => ({
     id
 })
 
-export const makeComment = (content) => async(dispatch) => {
-    const { content, projectId, userId } = content
+export const makeComment = (contents) => async(dispatch) => {
+    const { content, projectId, userId } = contents
     const response = await fetch(`/api/projects/${projectId}/comments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -222,9 +224,17 @@ export const delFavorite = (id, projectId) => async(dispatch) => {
 export default function ProjectReducer(state = {projects: null}, action){
     let newState;
     switch (action.type) {
-        case GET_PROJECTS: {
-            const projects = {}
-            console.log(action, state, '<------------')
-        }
+        case GET_PROJECTS:
+            newState = Object.assign({}, state)
+            const projects = {...action.projects}
+            newState = {...projects}
+            console.log(newState, '<------------')
+            return newState
+        case MAKE_PROJECT:
+            newState = Object.assign({}, state)
+            console.log(newState, '<---------')
+
+        default:
+            return state
     }
 }

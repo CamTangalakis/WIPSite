@@ -36,6 +36,7 @@
     flex-direction: column;
     margin: 10px;
     width: 100px;
+    border-top: solid 1px rgb(160, 165, 179);
 }
 
 .NavHome {
@@ -66,6 +67,9 @@
     background-color: lightgray;
     border: none;
     border-radius: 2px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
 }
 
 .NavHome:hover, .NavButton:hover, .NavHomeButton:hover {

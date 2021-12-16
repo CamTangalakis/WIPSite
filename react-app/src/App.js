@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import HomePage from './components/HomePage/HomePage';
+import { getProjects } from './store/project';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +17,7 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getProjects())
       setLoaded(true);
     })();
   }, [dispatch]);
