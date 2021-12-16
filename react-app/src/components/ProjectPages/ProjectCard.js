@@ -2,9 +2,11 @@ import { useSelector } from 'react-redux'
 import EditProjectModal from '../ProjectPages/EditProjectModal'
 import { NavLink } from 'react-router-dom'
 import '../HomePage/homePage.css'
+import CommentForm from '../Comments/CommentForm'
 
 function ProjectCard ({project}) {
-    const userId = useSelector(state => state.session.user?.id)
+    const user = useSelector(state => state.session.user)
+    // console.log(project.comments, '<---')
 
     return (
         <div className='projectCardContainer'>
@@ -25,10 +27,16 @@ function ProjectCard ({project}) {
 
                 <div className='cardFooter'>
                     <p>#{project.tags.split(' ').join(' #')}</p>
-                    {userId == project.userId ? (
+                    {user?.id == project.userId ? (
                         <EditProjectModal project={project}/>
                     ): null}
                 </div>
+
+                {user ? (
+                    <CommentForm projectId={project.id}/>
+                ): null}
+
+                <p></p>
             </div>
         </div>
     )

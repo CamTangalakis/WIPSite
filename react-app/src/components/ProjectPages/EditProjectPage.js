@@ -8,6 +8,7 @@ function EditProjectForm({setShowModal, project}) {
     const history = useHistory()
     const userId = useSelector(state => state.session.user.id)
     const categories = useSelector(state => state.categories.categories)
+    const projectId = project.id
 
     const [title, setTitle] = useState(project?.title)
     const [categoryId, setCategoryId] = useState(project?.categoryId)
@@ -16,7 +17,7 @@ function EditProjectForm({setShowModal, project}) {
 
     const submitProject = async(e) => {
         e.preventDefault()
-        await dispatch(editProject({title, categoryId, userId, tags, description}, project.id))
+        await dispatch(editProject({title, tags, description, projectId}))
         setShowModal(false)
         history.push('/home')
     }
