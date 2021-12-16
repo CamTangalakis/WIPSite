@@ -1,20 +1,18 @@
 from .db import db
 
-class Album(db.Model):
-    __tablename__ = 'albums'
+class Favorite(db.Model):
+    __tablename__ = 'favorites'
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey('users.id'))
     projectId = db.Column(db.Integer, db.ForeignKey('projects.id'))
-    photo = db.Column(db.String, nullable=False)
 
-    albumUser = db.relationship('User', back_populates='albumUser')
-    projectPics = db.relationship('Project', back_populates='album')
+    user = db.relationship('User', back_populates='favUser')
+    project = db.relationship('Project', back_populates='favProject')
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.userId,
-            'projectId': self.projectId,
-            'photo': self.photo
+            'projectId': self.projectId
         }

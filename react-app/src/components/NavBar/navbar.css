@@ -1,0 +1,79 @@
+.NavBarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px black;
+    background-color: rgb(59, 82, 126);
+    padding: 20px;
+    margin: -10px;
+    height: 50px;
+}
+
+.profile-dropdown {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    background-color: rgba(226, 226, 226, 0.7);
+    padding: 10px 10px;
+    padding-top: 20px;
+    right: 15px;
+    top: 75px;
+    list-style: none;
+    border-radius: 2px;
+}
+
+.profileButtons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.NavButtons {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 100px;
+    border-top: solid 1px rgb(160, 165, 179);
+}
+
+.NavHome {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    background-color: lightgray;
+    border-radius: 2px;
+    width: 90px;
+    /* margin-left: 15px; */
+    margin: 10px 15px;
+}
+
+.NavHomeButton {
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    background-color: lightgray;
+    border-radius: 2px;
+    width: 90px;
+    /* margin-left: 15px; */
+    margin: 20px 5px 5px 5px;
+}
+
+.NavButton {
+    margin: 5px;
+    padding: 3px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 2px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.NavHome:hover, .NavButton:hover, .NavHomeButton:hover {
+    background-color: grey;
+    color: white;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
+}

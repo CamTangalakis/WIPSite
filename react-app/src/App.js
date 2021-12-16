@@ -3,11 +3,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
+import SplashPage from './components/SplashPage/SplashPage';
+import HomePage from './components/HomePage/HomePage';
+import { getProjects } from './store/project';
+import { getCategories } from './store/category';
+import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
+import EditProjectPage from './components/ProjectPages/EditProjectPage'
+import { getAlbums } from './store/album';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +21,9 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getProjects());
+      await dispatch(getCategories())
+      await dispatch(getAlbums())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -28,21 +36,30 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path='/signup' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path='/newProject' exact={true}>
+          <MakeProjectPage />
+        </Route>
+        <Route path='/editProject' exact={true}>
+          <EditProjectPage />
+        </Route>
+        <Route path='/favorites' >
+          <h1>My Favorites</h1>
+        </Route>
+        <Route path='/profile'>
+          <h1>My Profile</h1>
+        </Route>
+        <Route path='/home' exact={true} >
+          <HomePage />
+        </Route>
       </Switch>
     </BrowserRouter>
   );

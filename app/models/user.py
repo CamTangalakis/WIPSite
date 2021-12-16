@@ -12,12 +12,17 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     albumUser = db.relationship('Album', back_populates='albumUser')
-    projectUser = db.relationship('User', back_populates='projectUser')
-    questionUser = db.relationship('Question', back_populates='questionUser')
+    projectUser = db.relationship('Project', back_populates='user')
+    commentUser = db.relationship('Comment', back_populates='commentUser')
+    favUser = db.relationship('Favorite', back_populates='user')
 
     @property
     def password(self):
         return self.hashed_password
+
+    # @property
+    # def username(self):
+    #     return self.username
 
     @password.setter
     def password(self, password):

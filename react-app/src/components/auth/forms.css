@@ -1,0 +1,78 @@
+.signupContainer, .loginContainer {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
+    background-color: rgb(113, 125, 151);
+}
+
+.SignupHeader, .LoginHeader {
+    color: white;
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: solid 1px lightgrey;
+}
+
+.inputContainer {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.usernameLabel, .emailLabel, .passwordLabel, .confirmLabel {
+    margin: 10px;
+    color: white;
+}
+
+.usernameInput, .emailInput, .passwordInput, .confirmInput {
+    border: none;
+    border-bottom: solid 1px rgb(27, 33, 70);
+    border-left: solid 1px rgb(27, 33, 70);
+    padding: 5px;
+    background-color: rgb(214, 216, 241);
+}
+
+.submitButton {
+    margin: 15px 20px;
+    width: 80px;
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(52, 66, 97);
+    color: white;
+    font-size: 18px;
+}
+
+.homeButton {
+    margin: 15px 20px;
+    width: 80px;
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(52, 66, 97);
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.homeButton:hover, .submitButton:hover {
+    background-color: rgb(214, 216, 241);
+    color: black;
+}
+
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+}
+
+.errors {
+    color: white;
+    margin: 5px;
+    padding: 5px;
+}
