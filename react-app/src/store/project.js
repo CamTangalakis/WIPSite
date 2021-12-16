@@ -73,12 +73,12 @@ export const makeProject = (content) => async(dispatch) => {
 }
 
 export const editProject = (content, projectId) => async(dispatch) => {
-    const { title, categoryId, tags, description } = content
+    const { title, tags, description } = content
     const response = await fetch(`/api/projects/${projectId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            title, categoryId, tags, description
+            title, tags, description
         })
     })
 
@@ -232,7 +232,10 @@ export default function ProjectReducer(state = {projects: null}, action){
             return newState
         case MAKE_PROJECT:
             newState = Object.assign({}, state)
-            console.log(newState, '<---------')
+            return newState
+        case PUT_PROJECT:
+            newState = {...state}
+            console.log(newState[action], '<<<---')
 
         default:
             return state
