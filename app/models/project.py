@@ -29,5 +29,4 @@ class Project(db.Model):
             'description': self.description,
             'comments': {obj.id: {'content': obj.content} for obj in self.comments},
             'photos': [{'photo': obj.photo} for obj in self.album],
-            # 'user': {obj.id: {'username': obj.username} for obj in self.user}
         }

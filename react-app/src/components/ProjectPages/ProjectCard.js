@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom'
 import '../HomePage/homePage.css'
 
 function ProjectCard ({project}) {
-    const userId = useSelector(state => state.session.user.id)
-    console.log(project.comments, '<---')
+    const userId = useSelector(state => state.session.user?.id)
 
     return (
         <div className='projectCardContainer'>

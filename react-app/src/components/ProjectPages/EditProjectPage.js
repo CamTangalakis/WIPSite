@@ -14,8 +14,6 @@ function EditProjectForm({setShowModal, project}) {
     const [tags, setTags] = useState(project.tags)
     const [description, setDescription] = useState(project.description)
 
-    console.log('in the form')
-
     const submitProject = async(e) => {
         e.preventDefault()
         await dispatch(editProject({title, categoryId, userId, tags, description}, project.id))

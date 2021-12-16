@@ -12,7 +12,6 @@ import { getProjects } from './store/project';
 import { getCategories } from './store/category';
 import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
 import ProjectPage from './components/ProjectPages/ProjectPage';
-import EditProjectPage from './components/ProjectPages/EditProjectPage'
 import { getAlbums } from './store/album';
 
 function App() {

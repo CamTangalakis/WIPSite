@@ -4,7 +4,6 @@ import EditProjectForm from './EditProjectPage';
 
 function EditProjectModal({project}) {
     const [showModal, setShowModal] = useState(false);
-    console.log('in the modal')
 
     return (
         <>

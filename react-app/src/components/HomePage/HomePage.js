@@ -8,7 +8,7 @@ import './homePage.css'
 const HomePage = () => {
     const dispatch = useDispatch()
     let projects = useSelector(state => state.projects)
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     projects = projects.projects
     const User = useSelector(state => state.session.user)
     console.log(projects, "<<<----")
