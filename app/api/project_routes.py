@@ -33,7 +33,6 @@ def edit_project(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         project.title = form.data['title']
-        project.categoryId = form.data['categoryId']
         project.tags = form.data['tags']
         project.description = form.data['description']
 
@@ -96,8 +95,9 @@ def delete_comment(id, comId):
 def post_fav(projectId, userId):
     form = NewFavForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(request.get_json(), '<--')
     if form.validate_on_submit():
-        fav = Favorite(userId=userId, projectId=projectId)
+        fav = Favorite(userId=form.data['userId'], projectId=form.data['projectId'])
         db.session.add(fav)
         db.session.commit()
         return fav.to_dict()

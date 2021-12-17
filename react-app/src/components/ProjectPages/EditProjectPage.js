@@ -1,24 +1,24 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { makeProject } from '../../store/project';
+import { editProject } from '../../store/project';
 
-function EditProjectPage() {
+function EditProjectForm({setShowModal, project}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const userId = useSelector(state => state.session.user.id)
     const categories = useSelector(state => state.categories.categories)
+    const projectId = project.id
 
-    const [title, setTitle] = useState('')
-    const [categoryId, setCategoryId] = useState(0)
-    const [tags, setTags] = useState('')
-    const [description, setDescription] = useState('')
-
-    // console.log(categoryId, '<---------------')
+    const [title, setTitle] = useState(project?.title)
+    const [categoryId, setCategoryId] = useState(project?.categoryId)
+    const [tags, setTags] = useState(project.tags)
+    const [description, setDescription] = useState(project.description)
 
     const submitProject = async(e) => {
         e.preventDefault()
-        await dispatch(makeProject({title, categoryId, userId, tags, description}))
+        await dispatch(editProject({title, tags, description, projectId}))
+        setShowModal(false)
         history.push('/home')
     }
 
@@ -31,20 +31,9 @@ function EditProjectPage() {
                         className='titleInput'
                         name='title'
                         type='text'
-                        placeholder='Title'
                         value={title}
                         onChange={(e)=> {setTitle(e.target.value)}}
                     />
-                </div>
-
-                <div className='inputContainer'>
-                    <label htmlFor='category' className='categoryLabel'>Category</label>
-                    <select onChange={(e)=> setCategoryId(e.target.value)} >
-                        <option value={0}>Select</option>
-                        {categories.map(cat => {
-                            return (<option value={cat.id}>{cat.category}</option>)
-                        })}
-                    </select>
                 </div>
 
                 <div className='inputContainer'>
@@ -53,7 +42,6 @@ function EditProjectPage() {
                         className='descriptionInput'
                         name='description'
                         type='textArea'
-                        placeholder='Description'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
                     />
@@ -65,18 +53,16 @@ function EditProjectPage() {
                         className='tagsInput'
                         name='tags'
                         type='text'
-                        placeholder='Tags'
                         value={tags}
                         onChange={(e)=> {setTags(e.target.value)}}
                     />
                 </div>
 
-
-                <button type='submit'>Create</button>
+                <button type='submit'>Edit</button>
 
             </form>
         </>
     )
 }
 
-export default EditProjectPage
+export default EditProjectForm

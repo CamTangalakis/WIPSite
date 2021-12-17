@@ -72,13 +72,13 @@ export const makeProject = (content) => async(dispatch) => {
     }
 }
 
-export const editProject = (content, projectId) => async(dispatch) => {
-    const { title, categoryId, tags, description } = content
-    const response = await fetch(`/api/projects/${projectId}`, {
+export const editProject = (content) => async(dispatch) => {
+    const { title, tags, description, projectId } = content
+    const response = await fetch(`/api/projects/${projectId}/`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            title, categoryId, tags, description
+            title, tags, description
         })
     })
 
@@ -97,12 +97,12 @@ export const editProject = (content, projectId) => async(dispatch) => {
 }
 
 export const delProject = (id) => async(dispatch) => {
-    const response = await fetch(`/api/projects/${id}`, {
+    const response = await fetch(`/api/projects/${id}/`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     })
     const project = await response.json()
-    dispatch(delProj(project))
+    dispatch(delProj(id))
     return project
 }
 
@@ -126,7 +126,7 @@ export const delComm = (id) => ({
 
 export const makeComment = (contents) => async(dispatch) => {
     const { content, projectId, userId } = contents
-    const response = await fetch(`/api/projects/${projectId}/comments`, {
+    const response = await fetch(`/api/projects/${projectId}/comments/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content, projectId, userId })
@@ -147,7 +147,7 @@ export const makeComment = (contents) => async(dispatch) => {
 
 export const editComment = (contents, id, projectId) => async(dispatch) => {
     const {content} = contents
-    const response = await fetch(`/api/projects/${projectId}/comments/${id}`, {
+    const response = await fetch(`/api/projects/${projectId}/comments/${id}/`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content, projectId, id})
@@ -167,7 +167,7 @@ export const editComment = (contents, id, projectId) => async(dispatch) => {
 }
 
 export const delComment = (id, projectId) => async(dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/comments/${id}`, {
+    const response = await fetch(`/api/projects/${projectId}/comments/${id}/`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     })
@@ -191,7 +191,7 @@ export const delFav = (id) => ({
 
 export const makeFavorite = (content) => async(dispatch) => {
     const {userId, projectId} = content
-    const response = await fetch(`/api/projects${projectId}/favorites`, {
+    const response = await fetch(`/api/projects${projectId}/favorites/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({userId, projectId})
@@ -211,7 +211,7 @@ export const makeFavorite = (content) => async(dispatch) => {
 }
 
 export const delFavorite = (id, projectId) => async(dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/favorites/${id}`,{
+    const response = await fetch(`/api/projects/${projectId}/favorites/${id}/`,{
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
     })
@@ -223,17 +223,35 @@ export const delFavorite = (id, projectId) => async(dispatch) => {
 
 export default function ProjectReducer(state = {projects: null}, action){
     let newState;
+    let index;
     switch (action.type) {
         case GET_PROJECTS:
             newState = Object.assign({}, state)
             const projects = {...action.projects}
             newState = {...projects}
-            console.log(newState, '<------------')
             return newState
         case MAKE_PROJECT:
             newState = Object.assign({}, state)
-            console.log(newState, '<---------')
-
+            return newState
+        case PUT_PROJECT:
+            newState = {...state}
+            index = newState.projects.findIndex(project => project.id == action.content.id )
+            newState.projects[index] = action.content
+            return newState
+        case DEL_PROJECT:
+            newState = {...state}
+            index = newState.projects.findIndex(project => project.id === action.id)
+            newState.projects.splice(index, 1)
+            return newState
+        case MAKE_COMMENT:
+            newState = Object.assign({}, state)
+            const comment = action.contents
+            index = newState.projects.findIndex(project=> project.id === action.contents.projectId)
+            // console.log(newState.projects[index].comments, [action.contents.id], '<<<<<----')
+            newState.projects[index].comments[action.contents.id] = comment
+            // newState.projects[index] = {comment}
+            // newState.projects.comments = {...comment}
+            return newState
         default:
             return state
     }

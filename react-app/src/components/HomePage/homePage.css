@@ -107,9 +107,19 @@
     border-bottom: solid 1px rgb(95, 122, 211);
 }
 
+.projectTitle {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 25px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
 .cardFooter {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+    border-bottom: solid 1px rgb(95, 122, 211);
 }

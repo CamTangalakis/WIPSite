@@ -13,19 +13,38 @@ function MakeProjectPage() {
     const [categoryId, setCategoryId] = useState(0)
     const [tags, setTags] = useState('')
     const [description, setDescription] = useState('')
+    const [errors, setErrors] = useState([])
 
     // console.log(categoryId, '<---------------')
 
     const submitProject = async(e) => {
         e.preventDefault()
-        await dispatch(makeProject({title, categoryId, userId, tags, description}))
-        history.push('/home')
+        setErrors([])
+        if(title.length < 1) {
+            errors.push('Please enter valid title')
+        }
+        if(description.length < 1) {
+            errors.push('Please enter valid description')
+        }
+        if(categoryId < 1) {
+            errors.push('Please select a category')
+        }
+        if(errors.length < 1) {
+            await dispatch(makeProject({title, categoryId, userId, tags, description}))
+            history.push('/home')
+        }
     }
 
     return (
         <>
             <form onSubmit={submitProject}>
+                <h2>Create a New Project</h2>
                 <div className='inputContainer'>
+                    <div className='errorContainer'>
+                        {errors.map((error, ind) => (
+                            <div key={ind}>{error}</div>
+                        ))}
+                    </div>
                     <label htmlFor='title' className='titleLabel'>Title</label>
                     <input
                         className='titleInput'
@@ -53,7 +72,7 @@ function MakeProjectPage() {
                         className='descriptionInput'
                         name='description'
                         type='textArea'
-                        placeholder='Description'
+                        placeholder='What is your project about?'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
                     />
@@ -65,7 +84,7 @@ function MakeProjectPage() {
                         className='tagsInput'
                         name='tags'
                         type='text'
-                        placeholder='Tags'
+                        placeholder='Please enter tags separated by spaces'
                         value={tags}
                         onChange={(e)=> {setTags(e.target.value)}}
                     />

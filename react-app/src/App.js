@@ -11,7 +11,7 @@ import HomePage from './components/HomePage/HomePage';
 import { getProjects } from './store/project';
 import { getCategories } from './store/category';
 import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
-import EditProjectPage from './components/ProjectPages/EditProjectPage'
+import ProjectPage from './components/ProjectPages/ProjectPage';
 import { getAlbums } from './store/album';
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
   }
 
   return (
+
     <BrowserRouter>
       <NavBar />
       <Switch>
@@ -48,8 +49,8 @@ function App() {
         <Route path='/newProject' exact={true}>
           <MakeProjectPage />
         </Route>
-        <Route path='/editProject' exact={true}>
-          <EditProjectPage />
+        <Route path='/projects/:projectId'>
+          <ProjectPage />
         </Route>
         <Route path='/favorites' >
           <h1>My Favorites</h1>

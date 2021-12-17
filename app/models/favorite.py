@@ -8,7 +8,7 @@ class Favorite(db.Model):
     projectId = db.Column(db.Integer, db.ForeignKey('projects.id'))
 
     user = db.relationship('User', back_populates='favUser')
-    project = db.relationship('Project', back_populates='favProject')
+    project = db.relationship('Project', back_populates='favorites')
 
     def to_dict(self):
         return {

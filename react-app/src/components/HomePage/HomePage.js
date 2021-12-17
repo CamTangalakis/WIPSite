@@ -2,17 +2,20 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { getProjects } from '../../store/project'
+import ProjectCard from '../ProjectPages/ProjectCard'
 import './homePage.css'
 
 const HomePage = () => {
     const dispatch = useDispatch()
     let projects = useSelector(state => state.projects)
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     projects = projects.projects
     const User = useSelector(state => state.session.user)
-    console.log(projects, "<<<----")
-    useEffect(()=>{
-        dispatch(getProjects())
+    projects?.sort((a,b) => a.createdAt - b.createdAt)
+    // console.log(projects, "<<<----")
+
+    useEffect(async()=>{
+        await dispatch(getProjects())
     }, [dispatch])
 
     return (
@@ -35,27 +38,7 @@ const HomePage = () => {
 
             <div className='exploreProjectsContainer'>
                 {projects?.map(project =>(
-                    <div className='projectCardContainer'>
-                        <div className='projectUsername'>Project Username</div>
-
-                        <div className='projectCard'>
-                            <div className='projectCardHeader'>
-                                <h2>{project.title}</h2>
-                                <button type='button' className='likeProject'>
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-
-                            <p>{project.description}</p>
-
-                            <div className='cardFooter'>
-                                <p>#{project.tags.split(' ').join(' #')}</p>
-                                {userId == project.userId ? (
-                                    <NavLink to='/editProject'>Edit</NavLink>
-                                ): null}
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectCard project={project} />
                 ))}
 
             </div>
