@@ -52,11 +52,11 @@ export const getProjects = () => async(dispatch) => {
 }
 
 export const makeProject = (content) => async(dispatch) => {
-    const {title, categoryId, userId, tags, description} = content
+    const {title, categoryId, userId, tags, description, coverPhoto} = content
     const response = await fetch('/api/projects/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ title, categoryId, userId, tags, description })
+        body: JSON.stringify({ title, categoryId, userId, tags, description, coverPhoto })
     })
     if (response.ok) {
         const project = await response.json()
@@ -73,12 +73,12 @@ export const makeProject = (content) => async(dispatch) => {
 }
 
 export const editProject = (content) => async(dispatch) => {
-    const { title, tags, description, projectId } = content
+    const { title, tags, description, projectId, coverPhoto } = content
     const response = await fetch(`/api/projects/${projectId}/`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            title, tags, description
+            title, tags, description, coverPhoto
         })
     })
 

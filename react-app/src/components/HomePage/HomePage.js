@@ -8,11 +8,8 @@ import './homePage.css'
 const HomePage = () => {
     const dispatch = useDispatch()
     let projects = useSelector(state => state.projects)
-    // const userId = useSelector(state => state.session.user?.id)
     projects = projects.projects
     const User = useSelector(state => state.session.user)
-    projects?.sort((a,b) => a.createdAt - b.createdAt)
-    // console.log(projects, "<<<----")
 
     useEffect(()=>{
         const func = async() => {
@@ -30,9 +27,9 @@ const HomePage = () => {
             <div>
                 {User ? (
                 <div className='userOptionsContainer'>
-                    <div className='userHeader'>{User.username}</div>
+                    <img className='userHeader' src={User.profilePic}></img>
                     <div className='userButtons'>
-                        <NavLink to='/newProject' >Start a Project</NavLink>
+                        <NavLink to='/newProject'>Start a Project</NavLink>
                         <button type='button' className='userButton'>Search Projects</button>
                     </div>
                 </div>

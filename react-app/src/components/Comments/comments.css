@@ -1,0 +1,20 @@
+.commentInput {
+    width: 75%;
+}
+
+.commentContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding-top: 15px;
+    border-top: solid 1px rgb(16, 16, 114);
+}
+
+.commentButton {
+    padding: 3px 8px;
+    margin: 5px;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(52, 64, 97);
+    color: white;
+}

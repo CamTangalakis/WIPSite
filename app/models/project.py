@@ -10,6 +10,7 @@ class Project(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     tags = db.Column(db.String)
     description = db.Column(db.String)
+    coverPhoto = db.Column(db.String)
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
@@ -27,6 +28,7 @@ class Project(db.Model):
             'userId': self.userId,
             'tags': self.tags,
             'description': self.description,
+            'coverPhoto': self.coverPhoto,
             'comments': {obj.id: {'content': obj.content, 'userId': obj.userId} for obj in self.comments},
             'photos': [{'photo': obj.photo} for obj in self.album],
             'user': self.user.to_dict(),
