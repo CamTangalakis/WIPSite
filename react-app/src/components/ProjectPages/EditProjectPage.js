@@ -1,17 +1,14 @@
 import React, {useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { editProject } from '../../store/project';
 
 function EditProjectForm({setShowModal, project}) {
     const dispatch = useDispatch()
     const history = useHistory()
-    const userId = useSelector(state => state.session.user.id)
-    const categories = useSelector(state => state.categories.categories)
     const projectId = project.id
 
     const [title, setTitle] = useState(project?.title)
-    const [categoryId, setCategoryId] = useState(project?.categoryId)
     const [tags, setTags] = useState(project.tags)
     const [description, setDescription] = useState(project.description)
 
