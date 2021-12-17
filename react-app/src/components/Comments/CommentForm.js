@@ -7,8 +7,10 @@ function CommentForm({projectId}) {
     const userId = useSelector(state => state.session.user?.id)
     const [content, setComment] = useState('')
 
-    const makeComm = () => {
-        dispatch(makeComment(content, projectId, userId))
+    const makeComm = (e) => {
+        e.preventDefault()
+        dispatch(makeComment({content, projectId, userId}))
+        setComment('')
     }
 
     return (

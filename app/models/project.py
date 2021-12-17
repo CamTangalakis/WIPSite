@@ -17,7 +17,7 @@ class Project(db.Model):
     category = db.relationship('Category', back_populates='projectCategory')
     album = db.relationship('Album', back_populates='projectPics', cascade="all, delete-orphan")
     comments = db.relationship('Comment', back_populates='project', cascade="all, delete-orphan")
-    favProject = db.relationship('Favorite', back_populates='project', cascade="all, delete-orphan")
+    favorites = db.relationship('Favorite', back_populates='project', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
@@ -29,4 +29,6 @@ class Project(db.Model):
             'description': self.description,
             'comments': {obj.id: {'content': obj.content} for obj in self.comments},
             'photos': [{'photo': obj.photo} for obj in self.album],
+            'user': self.user.to_dict(),
+            'createdAt': self.createdAt
         }

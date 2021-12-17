@@ -82,8 +82,6 @@ export const editProject = (content) => async(dispatch) => {
         })
     })
 
-    console.log('through!!!')
-
     if (response.ok) {
         const project = await response.json()
         dispatch(putProj(project))
@@ -104,7 +102,7 @@ export const delProject = (id) => async(dispatch) => {
         headers: { 'Content-Type': 'application/json' }
     })
     const project = await response.json()
-    dispatch(delProj(project))
+    dispatch(delProj(id))
     return project
 }
 
@@ -126,8 +124,8 @@ export const delComm = (id) => ({
     id
 })
 
-export const makeComment = (contents, projectId, userId) => async(dispatch) => {
-    const { content } = contents
+export const makeComment = (contents) => async(dispatch) => {
+    const { content, projectId, userId } = contents
     const response = await fetch(`/api/projects/${projectId}/comments/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -225,25 +223,34 @@ export const delFavorite = (id, projectId) => async(dispatch) => {
 
 export default function ProjectReducer(state = {projects: null}, action){
     let newState;
+    let index;
     switch (action.type) {
         case GET_PROJECTS:
             newState = Object.assign({}, state)
             const projects = {...action.projects}
             newState = {...projects}
-            console.log(newState, '<------------')
             return newState
         case MAKE_PROJECT:
             newState = Object.assign({}, state)
             return newState
         case PUT_PROJECT:
             newState = {...state}
-            newState.projects[action.content.id] = action.content
-            console.log(action.content, '<------')
+            index = newState.projects.findIndex(project => project.id == action.content.id )
+            newState.projects[index] = action.content
+            return newState
+        case DEL_PROJECT:
+            newState = {...state}
+            index = newState.projects.findIndex(project => project.id === action.id)
+            newState.projects.splice(index, 1)
             return newState
         case MAKE_COMMENT:
             newState = Object.assign({}, state)
-            const comment = {...action.contents}
-            newState = {...comment}
+            const comment = action.contents
+            index = newState.projects.findIndex(project=> project.id === action.contents.projectId)
+            // console.log(newState.projects[index].comments, [action.contents.id], '<<<<<----')
+            newState.projects[index].comments[action.contents.id] = comment
+            // newState.projects[index] = {comment}
+            // newState.projects.comments = {...comment}
             return newState
         default:
             return state

@@ -9,6 +9,11 @@ function ProjectPage() {
     const project = projects[projectId-1]
     console.log(project, '<--')
 
+    let comments = []
+    for (let comm in project.comments) {
+        comments.push(project.comments[comm].content)
+    }
+
     const albums = useSelector(state => state.albums.albums)
     const projectPics = albums.filter(img => Number(img.projectId) === Number(projectId))
     console.log(projectPics, '<--')
@@ -33,8 +38,10 @@ function ProjectPage() {
                 />
                 <button type='submit'>Add</button>
             </form>
-        </div>
 
+            {comments.map(com => (<p>{com}</p>))}
+
+        </div>
     )
 }
 

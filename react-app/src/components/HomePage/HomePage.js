@@ -11,9 +11,11 @@ const HomePage = () => {
     const userId = useSelector(state => state.session.user?.id)
     projects = projects.projects
     const User = useSelector(state => state.session.user)
-    console.log(projects, "<<<----")
-    useEffect(()=>{
-        dispatch(getProjects())
+    projects?.sort((a,b) => a.createdAt - b.createdAt)
+    // console.log(projects, "<<<----")
+
+    useEffect(async()=>{
+        await dispatch(getProjects())
     }, [dispatch])
 
     return (
