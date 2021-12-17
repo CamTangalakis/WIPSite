@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import CommentForm from "../Comments/CommentForm"
 
 function ProjectPage() {
     const dispatch = useDispatch()
@@ -7,7 +8,8 @@ function ProjectPage() {
     projectId = projectId.projectId
     const projects = useSelector(state => state.projects.projects)
     const project = projects[projectId-1]
-    console.log(project, '<--')
+
+    const user = useSelector(state=>state.session.user)
 
     let comments = []
     for (let comm in project.comments) {
@@ -40,6 +42,10 @@ function ProjectPage() {
             </form>
 
             {comments.map(com => (<p>{com}</p>))}
+
+            {user ? (
+                <CommentForm />
+            ): null}
 
         </div>
     )

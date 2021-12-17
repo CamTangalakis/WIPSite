@@ -22,4 +22,5 @@ class Comment(db.Model):
             'projectId': self.projectId,
             'userId': self.userId,
             'createdAt': self.createdat,
+            'user': self.commentUser.to_dict()
         }

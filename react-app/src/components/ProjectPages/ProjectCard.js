@@ -19,6 +19,10 @@ function ProjectCard ({project}) {
         dispatch(delProject(projectId))
     }
 
+    const findUsername = (id) => {
+
+    }
+
     return (
         <div className='projectCardContainer'>
             <div className='projectUsername'>{project.user?.username}</div>
@@ -27,7 +31,7 @@ function ProjectCard ({project}) {
                 <div className='projectCardHeader'>
                     <NavLink to={`/projects/${project.id}`} className='projectTitle'>{project.title}</NavLink>
                     <button type='button' className='likeProject'>
-                        <i class="fas fa-heart"></i>
+                        <i className="fas fa-heart"></i>
                     </button>
                 </div>
 
@@ -46,7 +50,12 @@ function ProjectCard ({project}) {
                     ): null}
                 </div>
 
-                {comments?.map(com => (<p>{com}</p>))}
+                {comments?.map(com => (
+                    <div>
+
+                        <p>{com}</p>
+                    </div>
+                ))}
 
                 {user ? (
                     <CommentForm projectId={project.id}/>

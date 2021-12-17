@@ -51,6 +51,7 @@ def upgrade():
     sa.Column('content', sa.Text(), nullable=False),
     sa.Column('projectId', sa.Integer(), nullable=True),
     sa.Column('userId', sa.Integer(), nullable=True),
+    sa.Column('user', sa.String(), nullable=True),
     sa.Column('createdat', sa.DateTime(), nullable=True),
     sa.Column('updatedat', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['projectId'], ['projects.id'], ),
