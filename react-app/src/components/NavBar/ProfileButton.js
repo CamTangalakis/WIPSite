@@ -4,6 +4,7 @@ import * as sessionActions from '../../store/session';
 import { NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import { useHistory } from 'react-router';
+import './navbar.css'
 
 function ProfileButton() {
     const history = useHistory();
@@ -68,12 +69,12 @@ function ProfileButton() {
       {!showMenu ? (
         <div>
           <button className="MenuButton" onClick={openMenu}>
-            menu
+            <i class="fas fa-bars fa-lg"></i>
           </button>
         </div>
       ) : (
         <button className="MenuButton" onClick={closeMenu}>
-          close
+          <i class="fas fa-caret-up fa-lg"></i>
         </button>
       )}
 

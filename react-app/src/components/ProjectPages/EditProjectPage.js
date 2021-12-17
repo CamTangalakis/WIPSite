@@ -11,10 +11,11 @@ function EditProjectForm({setShowModal, project}) {
     const [title, setTitle] = useState(project?.title)
     const [tags, setTags] = useState(project.tags)
     const [description, setDescription] = useState(project.description)
+    const [coverPhoto, setPhoto] = useState(project.coverPhoto)
 
     const submitProject = async(e) => {
         e.preventDefault()
-        await dispatch(editProject({title, tags, description, projectId}))
+        await dispatch(editProject({title, tags, description, projectId, coverPhoto}))
         setShowModal(false)
         history.push('/home')
     }
@@ -41,6 +42,18 @@ function EditProjectForm({setShowModal, project}) {
                         type='textArea'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
+                    />
+                </div>
+
+                <div className='inputContainer'>
+                    <label htmlFor='photo' className='photoLabel'>Cover Photo</label>
+                    <input
+                        className='photoInput'
+                        name='photo'
+                        type='textArea'
+                        placeholder='Add a photo url'
+                        value={coverPhoto}
+                        onChange={(e)=> {setPhoto(e.target.value)}}
                     />
                 </div>
 

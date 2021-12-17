@@ -13,6 +13,7 @@ function MakeProjectPage() {
     const [categoryId, setCategoryId] = useState(0)
     const [tags, setTags] = useState('')
     const [description, setDescription] = useState('')
+    const [coverPhoto, setPhoto] = useState('')
     const [errors, setErrors] = useState([])
 
     // console.log(categoryId, '<---------------')
@@ -30,7 +31,7 @@ function MakeProjectPage() {
             errors.push('Please select a category')
         }
         if(errors.length < 1) {
-            await dispatch(makeProject({title, categoryId, userId, tags, description}))
+            await dispatch(makeProject({title, categoryId, userId, tags, description, coverPhoto}))
             history.push('/home')
         }
     }
@@ -75,6 +76,18 @@ function MakeProjectPage() {
                         placeholder='What is your project about?'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
+                    />
+                </div>
+
+                <div className='inputContainer'>
+                    <label htmlFor='photo' className='photoLabel'>Cover Photo</label>
+                    <input
+                        className='photoInput'
+                        name='photo'
+                        type='textArea'
+                        placeholder='Add a photo url'
+                        value={coverPhoto}
+                        onChange={(e)=> {setPhoto(e.target.value)}}
                     />
                 </div>
 

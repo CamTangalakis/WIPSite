@@ -7,7 +7,7 @@ import './navbar.css'
 const NavBar = () => {
   return (
     <nav className='NavBarContainer'>
-      <NavLink to='/home'>LOGO</NavLink>
+      <NavLink to='/home' id='wipHeader'>WIP</NavLink>
       <ProfileButton className="NavProfileDropdown"/>
     </nav>
   );

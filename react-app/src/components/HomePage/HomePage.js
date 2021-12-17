@@ -8,11 +8,21 @@ import './homePage.css'
 const HomePage = () => {
     const dispatch = useDispatch()
     let projects = useSelector(state => state.projects)
-    // const userId = useSelector(state => state.session.user?.id)
     projects = projects.projects
     const User = useSelector(state => state.session.user)
-    projects?.sort((a,b) => a.createdAt - b.createdAt)
-    // console.log(projects, "<<<----")
+
+    const words = ['work', 'project', 'craft', 'design', 'plan']
+    let i = 0
+    const increment = () => {
+        setInterval(() => {
+            i += 1
+            if (i >= 5) i = 0
+            // console.log(i)
+            return i
+        }, 2000, i)
+    }
+    increment()
+    let word = words[i]
 
     useEffect(()=>{
         const func = async() => {
@@ -24,15 +34,15 @@ const HomePage = () => {
     return (
         <div className='homePageContainer'>
             <div className='homeHeaderContainer'>
-                <h1 className='wipHeader'>everything is a work in progress...</h1>
+                <h1 className='wipHeader'>everything is a {word} in progress...</h1>
             </div>
 
             <div>
                 {User ? (
                 <div className='userOptionsContainer'>
-                    <div className='userHeader'>{User.username}</div>
+                    <img className='userHeader' src={User.profilePic}></img>
                     <div className='userButtons'>
-                        <NavLink to='/newProject' >Start a Project</NavLink>
+                        <NavLink to='/newProject' className='startProject'>Start a Project</NavLink>
                         <button type='button' className='userButton'>Search Projects</button>
                     </div>
                 </div>

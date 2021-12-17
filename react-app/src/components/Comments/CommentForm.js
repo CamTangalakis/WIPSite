@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {makeComment} from '../../store/project'
+import './comments.css'
 
 function CommentForm({projectId}) {
     const dispatch = useDispatch()
@@ -14,13 +15,14 @@ function CommentForm({projectId}) {
     }
 
     return (
-        <form onSubmit={makeComm}>
-            <input
+        <form onSubmit={makeComm} className='commentContainer'>
+            <textarea
                 onChange={(e)=>setComment(e.target.value)}
                 name='content'
                 value={content}
+                className='commentInput'
             />
-            <button type="submit">Comment</button>
+            <button type="submit" className='commentButton'>Comment</button>
 
         </form>
     )

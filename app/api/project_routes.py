@@ -19,7 +19,7 @@ def post_project():
     if form.validate_on_submit():
         newProject = Project(title=form.data['title'], categoryId=form.data['categoryId'],
                             userId=form.data['userId'], tags=form.data['tags'],
-                            description=form.data['description'])
+                            description=form.data['description'], coverPhoto=form.data['coverPhoto'])
         db.session.add(newProject)
         db.session.commit()
         return newProject.to_dict()
@@ -35,6 +35,7 @@ def edit_project(id):
         project.title = form.data['title']
         project.tags = form.data['tags']
         project.description = form.data['description']
+        project.coverPhoto = form.data['coverPhoto']
 
         db.session.commit()
         return project.to_dict()

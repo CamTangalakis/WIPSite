@@ -31,6 +31,7 @@ def upgrade():
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('tags', sa.String(), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
+    sa.Column('coverPhoto', sa.String()),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['categoryId'], ['categories.id'], ),
