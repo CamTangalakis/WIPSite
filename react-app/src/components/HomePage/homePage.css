@@ -43,8 +43,9 @@
     background-color:rgb(202, 208, 228);
     border-radius: 2px;
     width: 300px;
-    padding: 15px;
-    margin: 10px;
+    min-width: 300px;
+    padding: 15px 0px;
+    margin: 10px 15px;
     align-items: center;
     justify-content: center;
 }
@@ -79,91 +80,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    margin-top: 30px;
-}
-
-.projectCardContainer {
-    display: flex;
     width: 90%;
-}
-
-.projectUsername {
-    background-color: rgb(192, 202, 211);
-    height: 60px;
-    width: 60px;
-    border-radius: 100px;
-    text-align: center;
-    font-size: 15px;
-    margin-right: 10px;
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.25);
-}
-
-.projectCard {
-    margin-bottom: 20px;
-    padding: 20px;
-    width: 100%;
-    background-color: rgb(124, 150, 199);
-    border-radius: 2px;
-}
-
-.likeProject {
-    border: none;
-    padding: 3px;
-    background-color: rgba(0,0,0,0);
-}
-
-.projectCardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: solid 1px rgb(95, 122, 211);
-}
-
-.projectTitle {
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
-    font-size: 25px;
-    padding: 5px;
-    margin-bottom: 5px;
-}
-
-.cardFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.coverPhoto {
-    width: 100%;
+    margin-top: 30px;
     margin: auto;
 }
 
-.editButton, .deleteButton {
-    padding: 3px 8px;
+.projectsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.projectContHeader {
+    border-bottom: solid 1px rgb(190, 202, 255);
+    margin-top: 25px;
+    padding: 10px 20px;
+}
+
+.projectCardsAll {
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.oneCard {
     margin: 10px;
-    border: none;
-    border-radius: 2px;
-    background-color: rgb(52, 64, 97);
-    color: white;
+    padding: 10px;
 }
 
-.editButton:hover {
-    background-color: rgb(166, 182, 226);
-    color: black;
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
-    transition: all 0.3s;
-}
-
-.deleteButton:hover {
-    background-color: rgb(172, 37, 37);
-    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
-    transition: all 0.3s;
-}
-
-.comments {
-    margin: 0px 10px;
-    padding: 5px;
+.spacer {
+    margin: 10px;
 }

@@ -11,18 +11,17 @@ const HomePage = () => {
     projects = projects.projects
     const User = useSelector(state => state.session.user)
 
-    const words = ['work', 'project', 'craft', 'design', 'plan']
-    let i = 0
-    const increment = () => {
-        setInterval(() => {
-            i += 1
-            if (i >= 5) i = 0
-            // console.log(i)
-            return i
-        }, 2000, i)
-    }
-    increment()
-    let word = words[i]
+    // const words = ['work', 'project', 'craft', 'design', 'plan']
+    // let i = 0
+    // let word
+    // setInterval(() => {
+    //     i += 1
+    //     if (i >= 5) i = 0
+    //     console.log(i)
+    //     word = words[i]
+    //     return word
+    // }, 2000)
+
 
     useEffect(()=>{
         const func = async() => {
@@ -34,10 +33,10 @@ const HomePage = () => {
     return (
         <div className='homePageContainer'>
             <div className='homeHeaderContainer'>
-                <h1 className='wipHeader'>everything is a {word} in progress...</h1>
+                <h1 className='wipHeader'>everything is a work in progress...</h1>
             </div>
 
-            <div>
+            {/* <div>
                 {User ? (
                 <div className='userOptionsContainer'>
                     <img className='userHeader' src={User.profilePic}></img>
@@ -47,12 +46,129 @@ const HomePage = () => {
                     </div>
                 </div>
                 ): null}
-            </div>
+            </div> */}
 
             <div className='exploreProjectsContainer'>
-                {projects?.map(project =>(
-                    <ProjectCard project={project} />
-                ))}
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>food</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => {
+                            if (project.categoryId === 1 || project.categoryId === 5) return true
+                        }).map(project =>(
+                            <div>
+                                <ProjectCard project={project} className='oneCard'/>
+                                <spacer className='spacer'></spacer>
+                            </div>
+                        ))}
+                        <spacer className='spacer'></spacer>
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>diy</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => {
+                            if (project.categoryId === 3 || project.categoryId === 6 || project.categoryId === 9) return true
+                        }).map(project =>(
+                            <div>
+                                <ProjectCard project={project} className='oneCard'/>
+                                <spacer className='spacer'></spacer>
+                            </div>
+                        ))}
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>fine art</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => {
+                            if (project.categoryId === 8 || project.categoryId === 11) return true
+                        }).map(project =>(
+                            <div>
+                                <ProjectCard project={project} className='oneCard'/>
+                                <spacer className='spacer'></spacer>
+                            </div>                        ))}
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>large scale</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => {
+                            if (project.categoryId === 2 || project.categoryId === 7 || project.categoryId === 10) return true
+                        }).map(project =>(
+                            <div>
+                                <ProjectCard project={project} className='oneCard'/>
+                                <spacer className='spacer'></spacer>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* ------------potential categories: --------------
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>for you</h2> //recommended algorithm
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => project.categoryId === 6).map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>gardening</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => project.categoryId === 7).map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>painting</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => project.categoryId === 8).map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>textiles</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => project.categoryId === 9).map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>woodworking</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => project.categoryId === 10).map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div>
+
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>writing</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.filter(project => project.categoryId === 11).map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div> */}
 
             </div>
         </div>
