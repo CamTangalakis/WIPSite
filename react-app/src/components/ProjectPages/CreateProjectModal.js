@@ -8,6 +8,7 @@ function MakeProjectPage() {
     const history = useHistory()
     const userId = useSelector(state => state.session.user.id)
     const categories = useSelector(state => state.categories.categories)
+    const projects = useSelector(state => state.projects.projects)
 
     const [title, setTitle] = useState('')
     const [categoryId, setCategoryId] = useState(0)
@@ -32,6 +33,9 @@ function MakeProjectPage() {
         }
         if(errors.length < 1) {
             await dispatch(makeProject({title, categoryId, userId, tags, description, coverPhoto}))
+            const project = projects.filter(project => project.title === title)
+            console.log(project, '!!!!')
+            // const projectId
             history.push('/home')
         }
     }

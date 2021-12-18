@@ -9,7 +9,9 @@ function ProjectPage() {
     projectId = projectId.projectId - 1
     const projects = useSelector(state => state.projects.projects)
     const project = projects[projectId]
-    console.log(project, '<<<----')
+    const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
+    const category = categories[project.categoryId - 1]
+    console.log(category, '<<<----')
 
     const user = useSelector(state=>state.session.user)
 
@@ -27,8 +29,17 @@ function ProjectPage() {
     }
     return (
         <div className='projectPageContainer'>
-            <h1 className='projectTitle'>{project.title}</h1>
-            <p className='projectDescription'>{project.description}</p>
+
+            <div className='projectPageHeader'>
+                <h1 className='projectPageTitle'>{project.title}</h1>
+                <div className='underHeaderStuff'>
+                    <img src={project.user.profilePic} className='userProfilePic'/>
+                    <p className='underHeaderDesc'>{project.user.username} started this {category} project on {project.createdAt.split(' ').slice(1,4).join(' ')}</p>
+                </div>
+            </div>
+
+            <p className='projectPageDescription'>{project.description}</p>
+            <img src={project.coverPhoto} className='projectCoverPhoto'/>
 
 
             {projectPics?.map(pic => (

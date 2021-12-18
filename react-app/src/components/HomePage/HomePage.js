@@ -58,10 +58,9 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-                                <spacer className='spacer'></spacer>
+    
                             </div>
                         ))}
-                        <spacer className='spacer'></spacer>
 
                     </div>
                 </div>
@@ -74,7 +73,7 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-                                <spacer className='spacer'></spacer>
+    
                             </div>
                         ))}
 
@@ -89,7 +88,7 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-                                <spacer className='spacer'></spacer>
+    
                             </div>                        ))}
                     </div>
                 </div>
@@ -102,12 +101,21 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-                                <spacer className='spacer'></spacer>
+    
                             </div>
                         ))}
                     </div>
                 </div>
 
+                <div className='projectsContainer'>
+                    <h2 className='projectContHeader'>all projects</h2>
+                    <div className='projectCardsAll'>
+                        {projects?.map(project =>(
+                            <ProjectCard project={project} className='oneCard'/>
+                        ))}
+
+                    </div>
+                </div>
                 {/* ------------potential categories: --------------
 
                 <div className='projectsContainer'>
@@ -120,15 +128,6 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <div className='projectsContainer'>
-                    <h2 className='projectContHeader'>gardening</h2>
-                    <div className='projectCardsAll'>
-                        {projects?.filter(project => project.categoryId === 7).map(project =>(
-                            <ProjectCard project={project} className='oneCard'/>
-                        ))}
-
-                    </div>
-                </div>
 
                 <div className='projectsContainer'>
                     <h2 className='projectContHeader'>painting</h2>
