@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import CommentForm from "../Comments/CommentForm"
+import './projectpage.css'
 
 function ProjectPage() {
     const dispatch = useDispatch()
     let projectId = useParams()
-    projectId = projectId.projectId
+    projectId = projectId.projectId - 1
     const projects = useSelector(state => state.projects.projects)
-    const project = projects[projectId-1]
+    const project = projects[projectId]
+    console.log(project, '<<<----')
 
     const user = useSelector(state=>state.session.user)
 
@@ -25,26 +27,27 @@ function ProjectPage() {
     }
     return (
         <div className='projectPageContainer'>
-            <h1>{project.title}</h1>
-            <p>{project.description}</p>
+            <h1 className='projectTitle'>{project.title}</h1>
+            <p className='projectDescription'>{project.description}</p>
 
 
             {projectPics?.map(pic => (
-                <img src={pic.photo}></img>
+                <img src={pic.photo} className='photos' />
             ))}
 
             <form>
-                <label htmlFor='images'>Add Images</label>
+                <label htmlFor='images' className='imagesLabel'>Add Images</label>
                 <input
                     name='images'
+                    className='imagesInput'
                 />
-                <button type='submit'>Add</button>
+                <button type='submit' className='imagesAdd'>Add</button>
             </form>
 
-            {comments.map(com => (<p>{com}</p>))}
+            {comments.map(com => (<p className='comment'>{com}</p>))}
 
             {user ? (
-                <CommentForm />
+                <CommentForm className='commentForm'/>
             ): null}
 
         </div>
