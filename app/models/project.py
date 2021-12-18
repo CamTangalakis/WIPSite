@@ -29,8 +29,9 @@ class Project(db.Model):
             'tags': self.tags,
             'description': self.description,
             'coverPhoto': self.coverPhoto,
-            'comments': {obj.id: {'content': obj.content, 'userId': obj.userId} for obj in self.comments},
+            'comments': {obj.id: {'content': obj.content, 'userId': obj.userId, 'id':obj.id} for obj in self.comments},
             'photos': [{'photo': obj.photo} for obj in self.album],
             'user': self.user.to_dict(),
+            # 'category': [{'category': obj.category} for obj in self.category],
             'createdAt': self.createdAt
         }

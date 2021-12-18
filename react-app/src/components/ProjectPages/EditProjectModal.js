@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Modal} from '../../context/Modal'
 import EditProjectForm from './EditProjectPage';
-import '../HomePage/homePage.css'
 
 function EditProjectModal({project}) {
     const [showModal, setShowModal] = useState(false);

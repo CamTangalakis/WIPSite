@@ -145,8 +145,8 @@ export const makeComment = (contents) => async(dispatch) => {
     }
 }
 
-export const editComment = (contents, id, projectId) => async(dispatch) => {
-    const {content} = contents
+export const editComment = (contents) => async(dispatch) => {
+    const {content, id, projectId} = contents
     const response = await fetch(`/api/projects/${projectId}/comments/${id}/`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -154,7 +154,7 @@ export const editComment = (contents, id, projectId) => async(dispatch) => {
     })
     if (response.ok) {
         const comment = response.json()
-        dispatch(putComm(comment))
+        dispatch(putComm(contents))
         return comment
     } else if (response.status < 500) {
         const data = await response.json();
@@ -247,10 +247,12 @@ export default function ProjectReducer(state = {projects: null}, action){
             newState = Object.assign({}, state)
             const comment = action.contents
             index = newState.projects.findIndex(project=> project.id === action.contents.projectId)
-            // console.log(newState.projects[index].comments, [action.contents.id], '<<<<<----')
             newState.projects[index].comments[action.contents.id] = comment
-            // newState.projects[index] = {comment}
-            // newState.projects.comments = {...comment}
+            return newState
+        case PUT_COMMENT:
+            newState = {...state}
+            console.log(newState.projects[action.contents.projectId-1].comments[action.contents.id].content, action.contents, '<<<<-------')
+            // newState.projects[action.contents.projectId-1]?.comments[action.contents.id] = action.contents
             return newState
         default:
             return state
