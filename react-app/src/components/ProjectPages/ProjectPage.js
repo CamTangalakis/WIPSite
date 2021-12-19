@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import { getProjects } from "../../store/project"
 import CommentForm from "../Comments/CommentForm"
 import './projectpage.css'
 
@@ -14,11 +16,20 @@ function ProjectPage() {
     console.log(category, '<<<----')
 
     const user = useSelector(state=>state.session.user)
+    const [showComments, setShowComments] = useState(false)
 
     let comments = []
     for (let comm in project.comments) {
         comments.push(project.comments[comm].content)
     }
+    console.log(comments)
+
+    useEffect(()=>{
+        const func = async() => {
+            await dispatch(getProjects())
+        }
+        func()
+    }, [dispatch])
 
     const albums = useSelector(state => state.albums.albums)
     const projectPics = albums.filter(img => Number(img.projectId) === Number(projectId))
@@ -40,13 +51,14 @@ function ProjectPage() {
 
             <p className='projectPageDescription'>{project.description}</p>
             <img src={project.coverPhoto} className='projectCoverPhoto'/>
+            <div className='albumPhotosContainer'> More Photos Here</div>
 
 
             {projectPics?.map(pic => (
                 <img src={pic.photo} className='photos' />
             ))}
 
-            <form>
+            <form className='addImagesForm'>
                 <label htmlFor='images' className='imagesLabel'>Add Images</label>
                 <input
                     name='images'
@@ -55,11 +67,31 @@ function ProjectPage() {
                 <button type='submit' className='imagesAdd'>Add</button>
             </form>
 
-            {comments.map(com => (<p className='comment'>{com}</p>))}
+            <button
+            type='button'
+            className='commentToggleButton'
+            onClick={()=>setShowComments(!showComments)} >
+                Comments
+                <i className="fas fa-chevron-down"></i>
+            </button>
 
-            {user ? (
-                <CommentForm className='commentForm'/>
-            ): null}
+            {showComments &&
+            <div className='allComments'>
+                {comments.length ? (
+                    comments.map((com) => (
+                        <div className='projectCommentContainer'>
+
+                            <p className='comment'>{com}</p>
+                        </div>
+                    ))
+                ): (
+                    <p className='projectCommentContainer comment'>be the first to comment!</p>
+                )}
+                {user ? (
+                    <CommentForm className='commentForm' projectId={project.id}/>
+                ): null}
+            </div>}
+
 
         </div>
     )
