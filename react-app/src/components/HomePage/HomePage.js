@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { getCategories } from '../../store/category'
 import { getProjects } from '../../store/project'
 import ProjectCard from '../ProjectPages/ProjectCard'
 import './homePage.css'
@@ -26,6 +27,7 @@ const HomePage = () => {
     useEffect(()=>{
         const func = async() => {
             await dispatch(getProjects())
+            await dispatch(getCategories())
         }
         func()
     }, [dispatch])
@@ -58,10 +60,9 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-    
+
                             </div>
                         ))}
-
                     </div>
                 </div>
 
@@ -73,10 +74,9 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-    
+
                             </div>
                         ))}
-
                     </div>
                 </div>
 
@@ -88,8 +88,8 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-    
-                            </div>                        ))}
+
+                            </div>))}
                     </div>
                 </div>
 
@@ -101,7 +101,7 @@ const HomePage = () => {
                         }).map(project =>(
                             <div>
                                 <ProjectCard project={project} className='oneCard'/>
-    
+
                             </div>
                         ))}
                     </div>

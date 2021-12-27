@@ -1,14 +1,13 @@
 const GET_CATEGORIES = 'categories/GET_CATEGORIES'
 
-
 export const getCats = (categories) => ({
     type: GET_CATEGORIES,
     categories
 })
 
 export const getCategories = () => async(dispatch) => {
-    const response = await fetch('api/categories/', {
-        headers: {'Content-Type': 'application/json' }
+    const response = await fetch('/api/categories/', {
+        headers: { 'Content-Type': 'application/json' }
     })
 
     if (response.ok) {

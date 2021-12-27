@@ -17,7 +17,7 @@ function EditProjectForm({setShowModal, project}) {
         e.preventDefault()
         await dispatch(editProject({title, tags, description, projectId, coverPhoto}))
         setShowModal(false)
-        history.push('/home')
+        history.push(`/projects/${projectId}`)
     }
 
     return (

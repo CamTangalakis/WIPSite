@@ -7,7 +7,7 @@ export const getAlb = (albums) => ({
 })
 
 export const getAlbums = () => async(dispatch) => {
-    const response = await fetch('api/albums/', {
+    const response = await fetch('/api/albums/', {
         headers: {'Content-Type': 'application/json' }
     })
 
