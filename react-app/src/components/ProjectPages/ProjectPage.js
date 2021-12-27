@@ -6,16 +6,16 @@ import { delComment, getProjects } from "../../store/project"
 import CommentForm from "../Comments/CommentForm"
 import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
-import './projectpage.css'
 import EditCommentModal from "../Comments/EditCommentModal"
+import './projectpage.css'
 
 function ProjectPage() {
     const dispatch = useDispatch()
     const history = useHistory()
     let projectId = useParams()
     projectId = projectId.projectId
-    const projects = useSelector(state => state.projects?.projects)
-    const project = projects.filter(project => project.id == projectId)
+    const {projects} = useSelector(state => state.projects)
+    const project = projects.find(project => project.id == projectId)
 
     const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
     const category = categories[project?.categoryId - 1]
@@ -40,34 +40,35 @@ function ProjectPage() {
         // dispatch()
     }
 
-    const deleteProject = () => {
+    const deleteProject =() => {
         dispatch(delProject(projectId))
         history.push('/home')
     }
 
     const deleteComment = (id, projectId) => {
         dispatch(delComment({id, projectId}))
+        history.push(`/projects/${projectId}`)
     }
 
     return (
         <div className='projectPageContainer'>
 
             <div className='projectPageHeader'>
-                <h1 className='projectPageTitle'>{project[0].title}</h1>
-                {user?.id == project[0].userId ? (
+                <h1 className='projectPageTitle'>{project.title}</h1>
+                {user?.id == project.userId ? (
                         <div className='projectEditDel'>
-                            <EditProjectModal project={project[0]} />
+                            <EditProjectModal project={project} />
                             <button type='button' onClick={deleteProject} className='deleteButton'>delete</button>
                         </div>
                     ): null}
                 <div className='underHeaderStuff'>
-                    <img src={project[0]?.user?.profilePic} className='userProfilePic'/>
-                    <p className='underHeaderDesc'>{project[0]?.user?.username} started this {category} project on {project[0].createdAt?.split(' ').slice(1,4).join(' ')}</p>
+                    <img src={project?.user?.profilePic} className='userProfilePic'/>
+                    <p className='underHeaderDesc'>{project?.user?.username} started this {category} project on {project.createdAt?.split(' ').slice(1,4).join(' ')}</p>
                 </div>
             </div>
 
-            <p className='projectPageDescription'>{project[0].description}</p>
-            <img src={project[0].coverPhoto} className='projectCoverPhoto'/>
+            <p className='projectPageDescription'>{project.description}</p>
+            <img src={project.coverPhoto} className='projectCoverPhoto'/>
             <div className='albumPhotosContainer'> More Photos Here</div>
 
 
@@ -96,15 +97,15 @@ function ProjectPage() {
 
             {showComments &&
             <div className='allComments'>
-                {Object.keys(project[0].comments).length ? (
-                    Object.keys(project[0].comments).map((id) => (
+                {Object.keys(project.comments).length ? (
+                    Object.keys(project.comments).map((id) => (
                         <div className='projectCommentContainer'>
 
-                            <p className='comment'>{project[0].comments[id].content}</p>
-                            {user.id == project[0].comments[id].userId ? (
+                            <p className='comment'>{project.comments[id].content}</p>
+                            {user.id == project.comments[id].userId ? (
                                 <div>
-                                    <EditCommentModal comment={project[0].comments[id]} projectId={project[0].id}/>
-                                    <button type='button' onClick={deleteComment(project[0].comments[id].id, project[0].id)}>delete</button>
+                                    <EditCommentModal comment={project.comments[id]} projectId={project.id}/>
+                                    <button type='button' onClick={() => {deleteComment(project.comments[id].id, project.id)}} >delete</button>
                                 </div>
                             ) : (<p></p>)}
                         </div>
@@ -114,7 +115,7 @@ function ProjectPage() {
                 )}
 
                 {user ? (
-                    <CommentForm className='commentForm' projectId={project[0].id}/>
+                    <CommentForm className='commentForm' projectId={project.id}/>
                 ): null}
             </div>}
 

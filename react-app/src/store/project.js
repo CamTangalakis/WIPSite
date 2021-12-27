@@ -256,8 +256,7 @@ export default function ProjectReducer(state = {projects: null}, action){
             newState = {...projects}
             return newState
         case MAKE_PROJECT:
-            newState = Object.assign({}, state)
-            return newState
+            return {...state, [action.content?.id]: action.content}
         case PUT_PROJECT:
             newState = {...state}
             index = newState.projects.findIndex(project => project.id == action.content.id )
@@ -268,21 +267,28 @@ export default function ProjectReducer(state = {projects: null}, action){
             index = newState.projects.findIndex(project => project.id === action.id)
             newState.projects.splice(index, 1)
             return newState
+
+
         case MAKE_COMMENT:
             newState = {...state}
             const comment = action.contents
-            index = newState.projects.findIndex(project=> project.id === action.contents.projectId)
+            index = newState.projects.findIndex(project => project.id == action.contents.projectId)
             newState.projects[index].comments[action.contents.id] = comment
+            newState.projects[index].comments[action.contents.id] = {...newState.projects[index].comments[action.contents.id]}
             return newState
         case PUT_COMMENT:
             newState = {...state}
-            // console.log(newState.projects[action.contents.projectId-1].comments[action.contents.id].content, action.contents, '<<<<-------')
-            newState.projects[action.contents.projectId-1].comments[action.contents.id].content = action.contents.content
+            index = newState.projects.findIndex(project => project.id == action.contents.projectId)
+            newState.projects[index].comments[action.contents.id].content = action.contents.content
             return newState
         case DEL_COMMENT:
             newState = {...state}
-            delete newState.projects[action.contents.projectId-1].comments[action.contents.id]
+            index = newState.projects.findIndex(project => project.id == action.contents.projectId)
+            newState.projects[index].comments[action.contents.id] = {}
+            delete newState.projects[index].comments[action.contents.id]
             return newState
+
+
         default:
             return state
     }
