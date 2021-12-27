@@ -71,12 +71,7 @@ function ProjectCard ({project}) {
                     {project.tags ? (
                         <p className='projectTags'>#{project.tags?.split(' ').join(' #')}</p>
                     ): <p></p>}
-                    {user?.id == project.userId ? (
-                        <div>
-                            <EditProjectModal project={project} />
-                            <button type='button' onClick={deleteProject} className='deleteButton'>delete</button>
-                        </div>
-                    ): null}
+                    
                 </div>
             </div>
         </div>

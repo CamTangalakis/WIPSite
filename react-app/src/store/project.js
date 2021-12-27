@@ -119,9 +119,9 @@ export const putComm = (contents) => ({
     contents
 })
 
-export const delComm = (id) => ({
+export const delComm = (contents) => ({
     type: DEL_COMMENT,
-    id
+    contents
 })
 
 export const makeComment = (contents) => async(dispatch) => {
@@ -166,7 +166,8 @@ export const editComment = (contents) => async(dispatch) => {
     }
 }
 
-export const delComment = (id, projectId) => async(dispatch) => {
+export const delComment = (contents) => async(dispatch) => {
+    const {id, projectId} = contents
     const response = await fetch(`/api/projects/${projectId}/comments/${id}/`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
@@ -244,15 +245,19 @@ export default function ProjectReducer(state = {projects: null}, action){
             newState.projects.splice(index, 1)
             return newState
         case MAKE_COMMENT:
-            newState = Object.assign({}, state)
+            newState = {...state}
             const comment = action.contents
             index = newState.projects.findIndex(project=> project.id === action.contents.projectId)
             newState.projects[index].comments[action.contents.id] = comment
             return newState
         case PUT_COMMENT:
             newState = {...state}
-            console.log(newState.projects[action.contents.projectId-1].comments[action.contents.id].content, action.contents, '<<<<-------')
-            // newState.projects[action.contents.projectId-1]?.comments[action.contents.id] = action.contents
+            // console.log(newState.projects[action.contents.projectId-1].comments[action.contents.id].content, action.contents, '<<<<-------')
+            newState.projects[action.contents.projectId-1].comments[action.contents.id].content = action.contents.content
+            return newState
+        case DEL_COMMENT:
+            newState = {...state}
+            delete newState.projects[action.contents.projectId-1].comments[action.contents.id]
             return newState
         default:
             return state

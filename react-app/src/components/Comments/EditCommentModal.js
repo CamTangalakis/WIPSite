@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {Modal} from '../../context/Modal'
 import { editComment } from '../../store/project';
 import './comments.css'
@@ -13,6 +13,7 @@ function EditCommentModal({comment, projectId}) {
     const editCom = (e) => {
         e.preventDefault()
         dispatch(editComment({content, projectId, id}))
+        setShowModal(false)
     }
 
     return (
