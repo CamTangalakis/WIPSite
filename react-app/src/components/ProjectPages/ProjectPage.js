@@ -14,10 +14,8 @@ function ProjectPage() {
     const history = useHistory()
     let projectId = useParams()
     projectId = projectId.projectId
-    console.log(projectId, '<<<!!!!')
     const projects = useSelector(state => state.projects?.projects)
     const project = projects.filter(project => project.id == projectId)
-    console.log(project, '<<<<---------------!!')
 
     const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
     const category = categories[project?.categoryId - 1]
@@ -57,14 +55,14 @@ function ProjectPage() {
             <div className='projectPageHeader'>
                 <h1 className='projectPageTitle'>{project[0].title}</h1>
                 {user?.id == project[0].userId ? (
-                        <div>
+                        <div className='projectEditDel'>
                             <EditProjectModal project={project[0]} />
                             <button type='button' onClick={deleteProject} className='deleteButton'>delete</button>
                         </div>
                     ): null}
                 <div className='underHeaderStuff'>
                     <img src={project[0]?.user?.profilePic} className='userProfilePic'/>
-                    <p className='underHeaderDesc'>{project[0]?.user?.username} started this {category} project on {project.createdAt?.split(' ').slice(1,4).join(' ')}</p>
+                    <p className='underHeaderDesc'>{project[0]?.user?.username} started this {category} project on {project[0].createdAt?.split(' ').slice(1,4).join(' ')}</p>
                 </div>
             </div>
 

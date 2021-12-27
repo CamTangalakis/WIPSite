@@ -25,6 +25,11 @@
     width: 50%;
 }
 
+.projectEditDel {
+    margin: auto;
+    width: 25%;
+}
+
 .underHeaderDesc {
     margin: 5px 10px;
     font-size: 15px;

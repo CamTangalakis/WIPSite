@@ -92,13 +92,18 @@ def delete_comment(id, comId):
 
 # --------------- favorites -------------------
 
+@project_routes.route('/<int:projectId>/favorites/')
+def get_favorites(projectId):
+    favs = Favorite.query.all()
+    return {'favs': [fav.to_dict() for fav in favs]}
+
 @project_routes.route('/<int:projectId>/favorites/', methods=['POST'])
-def post_fav(projectId, userId):
+def post_fav(projectId):
     form = NewFavForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     print(request.get_json(), '<--')
     if form.validate_on_submit():
-        fav = Favorite(userId=form.data['userId'], projectId=form.data['projectId'])
+        fav = Favorite(userId=form.data['userId'], projectId=projectId)
         db.session.add(fav)
         db.session.commit()
         return fav.to_dict()

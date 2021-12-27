@@ -7,6 +7,7 @@ const MAKE_COMMENT = 'comments/MAKE_COMMENT'
 const PUT_COMMENT = 'comments/PUT_COMMENT'
 const DEL_COMMENT = 'comments/DEL_COMMENT'
 
+const GET_FAV = 'favorites/GET_FAV'
 const MAKE_FAV = 'favorites/MAKE_FAV'
 const DEL_FAV = 'favorites/DEL_FAV'
 
@@ -180,6 +181,10 @@ export const delComment = (contents) => async(dispatch) => {
 
 // --------------- favs ----------------------
 
+export const getFav = (projectId) => ({
+    type: GET_FAV, projectId
+})
+
 export const makeFav = (content) => ({
     type: MAKE_FAV,
     content
@@ -189,6 +194,25 @@ export const delFav = (id) => ({
     type: DEL_FAV,
     id
 })
+
+export const getFavorites = (projectId) => async(dispatch) => {
+    const response = await fetch(`/api/projects/${projectId}/favorites/`, {
+        headers: {'Content-Type': 'application/json' }
+    })
+
+    if (response.ok) {
+        const projects = await response.json()
+        dispatch(getProj(projects))
+        return projects
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+    } else {
+        return ['An error occurred.'];
+    }
+}
 
 export const makeFavorite = (content) => async(dispatch) => {
     const {userId, projectId} = content

@@ -13,6 +13,7 @@ import { getCategories } from './store/category';
 import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
 import ProjectPage from './components/ProjectPages/ProjectPage';
 import { getAlbums } from './store/album';
+import FavPage from './components/Favorites/FavPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,7 +54,7 @@ function App() {
           <ProjectPage />
         </Route>
         <Route path='/favorites' >
-          <h1>My Favorites</h1>
+          <FavPage /> 
         </Route>
         <Route path='/profile'>
           <h1>My Profile</h1>

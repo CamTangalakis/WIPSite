@@ -36,10 +36,9 @@ function EditProjectForm({setShowModal, project}) {
 
                 <div className='inputContainer'>
                     <label htmlFor='description' className='descriptionLabel'>Description</label>
-                    <input
+                    <textarea
                         className='descriptionInput'
                         name='description'
-                        type='textArea'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
                     />

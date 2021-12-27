@@ -14,5 +14,6 @@ class Favorite(db.Model):
         return {
             'id': self.id,
             'userId': self.userId,
-            'projectId': self.projectId
+            'projectId': self.projectId,
+            'projects': self.project.to_dict()
         }

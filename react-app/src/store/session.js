@@ -1,6 +1,6 @@
 // constants
-const SET_USER = 'session/SET_USER'
-const REMOVE_USER = 'session/REMOVE_USER'
+const SET_USER = 'session/SET_USER';
+const REMOVE_USER = 'session/REMOVE_USER';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -10,7 +10,6 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER,
 })
-
 
 const initialState = { user: null };
 
@@ -71,7 +70,7 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password, profilePic) => async (dispatch) => {
+export const signUp = (username, email, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
@@ -81,7 +80,6 @@ export const signUp = (username, email, password, profilePic) => async (dispatch
       username,
       email,
       password,
-      profilePic
     }),
   });
 
@@ -98,7 +96,6 @@ export const signUp = (username, email, password, profilePic) => async (dispatch
     return ['An error occurred. Please try again.']
   }
 }
-
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

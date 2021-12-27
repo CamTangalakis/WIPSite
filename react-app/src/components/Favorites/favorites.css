@@ -1,0 +1,4 @@
+.favProjectCards {
+    display: flex;
+    flex-wrap: wrap;
+}
