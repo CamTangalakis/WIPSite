@@ -57,6 +57,11 @@
      text-overflow: ellipsis;
  }
 
+ .projectTitle:hover {
+     color: rgb(68, 68, 155);
+     transition: all 0.3s;
+ }
+
  .projectDescription {
      height: 50px;
      white-space: nowrap;

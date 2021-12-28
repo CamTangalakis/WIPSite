@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { editProject } from '../../store/project';
+import './projectpage.css'
 
 function EditProjectForm({setShowModal, project}) {
     const dispatch = useDispatch()
@@ -36,10 +37,9 @@ function EditProjectForm({setShowModal, project}) {
 
                 <div className='inputContainer'>
                     <label htmlFor='description' className='descriptionLabel'>Description</label>
-                    <input
+                    <textarea
                         className='descriptionInput'
                         name='description'
-                        type='textArea'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
                     />
