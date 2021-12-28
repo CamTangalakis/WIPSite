@@ -5,6 +5,7 @@ import ProjectReducer from './project';
 import CategoriesReducer from './category';
 import AlbumsReducer from './album';
 import SearchReducer from './search';
+import FavoritesReducer from './favorites';
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   categories: CategoriesReducer,
   albums: AlbumsReducer,
   search_results: SearchReducer,
+  favorites: FavoritesReducer,
 });
 
 

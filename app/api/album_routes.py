@@ -12,7 +12,7 @@ def get_albums():
     albums = Album.query.all()
     return {'albums': [album.to_dict() for album in albums]}
 
-@album_routes.route('/')
+@album_routes.route('/', methods=['POST'])
 def make_album():
     form = NewAlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -25,7 +25,7 @@ def make_album():
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@album_routes.route('/<int:id>')
+@album_routes.route('/<int:id>/', methods=['DELETE'])
 def del_album(id):
     album = Album.query.get(int(id))
     db.session.delete(album)

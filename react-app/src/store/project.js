@@ -7,10 +7,6 @@ const MAKE_COMMENT = 'comments/MAKE_COMMENT'
 const PUT_COMMENT = 'comments/PUT_COMMENT'
 const DEL_COMMENT = 'comments/DEL_COMMENT'
 
-const GET_FAV = 'favorites/GET_FAV'
-const MAKE_FAV = 'favorites/MAKE_FAV'
-const DEL_FAV = 'favorites/DEL_FAV'
-
 
 export const getProj = (projects) => ({
     type: GET_PROJECTS,
@@ -179,72 +175,6 @@ export const delComment = (contents) => async(dispatch) => {
 }
 
 
-// --------------- favs ----------------------
-
-export const getFav = () => ({
-    type: GET_FAV
-})
-
-export const makeFav = (content) => ({
-    type: MAKE_FAV,
-    content
-})
-
-export const delFav = (id) => ({
-    type: DEL_FAV,
-    id
-})
-
-export const getFavorites = () => async(dispatch) => {
-    const response = await fetch(`/api/projects/favorites/`, {
-        headers: {'Content-Type': 'application/json' }
-    })
-
-    if (response.ok) {
-        const projects = await response.json()
-        dispatch(getProj(projects))
-        return projects
-    } else if (response.status < 500) {
-        const data = await response.json();
-        if (data.errors) {
-          return data.errors;
-        }
-    } else {
-        return ['An error occurred.'];
-    }
-}
-
-export const makeFavorite = (content) => async(dispatch) => {
-    const {userId, projectId} = content
-    const response = await fetch(`/api/projects${projectId}/favorites/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({userId, projectId})
-    })
-    if (response.ok) {
-        const fav = response.json()
-        dispatch(makeFav(fav))
-        return fav
-    } else if (response.status < 500) {
-        const data = await response.json();
-        if (data.errors) {
-          return data.errors;
-        }
-    } else {
-        return ['An error occurred.'];
-    }
-}
-
-export const delFavorite = (id, projectId) => async(dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/favorites/${id}/`,{
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-    })
-    const fav = response.json()
-    dispatch(delFav(fav))
-    return fav
-}
-
 // ------------------ reducer ----------------------
 
 
@@ -287,13 +217,6 @@ export default function ProjectReducer(state = {projects: null}, action){
             index = newState.projects.findIndex(project => +project.id == +action.contents.projectId)
             delete newState.projects[index].comments[action.contents.id]
             newState.projects[index].comments = {...newState.projects[index].comments}
-            return newState
-
-        case GET_FAV:
-            newState = {...state}
-            const favs = {...action.payload}
-            console.log(favs, '<<<<<<<<<<<<<<<<<<<')
-            newState = {...favs}
             return newState
         default:
             return state

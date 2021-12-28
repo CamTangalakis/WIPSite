@@ -8,6 +8,7 @@ import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
 import './projectpage.css'
+import { delAlbum, makeAlbum } from "../../store/album"
 
 function ProjectPage() {
     const dispatch = useDispatch()
@@ -32,12 +33,18 @@ function ProjectPage() {
         func()
     }, [dispatch])
 
+    const [photoUrl, setPhotoUrl] = useState('')
     const albums = useSelector(state => state.albums.albums)
-    const projectPics = albums.filter(img => Number(img.projectId) === Number(projectId))
-
+    const projectPics = albums.filter(img => +img.projectId === +projectId)
+    console.log(projectPics, '<<<---')
 
     const addImage = () => {
-        // dispatch()
+        dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
+    }
+
+    const deleteImage = (id) => {
+        dispatch(delAlbum(id))
+        history.push(`/projects/${projectId}`)
     }
 
     const deleteProject = () => {
@@ -69,18 +76,28 @@ function ProjectPage() {
 
             <p className='projectPageDescription'>{project?.description}</p>
             <img src={project?.coverPhoto} className='projectCoverPhoto'/>
-            <div className='albumPhotosContainer'> More Photos Here</div>
+            {projectPics.length ? (
+                <div className='albumPhotosContainer'>
+                    {projectPics.map(pic => (
+                        <div className='photoCard'>
+                            <button type="button" onClick={()=>deleteImage(pic.id)}>
+                                <i className="far fa-minus-square"></i>
+                            </button>
+                            <img src={pic.photo} className='photos' />
+                        </div>
+                    ))}
+                </div>
+            ): null}
 
-
-            {projectPics?.map(pic => (
-                <img src={pic.photo} className='photos' />
-            ))}
-
-            <form className='addImagesForm'>
+            <form className='addImagesForm' onSubmit={()=> addImage()}>
                 <label htmlFor='images' className='imagesLabel'>Add Images</label>
                 <input
+                    onChange={(e)=>setPhotoUrl(e.target.value)}
                     name='images'
+                    placeholder="Add image url"
+                    required='required'
                     className='imagesInput'
+                    value={photoUrl}
                 />
                 <button type='submit' className='imagesAdd'>Add</button>
             </form>

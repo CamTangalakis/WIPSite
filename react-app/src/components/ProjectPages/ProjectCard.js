@@ -9,6 +9,7 @@ import './projects.css'
 function ProjectCard ({project}) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
+    const favorites = useSelector(state => state.favorites.favs)
 
     let comments = ['no comments yet']
     for (let comm in project?.comments) {
@@ -17,18 +18,19 @@ function ProjectCard ({project}) {
     }
 
     const projectId = project?.id
-    const deleteProject = () => {
-        dispatch(delProject(projectId))
-    }
 
-    const findUsername = (id) => {
+    let isFav
+    if (favorites.filter(fav => fav.projectId == projectId)) isFav = false
+    else isFav = true
+    console.log(isFav)
 
-    }
     const getCategory = (num) => {
         num -= 1
         const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafting', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
         return categories[num]
     }
+
+
 
     return (
         <div className='projectCardContainer'>
