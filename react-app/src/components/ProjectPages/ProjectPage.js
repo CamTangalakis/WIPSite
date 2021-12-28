@@ -40,7 +40,7 @@ function ProjectPage() {
         // dispatch()
     }
 
-    const deleteProject =() => {
+    const deleteProject = () => {
         dispatch(delProject(projectId))
         history.push('/home')
     }
@@ -102,10 +102,10 @@ function ProjectPage() {
                         <div className='projectCommentContainer'>
 
                             <p className='comment'>{project.comments[id].content}</p>
-                            {user.id == project.comments[id].userId ? (
-                                <div>
+                            {user?.id == project.comments[id].userId ? (
+                                <div className='commentButtons'>
                                     <EditCommentModal comment={project.comments[id]} projectId={project.id}/>
-                                    <button type='button' onClick={() => {deleteComment(project.comments[id].id, project.id)}} >delete</button>
+                                    <button type='button' className='deleteButton' onClick={() => {deleteComment(project.comments[id].id, project.id)}} >delete</button>
                                 </div>
                             ) : (<p></p>)}
                         </div>

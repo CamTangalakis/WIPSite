@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { editProject } from '../../store/project';
+import './projectpage.css'
 
 function EditProjectForm({setShowModal, project}) {
     const dispatch = useDispatch()

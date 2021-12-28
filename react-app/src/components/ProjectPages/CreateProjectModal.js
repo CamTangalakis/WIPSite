@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { makeProject } from '../../store/project';
+import './projectpage.css'
 
 function MakeProjectPage() {
     const dispatch = useDispatch()
     const history = useHistory()
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user?.id)
     const categories = useSelector(state => state.categories.categories)
     const projects = useSelector(state => state.projects.projects)
 
@@ -41,18 +42,18 @@ function MakeProjectPage() {
     }
 
     return (
-        <>
+        <div className='newProjectPage'>
             <form onSubmit={submitProject}>
-                <h2>Create a New Project</h2>
+                <h2 className='pageHeader'>Create a New Project</h2>
                 <div className='inputContainer'>
                     <div className='errorContainer'>
                         {errors.map((error, ind) => (
                             <div key={ind}>{error}</div>
                         ))}
                     </div>
-                    <label htmlFor='title' className='titleLabel'>Title</label>
+                    <label htmlFor='title' className='label'>Title</label>
                     <input
-                        className='titleInput'
+                        className='input'
                         name='title'
                         type='text'
                         placeholder='Title'
@@ -62,8 +63,10 @@ function MakeProjectPage() {
                 </div>
 
                 <div className='inputContainer'>
-                    <label htmlFor='category' className='categoryLabel'>Category</label>
-                    <select onChange={(e)=> setCategoryId(e.target.value)} >
+                    <label htmlFor='category' className='label'>Category</label>
+                    <select
+                        onChange={(e)=> setCategoryId(e.target.value)}
+                        className='input'>
                         <option value={0}>Select</option>
                         {categories.map(cat => {
                             return (<option value={cat.id}>{cat.category}</option>)
@@ -72,9 +75,9 @@ function MakeProjectPage() {
                 </div>
 
                 <div className='inputContainer'>
-                    <label htmlFor='description' className='descriptionLabel'>Description</label>
+                    <label htmlFor='description' className='label'>Description</label>
                     <input
-                        className='descriptionInput'
+                        className='input'
                         name='description'
                         type='textArea'
                         placeholder='What is your project about?'
@@ -84,21 +87,24 @@ function MakeProjectPage() {
                 </div>
 
                 <div className='inputContainer'>
-                    <label htmlFor='photo' className='photoLabel'>Cover Photo</label>
+                    <label htmlFor='photo' className='label'>Cover Photo</label>
                     <input
-                        className='photoInput'
+                        className='input'
                         name='photo'
                         type='textArea'
                         placeholder='Add a photo url'
                         value={coverPhoto}
                         onChange={(e)=> {setPhoto(e.target.value)}}
                     />
+                    {coverPhoto ? (
+                        <img src={coverPhoto} className='projectCoverPhoto'/>
+                    ): null}
                 </div>
 
                 <div className='inputContainer'>
-                    <label htmlFor='tags' className='tagsLabel'>Tags</label>
+                    <label htmlFor='tags' className='label'>Tags</label>
                     <input
-                        className='tagsInput'
+                        className='input'
                         name='tags'
                         type='text'
                         placeholder='Please enter tags separated by spaces'
@@ -108,10 +114,10 @@ function MakeProjectPage() {
                 </div>
 
 
-                <button type='submit'>Create</button>
+                <button type='submit' className='createButton'>Create</button>
 
             </form>
-        </>
+        </div>
     )
 }
 

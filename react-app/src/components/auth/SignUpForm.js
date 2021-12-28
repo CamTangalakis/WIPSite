@@ -73,7 +73,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div className='inputContainer'>
-        <label className='picLabel'>Profile Picture</label>
+        <label className='emailLabel'>Profile Picture</label>
         <input
           className='passwordInput'
           type='pic'
