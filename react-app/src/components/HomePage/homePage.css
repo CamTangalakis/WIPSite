@@ -80,9 +80,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: auto;
     margin-top: 30px;
-    margin: auto;
+    padding: 10px 50px;
+    margin: -10px;
+    background-color: rgb(59, 82, 126);
 }
 
 .projectsContainer {
@@ -92,7 +94,8 @@
 }
 
 .projectContHeader {
-    border-bottom: solid 1px rgb(190, 202, 255);
+    border-bottom: solid 1px rgb(189, 206, 235);
+    color: rgb(189, 206, 235);
     margin-top: 25px;
     padding: 10px 20px;
 }

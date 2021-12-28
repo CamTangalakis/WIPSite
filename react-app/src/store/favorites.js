@@ -45,7 +45,7 @@ export const makeFavorite = (content) => async(dispatch) => {
     })
     if (response.ok) {
         const fav = response.json()
-        dispatch(makeFav(fav))
+        dispatch(makeFav(content))
         return fav
     } else if (response.status < 500) {
         const data = await response.json();
@@ -63,7 +63,7 @@ export const delFavorite = (id) => async(dispatch) => {
         headers: { 'Content-Type': 'application/json' },
     })
     const fav = response.json()
-    dispatch(delFav(fav))
+    dispatch(delFav(id))
     return fav
 }
 
@@ -74,6 +74,17 @@ export default function FavoritesReducer(state = {favorites: null}, action){
             newState = {...state}
             const favs = {...action.favs}
             newState = {...favs}
+            return newState
+        case MAKE_FAV:
+            newState = {...state}
+            newState.favs.push(action.content)
+            newState.favs = [...newState.favs]
+            return newState
+        case DEL_FAV:
+            newState = {...state}
+            const index = newState.favs.findIndex(fav => +fav.id == +action.id)
+            newState.favs.splice(index, 1)
+            newState.favs = [...newState.favs]
             return newState
         default:
             return state

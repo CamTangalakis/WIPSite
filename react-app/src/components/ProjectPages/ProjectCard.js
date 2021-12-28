@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 import EditProjectModal from '../ProjectPages/EditProjectModal'
 import { NavLink } from 'react-router-dom'
 import CommentForm from '../Comments/CommentForm'
 import { delProject } from '../../store/project'
 import EditCommentModal from '../Comments/EditCommentModal'
 import './projects.css'
+import { delFavorite, getFavorites, makeFavorite } from '../../store/favorites'
 
 function ProjectCard ({project}) {
     const dispatch = useDispatch()
@@ -19,18 +21,27 @@ function ProjectCard ({project}) {
 
     const projectId = project?.id
 
-    let isFav
-    if (favorites.filter(fav => fav.projectId == projectId)) isFav = false
-    else isFav = true
-    console.log(isFav)
-
     const getCategory = (num) => {
         num -= 1
         const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafting', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
         return categories[num]
     }
 
+    const checkFavs = (projectId) => {
+        if (favorites.some(fav => fav.projectId == projectId) &&
+            favorites.some(fav => fav.userId == user.id)) return true
+        else return false
+    }
 
+    const fav = (projectId) => {
+        dispatch(makeFavorite({userId:user.id, projectId}))
+    }
+
+    const unfav = (projectId) => {
+        const thisFav = favorites.filter(fav => fav.projectId == projectId)
+        const id = thisFav[0].id
+        dispatch(delFavorite(id))
+    }
 
     return (
         <div className='projectCardContainer'>
@@ -43,9 +54,15 @@ function ProjectCard ({project}) {
                 </div>
                 <div className='projectCardHeader'>
                     <NavLink to={`/projects/${project?.id}`} className='projectTitle'>{project?.title}</NavLink>
-                    <button type='button' className='likeProject'>
-                        <i className="fas fa-heart"></i>
-                    </button>
+                    {checkFavs(project?.id) ? (
+                        <button type='button' className='likeProject' onClick={()=>unfav(project?.id)}>
+                            <i className="fas fa-heart"></i>
+                        </button>
+                    ):(
+                        <button type='button' className='likeProject' onClick={()=>fav(project?.id)}>
+                            <i className="far fa-heart"></i>
+                        </button>
+                    )}
                 </div>
 
                 <p className='projectDescription'>{project?.description}</p>

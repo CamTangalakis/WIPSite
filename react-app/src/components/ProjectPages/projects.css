@@ -1,6 +1,7 @@
 .projectCardContainer {
     width: 350px;
-    margin-right: 10px;
+    margin-right: 20px;
+    box-shadow: -1px 1px 2px 2px rgba(0,0,0,0.35);
  }
 
  .projectHeader {
@@ -23,9 +24,9 @@
  }
 
  .projectCard {
-     margin-bottom: 10px;
+     margin-bottom: 5px;
      width: 100%;
-     background-color: rgb(124, 150, 199);
+     background-color: rgb(189, 206, 235);
      border-radius: 2px;
      margin-right: 10px;
  }
