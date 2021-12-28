@@ -140,3 +140,9 @@
     min-width: 90px;
     background-color: rgb(179, 196, 212);
 }
+
+.createButton:hover {
+    background-color: rgb(52, 64, 97);
+    color: white;
+    transition: all 0.3s;
+}

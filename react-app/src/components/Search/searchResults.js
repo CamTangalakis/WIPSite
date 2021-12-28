@@ -10,7 +10,7 @@ const SearchResults = () => {
     <div className="search-result-container">
       <h1>Search Results:</h1>
       {results.length === 0
-        ? `Sorry! No restaurants matched your search.`
+        ? `Search our archive of projects!`
         : null}
       <div className="card-container">
         {results.map((project) => (
