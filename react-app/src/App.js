@@ -14,6 +14,7 @@ import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
 import ProjectPage from './components/ProjectPages/ProjectPage';
 import { getAlbums } from './store/album';
 import FavPage from './components/Favorites/FavPage';
+import SearchResults from './components/Search/searchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,10 +55,13 @@ function App() {
           <ProjectPage />
         </Route>
         <Route path='/favorites' >
-          <FavPage /> 
+          <FavPage />
         </Route>
         <Route path='/profile'>
           <h1>My Profile</h1>
+        </Route>
+        <Route path='/search-results' >
+          <SearchResults />
         </Route>
         <Route path='/home' exact={true} >
           <HomePage />

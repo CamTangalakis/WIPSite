@@ -4,12 +4,14 @@ import session from './session'
 import ProjectReducer from './project';
 import CategoriesReducer from './category';
 import AlbumsReducer from './album';
+import SearchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
   projects: ProjectReducer,
   categories: CategoriesReducer,
-  albums: AlbumsReducer
+  albums: AlbumsReducer,
+  search_results: SearchReducer,
 });
 
 
