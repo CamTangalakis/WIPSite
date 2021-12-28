@@ -174,15 +174,15 @@ export const delComment = (contents) => async(dispatch) => {
         headers: { 'Content-Type': 'application/json' }
     })
     const comment = await response.json()
-    dispatch(delProj(comment))
+    dispatch(delComm(contents))
     return comment
 }
 
 
 // --------------- favs ----------------------
 
-export const getFav = (projectId) => ({
-    type: GET_FAV, projectId
+export const getFav = () => ({
+    type: GET_FAV
 })
 
 export const makeFav = (content) => ({
@@ -195,8 +195,8 @@ export const delFav = (id) => ({
     id
 })
 
-export const getFavorites = (projectId) => async(dispatch) => {
-    const response = await fetch(`/api/projects/${projectId}/favorites/`, {
+export const getFavorites = () => async(dispatch) => {
+    const response = await fetch(`/api/projects/favorites/`, {
         headers: {'Content-Type': 'application/json' }
     })
 
@@ -245,6 +245,8 @@ export const delFavorite = (id, projectId) => async(dispatch) => {
     return fav
 }
 
+// ------------------ reducer ----------------------
+
 
 export default function ProjectReducer(state = {projects: null}, action){
     let newState;
@@ -268,7 +270,6 @@ export default function ProjectReducer(state = {projects: null}, action){
             newState.projects.splice(index, 1)
             return newState
 
-
         case MAKE_COMMENT:
             newState = {...state}
             const comment = action.contents
@@ -283,12 +284,17 @@ export default function ProjectReducer(state = {projects: null}, action){
             return newState
         case DEL_COMMENT:
             newState = {...state}
-            index = newState.projects.findIndex(project => project.id == action.contents.projectId)
-            newState.projects[index].comments[action.contents.id] = {}
+            index = newState.projects.findIndex(project => +project.id == +action.contents.projectId)
             delete newState.projects[index].comments[action.contents.id]
+            newState.projects[index].comments = {...newState.projects[index].comments}
             return newState
 
-
+        case GET_FAV:
+            newState = {...state}
+            const favs = {...action.payload}
+            console.log(favs, '<<<<<<<<<<<<<<<<<<<')
+            newState = {...favs}
+            return newState
         default:
             return state
     }

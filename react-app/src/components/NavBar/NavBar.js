@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <nav className='NavBarContainer'>
       <NavLink to='/home' id='wipHeader'>WIP</NavLink>
-      
+
       <div className='NavBarButtons'>
         {user ? (
           <NavLink to='/newProject' className='MenuButton create'>
@@ -20,13 +20,17 @@ const NavBar = () => {
           </NavLink>
         ): null}
 
-        <button type='button' className='MenuButton' onClick={()=> setShowSearch(!showSearch)}>
           {showSearch ? (
-            <i className="fas fa-chevron-right fa-lg"></i>
-          ): (<i className="fas fa-search fa-lg"></i>)}
-        </button>
+            <button type='button' className='MenuButton' id='slider' onClick={()=> setShowSearch(!showSearch)}>
+              <i className="fas fa-chevron-right fa-lg"></i>
+            </button>
+          ): (
+            <button type='button' className='MenuButton' onClick={()=> setShowSearch(!showSearch)}>
+              <i className="fas fa-search fa-lg"></i>
+            </button>
+          )}
 
-        {showSearch && <SearchBar /> }
+        {showSearch && <SearchBar  className='searchBar'/> }
 
         <ProfileButton className="NavProfileDropdown"/>
       </div>

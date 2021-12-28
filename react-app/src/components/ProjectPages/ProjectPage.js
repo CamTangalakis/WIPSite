@@ -15,7 +15,7 @@ function ProjectPage() {
     let projectId = useParams()
     projectId = projectId.projectId
     const {projects} = useSelector(state => state.projects)
-    const project = projects.find(project => project.id == projectId)
+    const project = projects?.find(project => project.id == projectId)
 
     const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
     const category = categories[project?.categoryId - 1]
@@ -47,7 +47,7 @@ function ProjectPage() {
 
     const deleteComment = (id, projectId) => {
         dispatch(delComment({id, projectId}))
-        history.push(`/projects/${projectId}`)
+        // history.push(`/projects/${projectId}`)
     }
 
     return (

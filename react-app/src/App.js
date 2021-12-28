@@ -8,13 +8,14 @@ import NavBar from './components/NavBar/NavBar';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import HomePage from './components/HomePage/HomePage';
-import { getProjects } from './store/project';
+import { getFavorites, getProjects } from './store/project';
 import { getCategories } from './store/category';
 import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
 import ProjectPage from './components/ProjectPages/ProjectPage';
 import { getAlbums } from './store/album';
 import FavPage from './components/Favorites/FavPage';
 import SearchResults from './components/Search/searchResults';
+import Profile from './components/Profile/profile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,6 +27,7 @@ function App() {
       await dispatch(getProjects());
       await dispatch(getCategories())
       await dispatch(getAlbums())
+      await dispatch(getFavorites(1))
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -58,7 +60,7 @@ function App() {
           <FavPage />
         </Route>
         <Route path='/profile'>
-          <h1>My Profile</h1>
+          <Profile />
         </Route>
         <Route path='/search-results' >
           <SearchResults />

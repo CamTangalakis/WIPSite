@@ -13,7 +13,7 @@ function ProjectCard ({project}) {
     let comments = ['no comments yet']
     for (let comm in project.comments) {
         if (comments[0] == 'no comments yet') comments.pop()
-        comments.push(project.comments[comm])
+        comments.push(project?.comments[comm])
     }
 
     const projectId = project.id
@@ -71,7 +71,7 @@ function ProjectCard ({project}) {
                     {project.tags ? (
                         <p className='projectTags'>#{project.tags?.split(' ').join(' #')}</p>
                     ): <p></p>}
-                    
+
                 </div>
             </div>
         </div>
