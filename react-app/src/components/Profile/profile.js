@@ -7,12 +7,12 @@ const Profile = () => {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user.id)
     const projects = useSelector(state => state.projects.projects)
-    console.log(projects, '<<<<<<<<----------')
     const myProjects = projects?.filter(pro => pro.userId == userId)
+    console.log(myProjects, '<<<<<<<<----------')
 
     useEffect(()=>{
         const func = async() => {
-            await dispatch(getProjects)
+            await dispatch(getProjects())
         }
         func()
     }, [dispatch])
@@ -21,9 +21,10 @@ const Profile = () => {
         <div className='favPageContainer'>
             <h1>My Profile</h1>
 
+            <h2> My Projects </h2>
             <div className='favProjectCards'>
                 {myProjects?.map(fav => (
-                    <ProjectCard project={fav.projects} />
+                    <ProjectCard project={fav} />
                 ))}
             </div>
         </div>

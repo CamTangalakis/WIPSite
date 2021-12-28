@@ -11,12 +11,12 @@ function ProjectCard ({project}) {
     const user = useSelector(state => state.session.user)
 
     let comments = ['no comments yet']
-    for (let comm in project.comments) {
+    for (let comm in project?.comments) {
         if (comments[0] == 'no comments yet') comments.pop()
         comments.push(project?.comments[comm])
     }
 
-    const projectId = project.id
+    const projectId = project?.id
     const deleteProject = () => {
         dispatch(delProject(projectId))
     }
@@ -34,19 +34,19 @@ function ProjectCard ({project}) {
         <div className='projectCardContainer'>
 
             <div className='projectCard'>
-                <img className='coverPhoto' src={project.coverPhoto}></img>
+                <img className='coverPhoto' src={project?.coverPhoto}></img>
                 <div className='projectHeader'>
-                    <img className='projectUsername' src={project.user?.profilePic}/>
-                    <div>{project.user.username} started a {getCategory(project.categoryId)} project</div>
+                    <img className='projectUsername' src={project?.user?.profilePic}/>
+                    <div>{project?.user.username} started a {getCategory(project?.categoryId)} project</div>
                 </div>
                 <div className='projectCardHeader'>
-                    <NavLink to={`/projects/${project.id}`} className='projectTitle'>{project.title}</NavLink>
+                    <NavLink to={`/projects/${project?.id}`} className='projectTitle'>{project?.title}</NavLink>
                     <button type='button' className='likeProject'>
                         <i className="fas fa-heart"></i>
                     </button>
                 </div>
 
-                <p className='projectDescription'>{project.description}</p>
+                <p className='projectDescription'>{project?.description}</p>
                 {/* <p className='projectPics'>{project.photos?.map(pic => (
                     <img src={pic.photo}></img>
                 ))}</p> */}
@@ -68,8 +68,8 @@ function ProjectCard ({project}) {
                 </div> */}
 
                 <div className='cardFooter'>
-                    {project.tags ? (
-                        <p className='projectTags'>#{project.tags?.split(' ').join(' #')}</p>
+                    {project?.tags ? (
+                        <p className='projectTags'>#{project?.tags?.split(' ').join(' #')}</p>
                     ): <p></p>}
 
                 </div>

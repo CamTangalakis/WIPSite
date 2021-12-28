@@ -54,8 +54,8 @@ function ProjectPage() {
         <div className='projectPageContainer'>
 
             <div className='projectPageHeader'>
-                <h1 className='projectPageTitle'>{project.title}</h1>
-                {user?.id == project.userId ? (
+                <h1 className='projectPageTitle'>{project?.title}</h1>
+                {user?.id == project?.userId ? (
                         <div className='projectEditDel'>
                             <EditProjectModal project={project} />
                             <button type='button' onClick={deleteProject} className='deleteButton'>delete</button>
@@ -63,12 +63,12 @@ function ProjectPage() {
                     ): null}
                 <div className='underHeaderStuff'>
                     <img src={project?.user?.profilePic} className='userProfilePic'/>
-                    <p className='underHeaderDesc'>{project?.user?.username} started this {category} project on {project.createdAt?.split(' ').slice(1,4).join(' ')}</p>
+                    <p className='underHeaderDesc'>{project?.user?.username} started this {category} project on {project?.createdAt?.split(' ').slice(1,4).join(' ')}</p>
                 </div>
             </div>
 
-            <p className='projectPageDescription'>{project.description}</p>
-            <img src={project.coverPhoto} className='projectCoverPhoto'/>
+            <p className='projectPageDescription'>{project?.description}</p>
+            <img src={project?.coverPhoto} className='projectCoverPhoto'/>
             <div className='albumPhotosContainer'> More Photos Here</div>
 
 
@@ -97,15 +97,15 @@ function ProjectPage() {
 
             {showComments &&
             <div className='allComments'>
-                {Object.keys(project.comments).length ? (
-                    Object.keys(project.comments).map((id) => (
+                {Object.keys(project?.comments).length ? (
+                    Object.keys(project?.comments).map((id) => (
                         <div className='projectCommentContainer'>
 
-                            <p className='comment'>{project.comments[id].content}</p>
-                            {user?.id == project.comments[id].userId ? (
+                            <p className='comment'>{project?.comments[id].content}</p>
+                            {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>
-                                    <EditCommentModal comment={project.comments[id]} projectId={project.id}/>
-                                    <button type='button' className='deleteButton' onClick={() => {deleteComment(project.comments[id].id, project.id)}} >delete</button>
+                                    <EditCommentModal comment={project?.comments[id]} projectId={project?.id}/>
+                                    <button type='button' className='deleteButton' onClick={() => {deleteComment(project?.comments[id].id, project?.id)}} >delete</button>
                                 </div>
                             ) : (<p></p>)}
                         </div>
@@ -115,7 +115,7 @@ function ProjectPage() {
                 )}
 
                 {user ? (
-                    <CommentForm className='commentForm' projectId={project.id}/>
+                    <CommentForm className='commentForm' projectId={project?.id}/>
                 ): null}
             </div>}
 
