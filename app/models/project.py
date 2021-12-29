@@ -10,7 +10,7 @@ class Project(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     tags = db.Column(db.String)
     description = db.Column(db.String)
-    coverPhoto = db.Column(db.String)
+    coverPhoto = db.Column(db.String(10000))
     createdAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     updatedAt = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
