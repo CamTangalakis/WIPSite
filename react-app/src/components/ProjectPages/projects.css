@@ -139,3 +139,15 @@
  .photos {
      margin: 10px 15px 10px 0px;
  }
+
+ .heartButton {
+     margin-right: -2px;
+     color: rgb(175, 20, 20);
+ }
+
+ .noHeart:hover {
+     color: rgb(214, 5, 5);
+     margin-right: -3px;
+     font-size: 20px;
+     transition: all 0.5s;
+ }

@@ -56,11 +56,11 @@ function ProjectCard ({project}) {
                     <NavLink to={`/projects/${project?.id}`} className='projectTitle'>{project?.title}</NavLink>
                     {checkFavs(project?.id) ? (
                         <button type='button' className='likeProject' onClick={()=>unfav(project?.id)}>
-                            <i className="fas fa-heart"></i>
+                            <i className="fas fa-heart heartButton fa-lg"></i>
                         </button>
                     ):(
                         <button type='button' className='likeProject' onClick={()=>fav(project?.id)}>
-                            <i className="far fa-heart"></i>
+                            <i className="far fa-heart noHeart"></i>
                         </button>
                     )}
                 </div>
