@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import EditProjectModal from '../ProjectPages/EditProjectModal'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import CommentForm from '../Comments/CommentForm'
 import { delProject } from '../../store/project'
 import EditCommentModal from '../Comments/EditCommentModal'
@@ -29,7 +29,7 @@ function ProjectCard ({project}) {
 
     const checkFavs = (projectId) => {
         if (favorites.some(fav => fav.projectId == projectId) &&
-            favorites.some(fav => fav.userId == user.id)) return true
+            favorites.some(fav => fav.userId == user?.id)) return true
         else return false
     }
 
@@ -49,7 +49,11 @@ function ProjectCard ({project}) {
             <div className='projectCard'>
                 <img className='coverPhoto' src={project?.coverPhoto}></img>
                 <div className='projectHeader'>
-                    <img className='projectUsername' src={project?.user?.profilePic}/>
+                    <NavLink to={`/projects/${project?.id}`} >
+                        <a href=''>
+                            <img className='projectUsername' src={project?.user?.profilePic} />
+                        </a>
+                    </NavLink>
                     <div>{project?.user.username} started a {getCategory(project?.categoryId)} project</div>
                 </div>
                 <div className='projectCardHeader'>

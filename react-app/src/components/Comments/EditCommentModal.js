@@ -17,7 +17,7 @@ function EditCommentModal({comment, projectId}) {
     }
 
     return (
-        <>
+        <div className='editCommentContainer'>
             <button type='button' onClick={() => {setShowModal(true)}} className='editButton'>edit</button>
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)}>
@@ -34,7 +34,7 @@ function EditCommentModal({comment, projectId}) {
                     </form>
                 </Modal>
             )}
-        </>
+        </div>
     )
 }
 

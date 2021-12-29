@@ -1,7 +1,16 @@
 .projectCardContainer {
     width: 350px;
     margin-right: 20px;
+ }
+
+ .projectCardContainer:hover {
     box-shadow: -1px 1px 2px 2px rgba(0,0,0,0.35);
+    transition: all 0.3s;
+ }
+
+ .projectCardContainer:hover .projectCard {
+     background-color: rgb(158, 184, 221);
+     transition: all 0.3s;
  }
 
  .projectHeader {
@@ -56,10 +65,12 @@
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
+     height: 30px;
  }
 
  .projectTitle:hover {
-     color: rgb(68, 68, 155);
+     color: rgb(55, 55, 126);
+     font-size: 28px;
      transition: all 0.3s;
  }
 
@@ -142,7 +153,13 @@
 
  .heartButton {
      margin-right: -2px;
+     position: relative;
      color: rgb(175, 20, 20);
+ }
+
+ .heartButton:hover {
+     color: black;
+     transition: all 0.5s;
  }
 
  .noHeart:hover {

@@ -60,6 +60,7 @@ const SignUpForm = () => {
           name='username'
           onChange={updateUsername}
           value={username}
+          required='required'
         ></input>
       </div>
       <div className='inputContainer'>
@@ -70,6 +71,7 @@ const SignUpForm = () => {
           name='email'
           onChange={updateEmail}
           value={email}
+          required='required'
         ></input>
       </div>
       <div className='inputContainer'>
@@ -80,6 +82,7 @@ const SignUpForm = () => {
           name='pic'
           onChange={(e) => setProfilePic(e.target.value)}
           value={profilePic}
+          required='required'
         ></input>
       </div>
       <div className='inputContainer'>
@@ -90,6 +93,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
+          required='required'
         ></input>
       </div>
       <div className='inputContainer'>
@@ -100,7 +104,7 @@ const SignUpForm = () => {
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
-          required={true}
+          required='required'
         ></input>
       </div>
       <button type='submit' className='submitButton'>Sign Up</button>

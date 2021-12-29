@@ -4,7 +4,6 @@
     animation-name: slidein;
 }
 
-
 .searchButton:hover {
     color: white;
     transition: all 0.3s;
