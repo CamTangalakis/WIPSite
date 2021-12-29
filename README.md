@@ -1,13 +1,15 @@
-# Flask React Project
+# WIP (Works In Progress) - A Flask React Instructables Clone
 
-This is the starter for the Flask React project.
+https://wip-site.herokuapp.com/
 
-## Getting started
+Welcome to WIP, an Instructables clone, where creatives come to share the development of all their works in progress! This project was built with Javascript, React, and Redux in the frontend, and Python with Flask for the backend.
+
+##To Install
 
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/CamTangalakis/WIPSite.git
    ```
 
 2. Install dependencies
@@ -38,7 +40,7 @@ This is the starter for the Flask React project.
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory OR cd into the react-app folder and run npm install to install node package manager dependencies.
 
 ***
 *IMPORTANT!*
@@ -54,81 +56,36 @@ This is the starter for the Flask React project.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
 
-## Deploy to Heroku
+## Run Locally
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+To start the server, run flask run from the root directory, then run npm start from the react-app directory. This will allow you to make requests to http://localhost:3000 using any client (browser and Postman). To stop the server from listening to requests, press CTRL + c for Windows/Linux or CMD + c for MacOS in the terminal that you started the server (wherever you >ran npm start).
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+## Run Live
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+This project is live at https://wip-site.herokuapp.com/
 
-   ```bash
-   heroku login
-   ```
+## MVP Features 
 
-6. Login to the heroku container registry
 
-   ```bash
-   heroku container:login
-   ```
 
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
+## WIP Features
+https://github.com/CamTangalakis/WIPSite/wiki/MVP-Feature-List
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+Create a new user, or sign in as an existing user or the Demo user. 
+Add projects to share with your community. Edit and delete your posts optionally. 
+Add images to your projects. 
+Add comments on yours or other users' projects. Edit and delete your comments optionally. 
+Explore the community and like your favorite ideas!
 
-9. Release your docker container to heroku
+Read, create, edit, and delete projects (full CRUD)
+Add and remove images from project albums (create/read/delete)
+Read, create, edit, and delete comments on projects (full CRUD)
+Like your favorite projects in your community (create/read/delete)
+Sign up and Login functions were provided with the starter. 
 
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
+## Frontend Routes
+https://github.com/CamTangalakis/WIPSite/wiki/Frontend-Routes
 
-10. set up your database
+## React Components 
 
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
+auth, NavBar, User, and UserList were provided with the starter. 
