@@ -89,3 +89,5 @@ https://github.com/CamTangalakis/WIPSite/wiki/Frontend-Routes
 ## React Components 
 
 auth, NavBar, User, and UserList were provided with the starter. 
+
+** Icons made by FontAwesome **
