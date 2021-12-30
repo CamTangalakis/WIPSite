@@ -26,6 +26,14 @@
     transition: all 0.3s;
 }
 
+
+/* ------------------ edit comments -------------------- */
+
+.editcommentContainer {
+    padding: 20px;
+    margin: 20px;
+}
+
 .editCommentForm {
     display: flex;
     flex-direction: column;

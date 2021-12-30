@@ -8,6 +8,7 @@ import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
 import './projectpage.css'
+import { delAlbum, makeAlbum } from "../../store/album"
 
 function ProjectPage() {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ function ProjectPage() {
 
     const user = useSelector(state=>state.session.user)
     const [showComments, setShowComments] = useState(false)
-
+    const [showEditComment, setShowEditComment] = useState(false)
 
     useEffect(()=>{
         const func = async() => {
@@ -32,12 +33,18 @@ function ProjectPage() {
         func()
     }, [dispatch])
 
+    const [photoUrl, setPhotoUrl] = useState('')
     const albums = useSelector(state => state.albums.albums)
-    const projectPics = albums.filter(img => Number(img.projectId) === Number(projectId))
-
+    const projectPics = albums.filter(img => +img.projectId === +projectId)
+    console.log(projectPics, '<<<---')
 
     const addImage = () => {
-        // dispatch()
+        dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
+    }
+
+    const deleteImage = (id) => {
+        dispatch(delAlbum(id))
+        history.push(`/projects/${projectId}`)
     }
 
     const deleteProject = () => {
@@ -54,8 +61,8 @@ function ProjectPage() {
         <div className='projectPageContainer'>
 
             <div className='projectPageHeader'>
-                <h1 className='projectPageTitle'>{project.title}</h1>
-                {user?.id == project.userId ? (
+                <h1 className='projectPageTitle'>{project?.title}</h1>
+                {user?.id == project?.userId ? (
                         <div className='projectEditDel'>
                             <EditProjectModal project={project} />
                             <button type='button' onClick={deleteProject} className='deleteButton'>delete</button>
@@ -63,24 +70,34 @@ function ProjectPage() {
                     ): null}
                 <div className='underHeaderStuff'>
                     <img src={project?.user?.profilePic} className='userProfilePic'/>
-                    <p className='underHeaderDesc'>{project?.user?.username} started this {category} project on {project.createdAt?.split(' ').slice(1,4).join(' ')}</p>
+                    <p className='underHeaderDesc'>{project?.user?.username} started this {category} project on {project?.createdAt?.split(' ').slice(1,4).join(' ')}</p>
                 </div>
             </div>
 
-            <p className='projectPageDescription'>{project.description}</p>
-            <img src={project.coverPhoto} className='projectCoverPhoto'/>
-            <div className='albumPhotosContainer'> More Photos Here</div>
+            <p className='projectPageDescription'>{project?.description}</p>
+            <img src={project?.coverPhoto} className='projectCoverPhoto'/>
+            {projectPics.length ? (
+                <div className='albumPhotosContainer'>
+                    {projectPics.map(pic => (
+                        <div className='photoCard'>
+                            <button type="button" onClick={()=>deleteImage(pic.id)}>
+                                <i className="far fa-minus-square"></i>
+                            </button>
+                            <img src={pic.photo} className='photos' />
+                        </div>
+                    ))}
+                </div>
+            ): null}
 
-
-            {projectPics?.map(pic => (
-                <img src={pic.photo} className='photos' />
-            ))}
-
-            <form className='addImagesForm'>
+            <form className='addImagesForm' onSubmit={()=> addImage()}>
                 <label htmlFor='images' className='imagesLabel'>Add Images</label>
                 <input
+                    onChange={(e)=>setPhotoUrl(e.target.value)}
                     name='images'
+                    placeholder="Add image url"
+                    required='required'
                     className='imagesInput'
+                    value={photoUrl}
                 />
                 <button type='submit' className='imagesAdd'>Add</button>
             </form>
@@ -97,15 +114,15 @@ function ProjectPage() {
 
             {showComments &&
             <div className='allComments'>
-                {Object.keys(project.comments).length ? (
-                    Object.keys(project.comments).map((id) => (
+                {Object.keys(project?.comments).length ? (
+                    Object.keys(project?.comments).map((id) => (
                         <div className='projectCommentContainer'>
 
-                            <p className='comment'>{project.comments[id].content}</p>
-                            {user?.id == project.comments[id].userId ? (
+                            <p className='comment'>{project?.comments[id].content}</p>
+                            {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>
-                                    <EditCommentModal comment={project.comments[id]} projectId={project.id}/>
-                                    <button type='button' className='deleteButton' onClick={() => {deleteComment(project.comments[id].id, project.id)}} >delete</button>
+                                    <EditCommentModal comment={project?.comments[id]} projectId={project?.id}/>
+                                    <button type='button' className='deleteButton' onClick={() => {deleteComment(project?.comments[id].id, project?.id)}} >delete</button>
                                 </div>
                             ) : (<p></p>)}
                         </div>
@@ -115,7 +132,7 @@ function ProjectPage() {
                 )}
 
                 {user ? (
-                    <CommentForm className='commentForm' projectId={project.id}/>
+                    <CommentForm className='commentForm' projectId={project?.id}/>
                 ): null}
             </div>}
 

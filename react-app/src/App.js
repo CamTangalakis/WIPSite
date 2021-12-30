@@ -8,7 +8,8 @@ import NavBar from './components/NavBar/NavBar';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import HomePage from './components/HomePage/HomePage';
-import { getFavorites, getProjects } from './store/project';
+import { getProjects } from './store/project';
+import { getFavorites } from './store/favorites';
 import { getCategories } from './store/category';
 import MakeProjectPage from './components/ProjectPages/CreateProjectModal';
 import ProjectPage from './components/ProjectPages/ProjectPage';
@@ -27,7 +28,7 @@ function App() {
       await dispatch(getProjects());
       await dispatch(getCategories())
       await dispatch(getAlbums())
-      await dispatch(getFavorites(1))
+      await dispatch(getFavorites())
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -110,7 +110,7 @@ def post_fav():
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@project_routes.route('/favorites/<int:favId>', methods=['DELETE'])
+@project_routes.route('/favorites/<int:favId>/', methods=['DELETE'])
 def delete_fav(favId):
     fav = Favorite.query.get(int(favId))
     db.session.delete(fav)

@@ -51,12 +51,13 @@ function MakeProjectPage() {
                             <div key={ind}>{error}</div>
                         ))}
                     </div>
-                    <label htmlFor='title' className='label'>Title</label>
+                    <label htmlFor='title' className='label'>Title </label>
                     <input
+                        required="required"
                         className='input'
                         name='title'
                         type='text'
-                        placeholder='Title'
+                        placeholder='Your project name'
                         value={title}
                         onChange={(e)=> {setTitle(e.target.value)}}
                     />
@@ -66,8 +67,9 @@ function MakeProjectPage() {
                     <label htmlFor='category' className='label'>Category</label>
                     <select
                         onChange={(e)=> setCategoryId(e.target.value)}
-                        className='input'>
-                        <option value={0}>Select</option>
+                        className='input'
+                        required>
+                        <option value=''>Select</option>
                         {categories.map(cat => {
                             return (<option value={cat.id}>{cat.category}</option>)
                         })}
@@ -78,6 +80,7 @@ function MakeProjectPage() {
                     <label htmlFor='description' className='label'>Description</label>
                     <input
                         className='input'
+                        required="required"
                         name='description'
                         type='textArea'
                         placeholder='What is your project about?'
@@ -90,6 +93,7 @@ function MakeProjectPage() {
                     <label htmlFor='photo' className='label'>Cover Photo</label>
                     <input
                         className='input'
+                        required="required"
                         name='photo'
                         type='textArea'
                         placeholder='Add a photo url'
@@ -102,7 +106,7 @@ function MakeProjectPage() {
                 </div>
 
                 <div className='inputContainer'>
-                    <label htmlFor='tags' className='label'>Tags</label>
+                    <label htmlFor='tags' className='label'>Tags  (optional)</label>
                     <input
                         className='input'
                         name='tags'
@@ -112,7 +116,6 @@ function MakeProjectPage() {
                         onChange={(e)=> {setTags(e.target.value)}}
                     />
                 </div>
-
 
                 <button type='submit' className='createButton'>Create</button>
 

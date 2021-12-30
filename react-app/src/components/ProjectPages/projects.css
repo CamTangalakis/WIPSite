@@ -1,6 +1,16 @@
 .projectCardContainer {
     width: 350px;
-    margin-right: 10px;
+    margin-right: 20px;
+ }
+
+ .projectCardContainer:hover {
+    box-shadow: -1px 1px 2px 2px rgba(0,0,0,0.35);
+    transition: all 0.3s;
+ }
+
+ .projectCardContainer:hover .projectCard {
+     background-color: rgb(158, 184, 221);
+     transition: all 0.3s;
  }
 
  .projectHeader {
@@ -23,9 +33,9 @@
  }
 
  .projectCard {
-     margin-bottom: 10px;
+     margin-bottom: 5px;
      width: 100%;
-     background-color: rgb(124, 150, 199);
+     background-color: rgb(189, 206, 235);
      border-radius: 2px;
      margin-right: 10px;
  }
@@ -55,10 +65,12 @@
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
+     height: 30px;
  }
 
  .projectTitle:hover {
-     color: rgb(68, 68, 155);
+     color: rgb(55, 55, 126);
+     font-size: 28px;
      transition: all 0.3s;
  }
 
@@ -122,4 +134,37 @@
      align-items: center;
      margin: 0px 10px;
      padding: 5px;
+ }
+
+ .albumPhotosContainer {
+     display: flex;
+     flex-wrap: nowrap;
+     overflow: scroll;
+     height: 150px;
+ }
+
+ .photoCard {
+     display: flex;
+ }
+
+ .photos {
+     margin: 10px 15px 10px 0px;
+ }
+
+ .heartButton {
+     margin-right: -2px;
+     position: relative;
+     color: rgb(175, 20, 20);
+ }
+
+ .heartButton:hover {
+     color: black;
+     transition: all 0.5s;
+ }
+
+ .noHeart:hover {
+     color: rgb(214, 5, 5);
+     margin-right: -3px;
+     font-size: 20px;
+     transition: all 0.5s;
  }

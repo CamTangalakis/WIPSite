@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 
+
 from app.models import category
 
 from .models import db, User, Project
@@ -20,6 +21,7 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
+# express = require('express')
 
 # Setup login manager
 login = LoginManager(app)
@@ -33,6 +35,8 @@ def load_user(id):
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
+# app.use(express.urlencoded({extended: false}))
+# app.use(express.json())
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')

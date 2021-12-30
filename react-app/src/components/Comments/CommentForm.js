@@ -18,6 +18,7 @@ function CommentForm({projectId}) {
         <form onSubmit={makeComm} className='commentContainer'>
             <textarea
                 onChange={(e)=>setComment(e.target.value)}
+                required="required"
                 name='content'
                 value={content}
                 className='commentInput'

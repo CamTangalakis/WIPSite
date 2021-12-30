@@ -1,3 +1,9 @@
+.favPageContainer {
+    background-color: rgb(226, 232, 243);
+    margin: -10px -10px;
+    padding: 50px;
+}
+
 .favProjectCards {
     display: flex;
     flex-wrap: wrap;

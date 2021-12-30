@@ -28,6 +28,7 @@ function EditProjectForm({setShowModal, project}) {
                     <label htmlFor='title' className='titleLabel'>Title</label>
                     <input
                         className='titleInput'
+                        required='required'
                         name='title'
                         type='text'
                         value={title}
@@ -40,6 +41,7 @@ function EditProjectForm({setShowModal, project}) {
                     <textarea
                         className='descriptionInput'
                         name='description'
+                        required='required'
                         value={description}
                         onChange={(e)=> {setDescription(e.target.value)}}
                     />
@@ -51,6 +53,7 @@ function EditProjectForm({setShowModal, project}) {
                         className='photoInput'
                         name='photo'
                         type='textArea'
+                        required='required'
                         placeholder='Add a photo url'
                         value={coverPhoto}
                         onChange={(e)=> {setPhoto(e.target.value)}}

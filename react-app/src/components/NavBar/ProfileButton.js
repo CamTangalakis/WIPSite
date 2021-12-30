@@ -68,7 +68,7 @@ function ProfileButton() {
     <div className="NavProfileDropdown">
       {!showMenu ? (
         <div>
-          <button className="MenuButton" onClick={openMenu}>
+          <button className="MenuButton menu" onClick={openMenu}>
             <i class="fas fa-bars fa-lg"></i>
           </button>
         </div>
