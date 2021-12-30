@@ -1,12 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import EditProjectModal from '../ProjectPages/EditProjectModal'
-import { NavLink, useHistory } from 'react-router-dom'
-import CommentForm from '../Comments/CommentForm'
-import { delProject } from '../../store/project'
-import EditCommentModal from '../Comments/EditCommentModal'
+import { NavLink } from 'react-router-dom'
 import './projects.css'
-import { delFavorite, getFavorites, makeFavorite } from '../../store/favorites'
+import { delFavorite, makeFavorite } from '../../store/favorites'
 
 function ProjectCard ({project}) {
     const dispatch = useDispatch()
@@ -18,8 +13,6 @@ function ProjectCard ({project}) {
         if (comments[0] == 'no comments yet') comments.pop()
         comments.push(project?.comments[comm])
     }
-
-    const projectId = project?.id
 
     const getCategory = (num) => {
         num -= 1

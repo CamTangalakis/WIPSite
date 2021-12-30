@@ -379,7 +379,7 @@ def seed_projects():
     )
     textiles1 = Project(
         title='Sewing',
-        categoryId=5,
+        categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
         tags='coding website softwareengineering',
@@ -387,7 +387,7 @@ def seed_projects():
     )
     textiles2 = Project(
         title='Sewing',
-        categoryId=5,
+        categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
         tags='coding website softwareengineering',
@@ -395,7 +395,7 @@ def seed_projects():
     )
     textiles3 = Project(
         title='Sewing',
-        categoryId=5,
+        categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
         tags='coding website softwareengineering',
@@ -403,7 +403,7 @@ def seed_projects():
     )
     textiles4 = Project(
         title='Sewing',
-        categoryId=5,
+        categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
         tags='coding website softwareengineering',
@@ -411,7 +411,7 @@ def seed_projects():
     )
     textiles5 = Project(
         title='Sewing',
-        categoryId=5,
+        categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
         tags='coding website softwareengineering',
@@ -419,7 +419,7 @@ def seed_projects():
     )
     textiles6 = Project(
         title='Sewing',
-        categoryId=5,
+        categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
         tags='coding website softwareengineering',

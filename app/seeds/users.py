@@ -16,7 +16,7 @@ def seed_users():
     bobbieman = User(
         username='bobbieboobie', email='bobby@theman.com', password='password', profilePic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png')
     alexander = User(
-        username='alextheok', email='demkdfso@aa.io', password='password', profilePic='dhttps://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png')
+        username='alextheok', email='demkdfso@aa.io', password='password', profilePic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png')
     justincase = User(
         username='JustMan', email='manofthepeople@aa.io', password='password', profilePic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png')
     carmensandiego = User(

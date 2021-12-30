@@ -23,7 +23,6 @@ function ProjectPage() {
 
     const user = useSelector(state=>state.session.user)
     const [showComments, setShowComments] = useState(false)
-    const [showEditComment, setShowEditComment] = useState(false)
 
     useEffect(()=>{
         const func = async() => {
@@ -54,7 +53,6 @@ function ProjectPage() {
 
     const deleteComment = (id, projectId) => {
         dispatch(delComment({id, projectId}))
-        // history.push(`/projects/${projectId}`)
     }
 
     return (
