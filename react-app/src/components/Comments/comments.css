@@ -17,11 +17,13 @@
     border-radius: 2px;
     background-color: rgb(52, 64, 97);
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .commentButton:hover, .submitButton:hover {
     background-color: rgb(166, 182, 226);
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
     transition: all 0.3s;
 }
@@ -29,6 +31,7 @@
 .cancelButton:hover {
     background-color: rgb(172, 37, 37);
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
     box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
     transition: all 0.3s;
 }
@@ -50,12 +53,15 @@
     height: 30px;
     width: 90px;
     font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cancelButton {
+    font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 10px;
 }
 
 .input {
     height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
 }

@@ -22,7 +22,7 @@ function EditProjectForm({setShowModal, project}) {
     }
 
     return (
-        <>
+        <div className='editProjectForm'>
             <form onSubmit={submitProject}>
                 <div className='inputContainer'>
                     <label htmlFor='title' className='titleLabel'>Title</label>
@@ -71,10 +71,10 @@ function EditProjectForm({setShowModal, project}) {
                     />
                 </div>
 
-                <button type='submit'>Edit</button>
+                <button type='submit' className='submitEditButton'>Edit</button>
 
             </form>
-        </>
+        </div>
     )
 }
 

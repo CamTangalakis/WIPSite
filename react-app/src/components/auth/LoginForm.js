@@ -28,7 +28,7 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
@@ -62,7 +62,7 @@ const LoginForm = () => {
           onChange={updatePassword}
           required='required'
         />
-        <div className='buttonContainer'>
+        <div className='buttonsContainer'>
           <button type='submit' className='submitButton'>Login</button>
           <NavLink to='home' className='homeButton'>Cancel</NavLink>
         </div>

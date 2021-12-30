@@ -21,9 +21,6 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
-    } else {
-      errors.push('Passwords must match')
-      setErrors(errors)
     }
   };
 
@@ -44,11 +41,19 @@ const SignUpForm = () => {
   };
 
   const check = () => {
-    // if password ==
+    if (password) {
+      if (password === repeatPassword) {
+      document.getElementById('message').style.color = 'darkblue';
+      document.getElementById('message').style.fontWeight = 600;
+      document.getElementById('message').innerHTML = 'Matching!';
+    } else {
+      document.getElementById('message').style.color = 'darkred';
+      document.getElementById('message').innerHTML = 'Passwords do not match';
+    }}
   }
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/home' />;
   }
 
   return (
@@ -81,17 +86,6 @@ const SignUpForm = () => {
           required='required'
         ></input>
       </div>
-      {/* <div className='inputContainer'>
-        <label className='emailLabel'>Profile Picture</label>
-        <input
-          className='passwordInput'
-          type='pic'
-          name='pic'
-          onChange={(e) => setProfilePic(e.target.value)}
-          value={profilePic}
-          required='required'
-        ></input>
-      </div> */}
       <div className='inputContainer'>
         <label className='passwordLabel'>Password</label>
         <input
@@ -115,10 +109,12 @@ const SignUpForm = () => {
           value={repeatPassword}
           required='required'
         ></input>
+        <span id='message' />
       </div>
-      <span id='message' />
-      <button type='submit' className='submitButton'>Sign Up</button>
-      <NavLink to='home' className='homeButton'>Cancel</NavLink>
+      <div className='buttonsContainer'>
+        <button type='submit' className='submitButton'>Sign Up</button>
+        <NavLink to='home' className='homeButton'>Cancel</NavLink>
+      </div>
     </form>
   );
 };
