@@ -28,13 +28,13 @@ function ProjectCard ({project}) {
     }
 
     const checkFavs = (projectId) => {
-        if (favorites.some(fav => fav.projectId == projectId) &&
-            favorites.some(fav => fav.userId == user?.id)) return true
+        if (favorites?.some(fav => fav.projectId == projectId) &&
+            favorites?.some(fav => fav.userId == user?.id)) return true
         else return false
     }
 
     const fav = (projectId) => {
-        dispatch(makeFavorite({userId:user.id, projectId}))
+        dispatch(makeFavorite({userId:user?.id, projectId}))
     }
 
     const unfav = (projectId) => {
