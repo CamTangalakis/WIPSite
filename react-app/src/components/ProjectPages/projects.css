@@ -93,7 +93,6 @@
 
  .coverPhoto {
      width: 100%;
-     height: 100%;
      margin: 0px;
      aspect-ratio: 16/9;
  }
@@ -154,7 +153,7 @@
  }
 
  .heartButton {
-     margin-right: -2px;
+     left: 10px;
      position: relative;
      color: rgb(175, 20, 20);
  }

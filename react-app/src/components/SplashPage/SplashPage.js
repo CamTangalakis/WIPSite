@@ -13,7 +13,7 @@ const SplashPage = () => {
             <div className='links'>
                 <NavLink to='/search-results' className='link' >Search Projects</NavLink>
                 <div className='bottom'></div>
-                <NavLink to='/newProject' className='link' >Share Ideas</NavLink>
+                <NavLink to='/home' className='link' >Explore</NavLink>
             </div>
         </div>
     )

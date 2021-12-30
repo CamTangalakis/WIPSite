@@ -20,16 +20,18 @@ function EditCommentModal({comment, projectId}) {
         <div className='editCommentContainer'>
             <button type='button' onClick={() => {setShowModal(true)}} className='editButton'>edit</button>
             {showModal && (
-                <Modal onClose={()=> setShowModal(false)}>
+                <Modal onClose={()=> setShowModal(false)} >
                     <form onSubmit={editCom} className='editCommentForm'>
                         <h2>Edit Comment</h2>
                         <textarea
                             value={content}
+                            className='input'
+                            required='required'
                             onChange={(e)=>setContent(e.target.value)}
                         />
                         <div className='editButtons'>
-                            <button type='submit'>Submit</button>
-                            <button type='button' onClick={()=>setShowModal(false)}>Cancel</button>
+                            <button type='submit' className='submitButton'>Submit</button>
+                            <button type='button' onClick={()=>setShowModal(false)} className='cancelButton'>Cancel</button>
                         </div>
                     </form>
                 </Modal>

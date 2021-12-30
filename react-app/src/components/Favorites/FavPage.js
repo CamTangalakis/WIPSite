@@ -7,12 +7,12 @@ import './favorites.css'
 const FavPage = () => {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user.id)
-    const favorites = useSelector(state => state.favorites.favs)
-    const myFavs = favorites.filter(fav => fav.userId == userId)
+    const favorites = useSelector(state => state.favorites?.favs)
+    const myFavs = favorites?.filter(fav => fav.userId == userId)
 
     useEffect(()=>{
-        const func = async() => {
-            await dispatch(getFavorites(1))
+        const func = () => {
+            dispatch(getFavorites())
         }
         func()
     }, [dispatch])

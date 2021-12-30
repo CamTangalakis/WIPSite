@@ -26,7 +26,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.drop_table('favorites')
     # ### end Alembic commands ###
 
 

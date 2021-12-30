@@ -21,6 +21,9 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      errors.push('Passwords must match')
+      setErrors(errors)
     }
   };
 
@@ -39,6 +42,10 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  const check = () => {
+    // if password ==
+  }
 
   if (user) {
     return <Redirect to='/' />;
@@ -74,7 +81,7 @@ const SignUpForm = () => {
           required='required'
         ></input>
       </div>
-      <div className='inputContainer'>
+      {/* <div className='inputContainer'>
         <label className='emailLabel'>Profile Picture</label>
         <input
           className='passwordInput'
@@ -84,7 +91,7 @@ const SignUpForm = () => {
           value={profilePic}
           required='required'
         ></input>
-      </div>
+      </div> */}
       <div className='inputContainer'>
         <label className='passwordLabel'>Password</label>
         <input
@@ -93,6 +100,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
+          onKeyUp={check()}
           required='required'
         ></input>
       </div>
@@ -103,10 +111,12 @@ const SignUpForm = () => {
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
+          onKeyUp={check()}
           value={repeatPassword}
           required='required'
         ></input>
       </div>
+      <span id='message' />
       <button type='submit' className='submitButton'>Sign Up</button>
       <NavLink to='home' className='homeButton'>Cancel</NavLink>
     </form>
