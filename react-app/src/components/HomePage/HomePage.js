@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import { getCategories } from '../../store/category'
 import { getProjects } from '../../store/project'
 import ProjectCard from '../ProjectPages/ProjectCard'
@@ -10,19 +9,6 @@ const HomePage = () => {
     const dispatch = useDispatch()
     let projects = useSelector(state => state.projects)
     projects = projects.projects
-    const User = useSelector(state => state.session.user)
-
-    // const words = ['work', 'project', 'craft', 'design', 'plan']
-    // let i = 0
-    // let word
-    // setInterval(() => {
-    //     i += 1
-    //     if (i >= 5) i = 0
-    //     console.log(i)
-    //     word = words[i]
-    //     return word
-    // }, 2000)
-
 
     useEffect(()=>{
         const func = async() => {
@@ -37,18 +23,6 @@ const HomePage = () => {
             <div className='homeHeaderContainer'>
                 <h1 className='wipHeader'>everything is a work in progress...</h1>
             </div>
-
-            {/* <div>
-                {User ? (
-                <div className='userOptionsContainer'>
-                    <img className='userHeader' src={User.profilePic}></img>
-                    <div className='userButtons'>
-                        <NavLink to='/newProject' className='startProject'>Start a Project</NavLink>
-                        <button type='button' className='userButton'>Search Projects</button>
-                    </div>
-                </div>
-                ): null}
-            </div> */}
 
             <div className='exploreProjectsContainer'>
 
