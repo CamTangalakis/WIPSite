@@ -72,16 +72,21 @@ This project is live at https://wip-site.herokuapp.com/
 https://github.com/CamTangalakis/WIPSite/wiki/MVP-Feature-List
 
 Create a new user, or sign in as an existing user or the Demo user. 
+
+
 Add projects to share with your community. Edit and delete your posts optionally. 
-Add images to your projects. 
+
 Add comments on yours or other users' projects. Edit and delete your comments optionally. 
+
 Explore the community and like your favorite ideas!
+![Home Page](https://github.com/CamTangalakis/WIPSite/blob/main/WikiImages/Home.png?raw=true)
 
 Read, create, edit, and delete projects (full CRUD)
-Add and remove images from project albums (create/read/delete)
 Read, create, edit, and delete comments on projects (full CRUD)
 Like your favorite projects in your community (create/read/delete)
 Sign up and Login functions were provided with the starter. 
+
+Future Components: Posts! Keep your project up-to-date with all the progress you make!
 
 ## Frontend Routes
 https://github.com/CamTangalakis/WIPSite/wiki/Frontend-Routes
