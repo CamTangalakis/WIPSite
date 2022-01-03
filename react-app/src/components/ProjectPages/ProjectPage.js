@@ -35,16 +35,16 @@ function ProjectPage() {
     const [photoUrl, setPhotoUrl] = useState('')
     const albums = useSelector(state => state.albums.albums)
     const projectPics = albums.filter(img => +img.projectId === +projectId)
-    console.log(projectPics, '<<<---')
 
-    const addImage = () => {
-        dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
-    }
+    // const addImage = (e) => {
+    //     e.preventDefault()
+    //     dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
+    // }
 
-    const deleteImage = (id) => {
-        dispatch(delAlbum(id))
-        history.push(`/projects/${projectId}`)
-    }
+    // const deleteImage = (id) => {
+    //     dispatch(delAlbum(id))
+    //     history.push(`/projects/${projectId}`)
+    // }
 
     const deleteProject = () => {
         dispatch(delProject(projectId))
@@ -74,7 +74,7 @@ function ProjectPage() {
 
             <p className='projectPageDescription'>{project?.description}</p>
             <img src={project?.coverPhoto} className='projectCoverPhoto'/>
-            {projectPics.length ? (
+            {/* {projectPics.length ? (
                 <div className='albumPhotosContainer'>
                     {projectPics.map(pic => (
                         <div className='photoCard'>
@@ -85,9 +85,9 @@ function ProjectPage() {
                         </div>
                     ))}
                 </div>
-            ): null}
+            ): null} */}
 
-            <form className='addImagesForm' onSubmit={()=> addImage()}>
+            {/* <form className='addImagesForm' onSubmit={()=> addImage()}>
                 <label htmlFor='images' className='imagesLabel'>Add Images</label>
                 <input
                     onChange={(e)=>setPhotoUrl(e.target.value)}
@@ -98,7 +98,7 @@ function ProjectPage() {
                     value={photoUrl}
                 />
                 <button type='submit' className='imagesAdd'>Add</button>
-            </form>
+            </form> */}
 
             <button
             type='button'

@@ -342,7 +342,7 @@ def seed_projects():
         categoryId=8,
         userId=1,
         coverPhoto='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrS0rRaOsWqAyDyi4UuMuQ6dOGGK0fO1JrGg&usqp=CAU',
-        tags='coding website softwareengineering',
+        tags='more paint',
         description= 'Painting'
     )
     painting3 = Project(
@@ -350,55 +350,55 @@ def seed_projects():
         categoryId=8,
         userId=3,
         coverPhoto='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrS0rRaOsWqAyDyi4UuMuQ6dOGGK0fO1JrGg&usqp=CAU',
-        tags='coding website softwareengineering',
+        tags='paint',
         description= 'painting'
     )
     painting4 = Project(
-        title='Pait',
+        title='Paint',
         categoryId=8,
         userId=6,
         coverPhoto='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrS0rRaOsWqAyDyi4UuMuQ6dOGGK0fO1JrGg&usqp=CAU',
-        tags='coding website softwareengineering',
+        tags='paint pretty',
         description= 'painting'
     )
     painting5 = Project(
-        title='Paint',
+        title='Painting Dolls',
         categoryId=8,
         userId=9,
         coverPhoto='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrS0rRaOsWqAyDyi4UuMuQ6dOGGK0fO1JrGg&usqp=CAU',
-        tags='coding website softwareengineering',
+        tags='doll making',
         description= 'paint'
     )
     painting6 = Project(
-        title='Paint',
+        title='How to get Paint out of your clothes',
         categoryId=8,
         userId=9,
         coverPhoto='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrS0rRaOsWqAyDyi4UuMuQ6dOGGK0fO1JrGg&usqp=CAU',
-        tags='coding website softwareengineering',
+        tags='acrylic clothes cleaning',
         description= 'painting'
     )
     textiles1 = Project(
-        title='Sewing',
+        title='Crochet',
         categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
-        tags='coding website softwareengineering',
+        tags='sewing crochet',
         description= 'textiles'
     )
     textiles2 = Project(
-        title='Sewing',
+        title='Making Pants',
         categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
-        tags='coding website softwareengineering',
+        tags='crochet pants',
         description= 'textiles'
     )
     textiles3 = Project(
-        title='Sewing',
+        title='Crochet Hat',
         categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
-        tags='coding website softwareengineering',
+        tags='sewing crochet',
         description= 'textiles'
     )
     textiles4 = Project(
@@ -406,7 +406,7 @@ def seed_projects():
         categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
-        tags='coding website softwareengineering',
+        tags='pearl stitch knitting',
         description= 'textiles'
     )
     textiles5 = Project(
@@ -414,7 +414,7 @@ def seed_projects():
         categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
-        tags='coding website softwareengineering',
+        tags='knitting crochet',
         description= 'textiles'
     )
     textiles6 = Project(
@@ -422,16 +422,115 @@ def seed_projects():
         categoryId=9,
         userId=9,
         coverPhoto='https://www.materialsource.co.uk/uploads/articles/c4/c4ec80be84301e193527df0b91185ffe63b91c11_1100.jpg',
-        tags='coding website softwareengineering',
+        tags='grments sewing knitting',
         description= 'textiles'
+    )
+    woodworking1 = Project(
+        title='Widdling Creatures',
+        categoryId=10,
+        userId=1,
+        coverPhoto='https://lh3.googleusercontent.com/proxy/S4RENPELShrwak8TsI5_nbUk6f9ycJa23hI-AZ5xL820RcCECZO65xAmbwfhXMWh0MBWEdwjQCX7RRKxZNRH84KhJks5RwgAa1n0kuXgmYQJkOzIgqUYtkwayqJphDBfFjUUkBbd4MjMgK0',
+        tags='wood widdling balsa fox chicken',
+        description= 'I\'m whittling small toy animals for christmas presents'
+    )
+    woodworking2 = Project(
+        title='Wood Working',
+        categoryId=10,
+        userId=2,
+        coverPhoto='https://lh3.googleusercontent.com/proxy/S4RENPELShrwak8TsI5_nbUk6f9ycJa23hI-AZ5xL820RcCECZO65xAmbwfhXMWh0MBWEdwjQCX7RRKxZNRH84KhJks5RwgAa1n0kuXgmYQJkOzIgqUYtkwayqJphDBfFjUUkBbd4MjMgK0',
+        tags='wood',
+        description= 'woodworking'
+    )
+    woodworking3 = Project(
+        title='Wood Working',
+        categoryId=10,
+        userId=9,
+        coverPhoto='https://lh3.googleusercontent.com/proxy/S4RENPELShrwak8TsI5_nbUk6f9ycJa23hI-AZ5xL820RcCECZO65xAmbwfhXMWh0MBWEdwjQCX7RRKxZNRH84KhJks5RwgAa1n0kuXgmYQJkOzIgqUYtkwayqJphDBfFjUUkBbd4MjMgK0',
+        tags='',
+        description= 'Wood'
+    )
+    woodworking4 = Project(
+        title='Whittling',
+        categoryId=10,
+        userId=9,
+        coverPhoto='https://lh3.googleusercontent.com/proxy/S4RENPELShrwak8TsI5_nbUk6f9ycJa23hI-AZ5xL820RcCECZO65xAmbwfhXMWh0MBWEdwjQCX7RRKxZNRH84KhJks5RwgAa1n0kuXgmYQJkOzIgqUYtkwayqJphDBfFjUUkBbd4MjMgK0',
+        tags='',
+        description= 'Making wood stuff'
+    )
+    woodworking5 = Project(
+        title='Joint Techniques',
+        categoryId=10,
+        userId=9,
+        coverPhoto='https://lh3.googleusercontent.com/proxy/S4RENPELShrwak8TsI5_nbUk6f9ycJa23hI-AZ5xL820RcCECZO65xAmbwfhXMWh0MBWEdwjQCX7RRKxZNRH84KhJks5RwgAa1n0kuXgmYQJkOzIgqUYtkwayqJphDBfFjUUkBbd4MjMgK0',
+        tags='wood',
+        description= 'The asian technique of joining wood together without nails'
+    )
+    woodworking6 = Project(
+        title='Wood working',
+        categoryId=10,
+        userId=9,
+        coverPhoto='https://lh3.googleusercontent.com/proxy/S4RENPELShrwak8TsI5_nbUk6f9ycJa23hI-AZ5xL820RcCECZO65xAmbwfhXMWh0MBWEdwjQCX7RRKxZNRH84KhJks5RwgAa1n0kuXgmYQJkOzIgqUYtkwayqJphDBfFjUUkBbd4MjMgK0',
+        tags='wood',
+        description= 'working wood'
+    )
+    writing1 = Project(
+        title='Poetry',
+        categoryId=11,
+        userId=1,
+        coverPhoto='https://media.cnn.com/api/v1/images/stellar/prod/200416164101-3-underscored-creative-writing-lead.jpg?q=w_3000,h_1684,x_0,y_0,c_fill',
+        tags='poetry poems',
+        description= 'Writing 100 love poems for my girlfriend'
+    )
+    writing2 = Project(
+        title='Short Story',
+        categoryId=11,
+        userId=2,
+        coverPhoto='https://media.cnn.com/api/v1/images/stellar/prod/200416164101-3-underscored-creative-writing-lead.jpg?q=w_3000,h_1684,x_0,y_0,c_fill',
+        tags='story',
+        description= 'Writing a short story'
+    )
+    writing3 = Project(
+        title='Writing',
+        categoryId=11,
+        userId=9,
+        coverPhoto='https://media.cnn.com/api/v1/images/stellar/prod/200416164101-3-underscored-creative-writing-lead.jpg?q=w_3000,h_1684,x_0,y_0,c_fill',
+        tags='writing',
+        description= 'New Writing Project'
+    )
+    writing4 = Project(
+        title='Writing Poems',
+        categoryId=11,
+        userId=9,
+        coverPhoto='https://media.cnn.com/api/v1/images/stellar/prod/200416164101-3-underscored-creative-writing-lead.jpg?q=w_3000,h_1684,x_0,y_0,c_fill',
+        tags='poems',
+        description= 'I wrote a poem and now I\'m famous'
+    )
+    writing5 = Project(
+        title='Big Story',
+        categoryId=11,
+        userId=9,
+        coverPhoto='https://media.cnn.com/api/v1/images/stellar/prod/200416164101-3-underscored-creative-writing-lead.jpg?q=w_3000,h_1684,x_0,y_0,c_fill',
+        tags='world building',
+        description= 'I\'m writing a huge adventure novel and need input world building'
+    )
+    writing6 = Project(
+        title='Writing',
+        categoryId=11,
+        userId=9,
+        coverPhoto='https://media.cnn.com/api/v1/images/stellar/prod/200416164101-3-underscored-creative-writing-lead.jpg?q=w_3000,h_1684,x_0,y_0,c_fill',
+        tags='write',
+        description= 'writing'
     )
 
     db.session.add(painting1)
+    db.session.add(writing1)
     db.session.add(demo)
     db.session.add(cooking5)
     db.session.add(greenhouse)
     db.session.add(coding1)
     db.session.add(ceramics)
+    db.session.add(woodworking1)
+    db.session.add(writing2)
     db.session.add(textiles1)
     db.session.add(bakingsomething)
     db.session.add(gardening2)
@@ -440,22 +539,28 @@ def seed_projects():
     db.session.add(cooking2)
     db.session.add(pastries)
     db.session.add(gardening3)
+    db.session.add(writing3)
     db.session.add(crafts4)
     db.session.add(textiles2)
+    db.session.add(woodworking2)
     db.session.add(ceramics3)
     db.session.add(cooking6)
     db.session.add(painting3)
     db.session.add(house)
+    db.session.add(writing4)
     db.session.add(coding5)
     db.session.add(crafts6)
+    db.session.add(woodworking6)
     db.session.add(baking)
     db.session.add(cooking1)
     db.session.add(textiles3)
     db.session.add(ceramics5)
+    db.session.add(woodworking3)
     db.session.add(textiles6)
     db.session.add(crafts1)
     db.session.add(coding2)
     db.session.add(houses)
+    db.session.add(writing5)
     db.session.add(ceramics4)
     db.session.add(gardening4)
     db.session.add(painting4)
@@ -465,8 +570,10 @@ def seed_projects():
     db.session.add(gardening5)
     db.session.add(coding4)
     db.session.add(painting5)
+    db.session.add(woodworking4)
     db.session.add(houseagain)
     db.session.add(ceramics6)
+    db.session.add(writing6)
     db.session.add(crafts3)
     db.session.add(gardening1)
     db.session.add(coding3)
@@ -476,6 +583,7 @@ def seed_projects():
     db.session.add(coding6)
     db.session.add(cooking3)
     db.session.add(painting6)
+    db.session.add(woodworking5)
     db.session.add(crafts5)
     db.session.add(crafts2)
     db.session.add(gardening6)

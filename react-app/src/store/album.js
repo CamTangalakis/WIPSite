@@ -76,7 +76,11 @@ export default function AlbumsReducer(state = {albums: null}, action){
             newState = {...albums}
             return newState
         case MAKE_ALBUM:
-            return {...state, [action.content?.id]: action.content}
+            newState = {...state}
+            newState.albums.push(action.content)
+            newState.albums = [...newState.albums]
+            console.log(newState, action, '<<<<<<<<<<<<<<<<<<<------------')
+            return newState
         case DEL_ALBUM:
             newState = {...state}
             console.log(newState.albums, '<<<<<<<<<<<<<<<<<')
