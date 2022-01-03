@@ -83,6 +83,8 @@ Read, create, edit, and delete comments on projects (full CRUD)
 Like your favorite projects in your community (create/read/delete)
 Sign up and Login functions were provided with the starter. 
 
+Future Components: Posts! Keep your project up-to-date with all the progress you make!
+
 ## Frontend Routes
 https://github.com/CamTangalakis/WIPSite/wiki/Frontend-Routes
 
