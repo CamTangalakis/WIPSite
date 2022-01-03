@@ -79,7 +79,7 @@ Add projects to share with your community. Edit and delete your posts optionally
 Add comments on yours or other users' projects. Edit and delete your comments optionally. 
 
 Explore the community and like your favorite ideas!
-![Home Page](https://github.com/CamTangalakis/WIPSite/blob/main/WikiImages/Home.png?raw=true)
+![Home Page](https://github.com/CamTangalakis/WIPSite/blob/main/WikiImages/Home.png)
 
 Read, create, edit, and delete projects (full CRUD)
 Read, create, edit, and delete comments on projects (full CRUD)
