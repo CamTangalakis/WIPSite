@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
-from app.models import db, Project, Comment, Favorite, Album
-from app.forms import NewProjectForm, EditProjectForm, NewCommentForm, EditCommentForm, NewFavForm, NewAlbumForm
+from app.models import db, Project, Comment, Favorite, Album, Post
+from app.forms import NewProjectForm, EditProjectForm, NewCommentForm, EditCommentForm, NewFavForm, NewAlbumForm, NewPostForm, EditPostForm
 
 from .auth_routes import validation_errors_to_error_messages
 
@@ -119,24 +119,46 @@ def delete_fav(favId):
 
 
 
+# ------------------------ posts ------------------------------
 
-# ---------------- albums ---------------------
+@project_routes.route('/posts/')
+def get_posts():
+    posts = Post.query.all()
+    return {'posts': {post.to_dict() for post in posts}}
 
-@project_routes.route('/<int:id>/albums', methods=['POST'])
-def make_album(id):
-    form = NewAlbumForm()
+@project_routes.route('/posts/', methods=['POST'])
+def post_post():
+    form = NewPostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        album = Album(userId=form.data['userId'], photo=form.data['photo'], projectId=id)
-        db.session.add(album)
+        post = Post(title=form.data['title'],
+                    content=form.data['content'],
+                    coverPhoto=form.data['coverPhoto'],
+                    projectId=form.data['projectId'])
+        db.session.add(post)
         db.session.commit()
-        return album.to_dict()
+        return post.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@project_routes.route('/<int:id>/albums/<int:albumId>', methods=['DELETE'])
-def del_album(id, albumId):
-    album = Album.query.get(int(albumId))
-    db.session.delete(album)
-    db.session.commit()
-    return {'message': 'Album Deleted!'}
+
+# ---------------- albums ---------------------
+
+# @project_routes.route('/<int:id>/albums', methods=['POST'])
+# def make_album(id):
+#     form = NewAlbumForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         album = Album(userId=form.data['userId'], photo=form.data['photo'], projectId=id)
+#         db.session.add(album)
+#         db.session.commit()
+#         return album.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# @project_routes.route('/<int:id>/albums/<int:albumId>', methods=['DELETE'])
+# def del_album(id, albumId):
+#     album = Album.query.get(int(albumId))
+#     db.session.delete(album)
+#     db.session.commit()
+#     return {'message': 'Album Deleted!'}
