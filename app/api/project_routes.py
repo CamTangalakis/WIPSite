@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from app.models import db, Project, Comment, Favorite, Album
+from app.models import db, Project, Comment, Favorite, Album, Post
 from app.forms import NewProjectForm, EditProjectForm, NewCommentForm, EditCommentForm, NewFavForm, NewAlbumForm
 
 from .auth_routes import validation_errors_to_error_messages
@@ -117,26 +117,31 @@ def delete_fav(favId):
     db.session.commit()
     return {'message': 'Favorite Deleted!'}
 
+# ---------------------- posts -----------------------------
 
+@project_routes.route('/posts/')
+def get_posts():
+    posts = Post.query.all()
+    return {'posts': [post.to_dict() for post in posts]}
 
 
 # ---------------- albums ---------------------
 
-@project_routes.route('/<int:id>/albums', methods=['POST'])
-def make_album(id):
-    form = NewAlbumForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        album = Album(userId=form.data['userId'], photo=form.data['photo'], projectId=id)
-        db.session.add(album)
-        db.session.commit()
-        return album.to_dict()
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+# @project_routes.route('/<int:id>/albums', methods=['POST'])
+# def make_album(id):
+#     form = NewAlbumForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         album = Album(userId=form.data['userId'], photo=form.data['photo'], projectId=id)
+#         db.session.add(album)
+#         db.session.commit()
+#         return album.to_dict()
+#     else:
+#         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@project_routes.route('/<int:id>/albums/<int:albumId>', methods=['DELETE'])
-def del_album(id, albumId):
-    album = Album.query.get(int(albumId))
-    db.session.delete(album)
-    db.session.commit()
-    return {'message': 'Album Deleted!'}
+# @project_routes.route('/<int:id>/albums/<int:albumId>', methods=['DELETE'])
+# def del_album(id, albumId):
+#     album = Album.query.get(int(albumId))
+#     db.session.delete(album)
+#     db.session.commit()
+#     return {'message': 'Album Deleted!'}

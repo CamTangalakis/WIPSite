@@ -8,7 +8,7 @@ from flask_login import LoginManager
 
 from app.models import category
 
-from .models import db, User, Project
+from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.project_routes import project_routes
@@ -46,7 +46,7 @@ app.register_blueprint(category_routes, url_prefix='/api/categories')
 app.register_blueprint(album_routes, url_prefix='/api/albums')
 app.register_blueprint(search_routes, url_prefix='/api/search')
 db.init_app(app)
-Migrate(app, db)
+Migrate(app, db, compare_type=True)
 
 # Application Security
 CORS(app)
