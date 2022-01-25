@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-
+# from Express import express
 
 from app.models import category
 
@@ -35,8 +35,6 @@ def load_user(id):
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
-# app.use(express.urlencoded({extended: false}))
-# app.use(express.json())
 
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')

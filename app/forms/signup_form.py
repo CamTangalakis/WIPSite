@@ -33,5 +33,5 @@ class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists, username_length])
     email = StringField('email', validators=[DataRequired(), user_exists])
-    # profilePic = StringField('profilePic', validators=[DataRequired(), profilePic_length])
+    profilePic = StringField('profilePic')
     password = StringField('password', validators=[DataRequired()])
