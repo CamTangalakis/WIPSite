@@ -14,16 +14,6 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onSignUp = async (e) => {
-    e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, profilePic));
-      if (data) {
-        setErrors(data)
-      }
-    }
-  };
-
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -40,7 +30,7 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  const check = () => {
+  const checkPass = () => {
     if (password) {
       if (password === repeatPassword) {
       document.getElementById('message').style.color = 'darkblue';
@@ -52,9 +42,28 @@ const SignUpForm = () => {
     }}
   }
 
+  const checkEmail = () => {
+    if (String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+      return true
+    } else {
+      setErrors([...errors, 'Please enter valid email'])
+      return false
+    };
+  };
+
   if (user) {
     return <Redirect to='/home' />;
   }
+
+  const onSignUp = async (e) => {
+    e.preventDefault();
+    if (password === repeatPassword && checkEmail()) {
+      const data = await dispatch(signUp(username, email, password, profilePic));
+      if (data) {
+        setErrors(data)
+      }
+    }
+  };
 
   return (
     <form onSubmit={onSignUp} className='signupContainer'>
@@ -94,7 +103,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
-          onKeyUp={check()}
+          onKeyUp={checkPass()}
           required='required'
         ></input>
       </div>
@@ -105,7 +114,7 @@ const SignUpForm = () => {
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
-          onKeyUp={check()}
+          onKeyUp={checkPass()}
           value={repeatPassword}
           required='required'
         ></input>
