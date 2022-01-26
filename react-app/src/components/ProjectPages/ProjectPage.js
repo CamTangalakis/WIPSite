@@ -9,6 +9,7 @@ import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
 import './projectpage.css'
 import { delAlbum, makeAlbum } from "../../store/album"
+import MakePost from "../Posts/MakePost"
 
 function ProjectPage() {
     const dispatch = useDispatch()
@@ -133,6 +134,8 @@ function ProjectPage() {
                     <CommentForm className='commentForm' projectId={project?.id}/>
                 ): null}
             </div>}
+            <MakePost projectId={projectId} />
+
 
 
         </div>
