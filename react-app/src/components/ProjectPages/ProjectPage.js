@@ -129,9 +129,13 @@ function ProjectPage() {
                 {Object.keys(project?.comments).length ? (
                     Object.keys(project?.comments).map((id) => (
                         <div className='projectCommentContainer'>
+                            <div className='commentUser'>
+                                <img className='commentUserPic' src={getUser(project?.comments[id].userId).profilePic} />
+                                <p className='commentUsername'>{getUser(project?.comments[id].userId).username}</p>
+                            </div>
 
-                            <p>{getUser(project?.comments[id].userId).username}</p>
                             <p className='comment'>{project?.comments[id].content}</p>
+                            
                             {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>
                                     <EditCommentModal comment={project?.comments[id]} projectId={project?.id}/>
