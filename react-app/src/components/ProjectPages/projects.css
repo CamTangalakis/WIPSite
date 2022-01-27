@@ -16,6 +16,7 @@
  .projectHeader {
      display: flex;
      align-items: center;
+     font-family: Arial, Helvetica, sans-serif;
      background-color: rgba(24, 46, 75, 0.25);
      padding: 20px;
      margin-top: -10px;
@@ -27,6 +28,7 @@
      width: 30px;
      border-radius: 100px;
      text-align: center;
+     font-family: Arial, Helvetica, sans-serif;
      font-size: 15px;
      margin-right: 10px;
      box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.25);
@@ -51,6 +53,7 @@
      display: flex;
      justify-content: space-between;
      align-items: center;
+     font-family: Arial, Helvetica, sans-serif;
      border-bottom: solid 1px rgb(95, 122, 211);
      padding: 10px;
      margin: 10px;
@@ -59,6 +62,7 @@
  .projectTitle {
      text-decoration: none;
      color: black;
+     font-family: Arial, Helvetica, sans-serif;
      font-weight: 600;
      font-size: 25px;
      padding: 5px;
@@ -71,12 +75,14 @@
 
  .projectTitle:hover {
      color: rgb(55, 55, 126);
+     font-family: Arial, Helvetica, sans-serif;
      font-size: 28px;
      transition: all 0.3s;
  }
 
  .projectDescription {
      height: 50px;
+     font-family: Arial, Helvetica, sans-serif;
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
@@ -86,6 +92,7 @@
 
  .cardFooter {
      display: flex;
+     font-family: Arial, Helvetica, sans-serif;
      justify-content: space-between;
      align-items: flex-end;
      background-color: rgba(24, 46, 75, 0.19);
@@ -93,13 +100,13 @@
 
  .coverPhoto {
      width: 100%;
-     height: 100%;
      margin: 0px;
      aspect-ratio: 16/9;
  }
 
  .projectTags {
     white-space: nowrap;
+    font-family: Arial, Helvetica, sans-serif;
     height: 45px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -115,6 +122,7 @@
      border-radius: 2px;
      background-color: rgb(52, 64, 97);
      color: white;
+     font-family: Arial, Helvetica, sans-serif;
  }
 
  .editButton:hover {
@@ -132,6 +140,7 @@
 
  .comments {
      display: flex;
+     font-family: Arial, Helvetica, sans-serif;
      justify-content: space-between;
      align-items: center;
      margin: 0px 10px;
@@ -154,7 +163,7 @@
  }
 
  .heartButton {
-     margin-right: -2px;
+     left: 10px;
      position: relative;
      color: rgb(175, 20, 20);
  }

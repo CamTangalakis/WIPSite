@@ -7,6 +7,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 500px;
+    margin: auto;
   }
 
   #modal-background {
@@ -20,7 +22,7 @@
 
   #modal-content {
     position: absolute;
-    background-color:rgb(255, 255, 255);
+    background-color:rgb(217, 224, 235);
     border-radius: 5px;
     padding: 5px;
   }

@@ -50,7 +50,6 @@ def delete_project(id):
     return {'message': 'Deleted Project'}
 
 
-
 # --------------------- comments ------------------------
 
 @project_routes.route('/<int:id>/comments/', methods=['POST'])

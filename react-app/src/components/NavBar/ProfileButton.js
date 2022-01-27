@@ -24,12 +24,14 @@ function ProfileButton() {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        closeMenu()
         return history.push('/');
       };
 
     const loginGuest = (e) => {
         e.preventDefault();
         dispatch(login('demo@aa.io', 'password'));
+        closeMenu()
         return history.push('/home');
     };
 
@@ -54,8 +56,8 @@ function ProfileButton() {
     } else {
         sessionLinks = (
         <div className="NavButtons">
-            <NavLink to='/signup' className='NavButton'>Sign Up</NavLink>
-            <NavLink to='/login' className='NavButton'>Log In</NavLink>
+            <NavLink to='/signup' className='NavButton' onClick={closeMenu}>Sign Up</NavLink>
+            <NavLink to='/login' className='NavButton' onClick={closeMenu}>Log In</NavLink>
 
             <button type="button" onClick={loginGuest} className="NavButton">
                 Guest User

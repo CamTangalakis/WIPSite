@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getCategories } from "../../store/category"
-import { delComment, getProjects, makeP } from "../../store/project"
+import { delComment, getProjects } from "../../store/project"
 import CommentForm from "../Comments/CommentForm"
 import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
 import './projectpage.css'
-import { delAlbum, makeAlbum } from "../../store/album"
+// import { delAlbum, makeAlbum } from "../../store/album"
 import MakePost from "../Posts/MakePost"
 
 function ProjectPage() {
@@ -47,10 +47,10 @@ function ProjectPage() {
     //     dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
     // }
 
-    const deleteImage = (id) => {
-        dispatch(delAlbum(id))
-        history.push(`/projects/${projectId}`)
-    }
+    // const deleteImage = (id) => {
+    //     dispatch(delAlbum(id))
+    //     history.push(`/projects/${projectId}`)
+    // }
 
     const deleteProject = () => {
         dispatch(delProject(projectId))
@@ -135,7 +135,7 @@ function ProjectPage() {
                             </div>
 
                             <p className='comment'>{project?.comments[id].content}</p>
-                            
+
                             {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>
                                     <EditCommentModal comment={project?.comments[id]} projectId={project?.id}/>
@@ -152,6 +152,8 @@ function ProjectPage() {
                     <CommentForm className='commentForm' projectId={project?.id}/>
                 ): null}
             </div>}
+            <MakePost projectId={projectId} />
+
 
 
         </div>

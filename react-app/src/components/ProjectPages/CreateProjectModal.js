@@ -20,6 +20,8 @@ function MakeProjectPage() {
 
     // console.log(categoryId, '<---------------')
 
+    if (!userId) history.push('/login')
+
     const submitProject = async(e) => {
         e.preventDefault()
         setErrors([])

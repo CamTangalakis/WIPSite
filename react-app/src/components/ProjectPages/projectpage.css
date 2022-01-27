@@ -11,6 +11,7 @@
 
 .projectPageTitle {
     font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
     border-bottom: solid 1px rgb(93, 116, 167);
     text-align: center;
     padding: 10px;
@@ -42,7 +43,7 @@
 .projectPageDescription {
     margin: 10px 20px;
     padding: 0px 20px;
-    text-align: center;
+    text-align: justify;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
@@ -62,9 +63,11 @@
     margin: auto;
     margin-top: 10px;
     display: flex;
+    font-family: Arial, Helvetica, sans-serif;
     justify-content: space-around;
     align-items: center;
 }
+
 .imagesInput {
     width: 50%;
 }
@@ -72,6 +75,7 @@
 .imagesLabel {
     width: 30%;
     min-width: 80px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .imagesAdd {
@@ -82,6 +86,7 @@
     border-radius: 2px;
     background-color: rgb(52, 64, 97);
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .imagesAdd:hover {
@@ -92,11 +97,14 @@
 }
 
 .projectCommentContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 1px 30px;
+    height: 100px;
     padding: 0px 30px;
     background-color: rgb(179, 196, 212);
     border-radius: 2px;
-    /* border-bottom: ghostwhite; */
 }
 
 .allComments {
@@ -107,21 +115,20 @@
 
 .commentToggleButton {
     font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
     width: 92%;
     margin: auto;
     border: none;
     text-align: center;
     background-color: rgba(0,0,0,0);
-    /* border-bottom: solid 1px rgb(41, 63, 92); */
     margin-top: 20px;
 }
-
 
 .fas {
     margin: 10px;
 }
 
-.projectCommentContainer {
+.commentButtons {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -149,9 +156,9 @@
     border-radius: 50px;
 }
 
-.comment {
+/* .comment {
 
-}
+} */
 
 
 /* ------------ make project page -------------------- */
@@ -167,7 +174,8 @@
 
 .pageHeader {
     margin: auto;
-    width: 50%;
+    width: 25%;
+    font-family: Arial, Helvetica, sans-serif;
     min-width: 250px;
     margin-top: 30px;
     padding-top: 30px;
@@ -176,6 +184,7 @@
 .label {
     margin: 10px 15px;
     font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .input {
@@ -189,6 +198,7 @@
 
 .createButton {
     font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     border: none;
     padding: 10px;
     margin: 10px 40%;
@@ -200,5 +210,45 @@
 .createButton:hover {
     background-color: rgb(52, 64, 97);
     color: white;
+    transition: all 0.3s;
+}
+
+
+/* --------------------------- edit project form ------------- */
+
+.editProjectForm {
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+}
+
+
+.descriptionInput {
+    height: 100px;
+}
+
+.descriptionInput, .photoInput, .titleInput, .tagsInput {
+    border: none;
+    border-bottom: solid 1px rgb(27, 27, 133);
+    padding: 8px;
+    margin: 5px;
+    background-color: rgb(247, 250, 255);
+}
+
+.submitEditButton {
+    padding: 3px 8px;
+    margin: 10px 60px;
+    width: 30%;
+    border: none;
+    border-radius: 2px;
+    background-color: rgb(52, 64, 97);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.submitEditButton:hover {
+    background-color: rgb(166, 182, 226);
+    color: black;
+    box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
     transition: all 0.3s;
 }

@@ -10,6 +10,7 @@
 }
 
 .SignupHeader, .LoginHeader {
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
     text-align: center;
     margin: 10px;
@@ -26,6 +27,7 @@
 .usernameLabel, .emailLabel, .passwordLabel, .confirmLabel {
     margin: 10px;
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .usernameInput, .emailInput, .passwordInput, .confirmInput {
@@ -37,33 +39,37 @@
 }
 
 .submitButton {
-    margin: 15px 20px;
+    margin: 15px 50px;
     width: 80px;
     padding: 5px;
     border: none;
     border-radius: 2px;
     background-color: rgb(52, 66, 97);
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
+    text-align: center;
 }
 
 .homeButton {
-    margin: 15px 20px;
+    margin: 15px 50px;
     width: 80px;
     padding: 5px;
     border: none;
     border-radius: 2px;
     background-color: rgb(52, 66, 97);
     color: white;
-    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
     text-decoration: none;
+    text-align: center;
 }
 
 .homeButton:hover, .submitButton:hover {
     background-color: rgb(214, 216, 241);
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
-
 
 .errorContainer {
     display: flex;
@@ -73,6 +79,22 @@
 
 .errors {
     color: white;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 5px;
     padding: 5px;
+}
+
+#message {
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    width: 50%;
 }

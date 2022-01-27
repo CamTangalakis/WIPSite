@@ -14,16 +14,6 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const onSignUp = async (e) => {
-    e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password, profilePic));
-      if (data) {
-        setErrors(data)
-      }
-    }
-  };
-
   const updateUsername = (e) => {
     setUsername(e.target.value);
   };
@@ -40,9 +30,40 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
+  const checkPass = () => {
+    if (password) {
+      if (password === repeatPassword) {
+      document.getElementById('message').style.color = 'darkblue';
+      document.getElementById('message').style.fontWeight = 600;
+      document.getElementById('message').innerHTML = 'Matching!';
+    } else {
+      document.getElementById('message').style.color = 'darkred';
+      document.getElementById('message').innerHTML = 'Passwords do not match';
+    }}
   }
+
+  const checkEmail = () => {
+    if (String(email).toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+      return true
+    } else {
+      setErrors([...errors, 'Please enter valid email'])
+      return false
+    };
+  };
+
+  if (user) {
+    return <Redirect to='/home' />;
+  }
+
+  const onSignUp = async (e) => {
+    e.preventDefault();
+    if (password === repeatPassword && checkEmail()) {
+      const data = await dispatch(signUp(username, email, password, profilePic));
+      if (data) {
+        setErrors(data)
+      }
+    }
+  };
 
   return (
     <form onSubmit={onSignUp} className='signupContainer'>
@@ -75,17 +96,6 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div className='inputContainer'>
-        <label className='emailLabel'>Profile Picture</label>
-        <input
-          className='passwordInput'
-          type='pic'
-          name='pic'
-          onChange={(e) => setProfilePic(e.target.value)}
-          value={profilePic}
-          required='required'
-        ></input>
-      </div>
-      <div className='inputContainer'>
         <label className='passwordLabel'>Password</label>
         <input
           className='passwordInput'
@@ -93,6 +103,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
+          onKeyUp={checkPass()}
           required='required'
         ></input>
       </div>
@@ -103,12 +114,16 @@ const SignUpForm = () => {
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
+          onKeyUp={checkPass()}
           value={repeatPassword}
           required='required'
         ></input>
+        <span id='message' />
       </div>
-      <button type='submit' className='submitButton'>Sign Up</button>
-      <NavLink to='home' className='homeButton'>Cancel</NavLink>
+      <div className='buttonsContainer'>
+        <button type='submit' className='submitButton'>Sign Up</button>
+        <NavLink to='home' className='homeButton'>Cancel</NavLink>
+      </div>
     </form>
   );
 };

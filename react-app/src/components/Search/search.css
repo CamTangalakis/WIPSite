@@ -1,21 +1,23 @@
 .search {
     display: flex;
-    animation-duration: 1s;
-    animation-name: slidein;
+    font-family: Arial, Helvetica, sans-serif;
+    /* animation-duration: 1s;
+    animation-name: slidein; */
 }
 
 .searchButton:hover {
-    color: white;
+    color: rgb(148, 184, 218);
     transition: all 0.3s;
 }
 
 .card-container {
     display: flex;
+    font-family: Arial, Helvetica, sans-serif;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-@keyframes slidein {
+/* @keyframes slidein {
     0% {
         margin-left: 100%;
         width: 300%;
@@ -27,4 +29,44 @@
         width: 100%;
         position: relative;
     }
+} */
+
+
+.searchPageBar {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 25%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+
+.searchButton:hover .fas {
+    animation: glassJiggle 0.8s infinite;
+}
+
+@keyframes glassJiggle {
+    0% {
+        transform: rotate(10deg) scale(1.05)
+    }
+    50% {
+        transform: rotate(-10deg) scale(1.15)
+    }
+    100% {
+        transform: rotate(10deg) scale(1.05)
+    }
+}
+
+#splash-search {
+    padding: 5px 10px;
+}
+
+
+.resultsHeader {
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.noResults {
+    margin: 30px;
+    font-family: Arial, Helvetica, sans-serif;
 }
