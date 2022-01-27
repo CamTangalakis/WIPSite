@@ -5,7 +5,7 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
-import { authenticate } from './store/session';
+import { authenticate, getAllUsers } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import HomePage from './components/HomePage/HomePage';
 import { getProjects } from './store/project';
@@ -26,6 +26,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getProjects());
+      await dispatch(getAllUsers());
       await dispatch(getCategories())
       await dispatch(getAlbums())
       await dispatch(getFavorites())

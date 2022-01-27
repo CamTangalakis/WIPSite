@@ -128,13 +128,31 @@
 
 .commentButtons {
     display: flex;
-    align-items: center;
-    height: fit-content;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* .deleteButton {
-    height: 20px;
-} */
+.commentButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.commentUser {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 0px 20px;
+}
+
+.commentUserPic {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    border-radius: 50px;
+}
 
 
 /* ------------ make project page -------------------- */

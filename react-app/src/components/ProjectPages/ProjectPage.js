@@ -7,6 +7,7 @@ import CommentForm from "../Comments/CommentForm"
 import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
+import MakePost from "../Posts/MakePost"
 import './projectpage.css'
 import { delAlbum, makeAlbum } from "../../store/album"
 
@@ -21,8 +22,12 @@ function ProjectPage() {
     const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
     const category = categories[project?.categoryId - 1]
 
+    const users = useSelector(state => state.session.users)
     const user = useSelector(state=>state.session.user)
     const [showComments, setShowComments] = useState(false)
+    const [showPosts, setShowPosts] = useState(false)
+
+    console.log(users, '<<<--')
 
     useEffect(()=>{
         const func = async() => {
@@ -53,6 +58,10 @@ function ProjectPage() {
 
     const deleteComment = (id, projectId) => {
         dispatch(delComment({id, projectId}))
+    }
+
+    const getUser = (id) => {
+        return users?.find(user => user.id === id)
     }
 
     return (
@@ -100,6 +109,9 @@ function ProjectPage() {
                 <button type='submit' className='imagesAdd'>Add</button>
             </form> */}
 
+            <button type='button' onClick={()=> setShowPosts(!showPosts)}>Posts!</button>
+            {showPosts && <MakePost projectId={projectId}/>}
+
             <button
             type='button'
             className='commentToggleButton'
@@ -115,8 +127,13 @@ function ProjectPage() {
                 {Object.keys(project?.comments).length ? (
                     Object.keys(project?.comments).map((id) => (
                         <div className='projectCommentContainer'>
+                            <div className='commentUser'>
+                                <img className='commentUserPic' src={getUser(project?.comments[id].userId)?.profilePic} />
+                                <p className='commentUsername'>{getUser(project?.comments[id].userId)?.username}</p>
+                            </div>
 
                             <p className='comment'>{project?.comments[id].content}</p>
+
                             {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>
                                     <EditCommentModal comment={project?.comments[id]} projectId={project?.id}/>

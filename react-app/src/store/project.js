@@ -7,6 +7,10 @@ const MAKE_COMMENT = 'comments/MAKE_COMMENT'
 const PUT_COMMENT = 'comments/PUT_COMMENT'
 const DEL_COMMENT = 'comments/DEL_COMMENT'
 
+const MAKE_POST = 'posts/MAKE_POST'
+const PUT_POST = 'posts/PUT_POST'
+const DEL_POST = 'posts/DEL_POST'
+
 
 export const getProj = (projects) => ({
     type: GET_PROJECTS,
@@ -174,6 +178,78 @@ export const delComment = (contents) => async(dispatch) => {
     return comment
 }
 
+// --------------------- posts --------------------
+
+export const makeP = (contents) => ({
+    type: MAKE_POST,
+    contents
+})
+
+export const putP = (contents) => ({
+    type: PUT_POST,
+    contents
+})
+
+export const delP = (contents) => ({
+    type: DEL_POST,
+    contents
+})
+
+export const makePost = (contents) => async(dispatch) => {
+    const { content, title, projectId, coverPhoto } = contents
+    console.log('IN THE THUNK')
+    const response = await fetch(`/api/projects/${projectId}/posts/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content, title, projectId, coverPhoto })
+    })
+    if (response.ok) {
+        const post = await response.json()
+        dispatch(makeP(post))
+        return post
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+    } else {
+        return ['An error occurred.'];
+    }
+}
+
+export const editPost = (contents) => async(dispatch) => {
+    const {content, title, projectId, id} = contents
+    const response = await fetch(`/api/projects/${projectId}/posts/${id}/`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({content, title, projectId})
+    })
+    if (response.ok) {
+        const post = response.json()
+        dispatch(putP(contents))
+        return post
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+          return data.errors;
+        }
+    } else {
+        return ['An error occurred.'];
+    }
+}
+
+export const delPost = (contents) => async(dispatch) => {
+    const {id, projectId} = contents
+    const response = await fetch(`/api/projects/${projectId}/comments/${id}/`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    const post = await response.json()
+    dispatch(delP(contents))
+    return post
+}
+
+
 
 // ------------------ reducer ----------------------
 
@@ -218,6 +294,18 @@ export default function ProjectReducer(state = {projects: null}, action){
             delete newState.projects[index].comments[action.contents.id]
             newState.projects[index].comments = {...newState.projects[index].comments}
             return newState
+
+        case MAKE_POST:
+            newState = {...state}
+            console.log(newState, '???!!!!!!!!!!!!!!!!')
+            return newState
+        case PUT_POST:
+            newState = {...state}
+            return newState
+        case DEL_POST:
+            newState = {...state}
+            return newState
+
         default:
             return state
     }
