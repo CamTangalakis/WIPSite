@@ -31,7 +31,7 @@ def upgrade():
     sa.Column('title', sa.String(), nullable=False),
     sa.Column('content', sa.String(), nullable=False),
     sa.Column('coverPhoto', sa.String()),
-    sa.Column('projectId', sa.Integer(), nullable=True),
+    sa.Column('projectId', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['projectId'], ['projects.id']),
     sa.PrimaryKeyConstraint('id')
     )

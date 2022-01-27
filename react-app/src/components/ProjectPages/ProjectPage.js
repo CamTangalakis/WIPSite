@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getCategories } from "../../store/category"
-import { delComment, getProjects } from "../../store/project"
+import { delComment, getProjects, makeP } from "../../store/project"
 import CommentForm from "../Comments/CommentForm"
 import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
 import './projectpage.css'
 import { delAlbum, makeAlbum } from "../../store/album"
+import MakePost from "../Posts/MakePost"
 
 function ProjectPage() {
     const dispatch = useDispatch()
@@ -18,11 +19,16 @@ function ProjectPage() {
     const {projects} = useSelector(state => state.projects)
     const project = projects?.find(project => project.id == projectId)
 
+    const users = useSelector(state => state.session.users)
+
+    console.log(users)
+
     const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
     const category = categories[project?.categoryId - 1]
 
     const user = useSelector(state=>state.session.user)
     const [showComments, setShowComments] = useState(false)
+    const [showPosts, setShowPosts] = useState(false)
 
     useEffect(()=>{
         const func = async() => {
@@ -32,14 +38,14 @@ function ProjectPage() {
         func()
     }, [dispatch])
 
-    const [photoUrl, setPhotoUrl] = useState('')
-    const albums = useSelector(state => state.albums.albums)
-    const projectPics = albums.filter(img => +img.projectId === +projectId)
-    console.log(projectPics, '<<<---')
+    // const [photoUrl, setPhotoUrl] = useState('')
+    // const albums = useSelector(state => state.albums.albums)
+    // const projectPics = albums.filter(img => +img.projectId === +projectId)
+    // console.log(projectPics, '<<<---')
 
-    const addImage = () => {
-        dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
-    }
+    // const addImage = () => {
+    //     dispatch(makeAlbum({userId: user.id, projectId, photo: photoUrl}))
+    // }
 
     const deleteImage = (id) => {
         dispatch(delAlbum(id))
@@ -53,6 +59,10 @@ function ProjectPage() {
 
     const deleteComment = (id, projectId) => {
         dispatch(delComment({id, projectId}))
+    }
+
+    const getUser = (id) => {
+        return users.find(user => user.id === id)
     }
 
     return (
@@ -74,7 +84,7 @@ function ProjectPage() {
 
             <p className='projectPageDescription'>{project?.description}</p>
             <img src={project?.coverPhoto} className='projectCoverPhoto'/>
-            {projectPics.length ? (
+            {/* {projectPics.length ? (
                 <div className='albumPhotosContainer'>
                     {projectPics.map(pic => (
                         <div className='photoCard'>
@@ -85,9 +95,9 @@ function ProjectPage() {
                         </div>
                     ))}
                 </div>
-            ): null}
+            ): null} */}
 
-            <form className='addImagesForm' onSubmit={()=> addImage()}>
+            {/* <form className='addImagesForm' onSubmit={()=> addImage()}>
                 <label htmlFor='images' className='imagesLabel'>Add Images</label>
                 <input
                     onChange={(e)=>setPhotoUrl(e.target.value)}
@@ -98,13 +108,17 @@ function ProjectPage() {
                     value={photoUrl}
                 />
                 <button type='submit' className='imagesAdd'>Add</button>
-            </form>
+            </form> */}
+
+            <button type='button' onClick={()=> setShowPosts(!showPosts)}>Posts!</button>
+            {showPosts && <MakePost projectId={projectId}/>}
 
             <button
-            type='button'
-            className='commentToggleButton'
-            onClick={()=>setShowComments(!showComments)} >
+                type='button'
+                className='commentToggleButton'
+                onClick={()=>setShowComments(!showComments)} >
                 Comments
+
                 {showComments ? (
                     <i className="fas fa-chevron-up"></i>
                 ): <i className="fas fa-chevron-down"></i>}
@@ -116,6 +130,7 @@ function ProjectPage() {
                     Object.keys(project?.comments).map((id) => (
                         <div className='projectCommentContainer'>
 
+                            <p>{getUser(project?.comments[id].userId).username}</p>
                             <p className='comment'>{project?.comments[id].content}</p>
                             {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>

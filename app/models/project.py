@@ -35,5 +35,5 @@ class Project(db.Model):
             'user': self.user.to_dict(),
             # 'category': [{'category': obj.category} for obj in self.category],
             'createdAt': self.createdAt,
-            # 'posts': self.posts.to_dict()
+            # 'posts': {obj.id: {'content': obj.content, 'title': obj.title, 'coverPhoto': obj.coverPhoto} for obj in self.posts}
         }
