@@ -17,6 +17,7 @@ const MakePost = ({projectId}) => {
     return (
         <>
             <form className='postForm' onSubmit={submitPost}>
+                <h3>Blog Posting Coming Soon</h3>
                 <input
                     type='text'
                     required='required'

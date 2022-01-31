@@ -27,7 +27,6 @@ function ProjectPage() {
     const [showComments, setShowComments] = useState(false)
     const [showPosts, setShowPosts] = useState(false)
 
-    console.log(users, '<<<--')
 
     useEffect(()=>{
         const func = async() => {

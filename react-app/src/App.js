@@ -17,6 +17,7 @@ import { getAlbums } from './store/album';
 import FavPage from './components/Favorites/FavPage';
 import SearchResults from './components/Search/searchResults';
 import Profile from './components/Profile/profile';
+import Footer from './components/Footer/footer'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -71,6 +72,7 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <Footer /> 
     </BrowserRouter>
   );
 }
