@@ -27,7 +27,7 @@ const MakePost = ({projectId}) => {
 
                 <input
                     type='text'
-                    placeholder='Add a photo'
+                    placeholder='Add a photo (optional)'
                     value={coverPhoto}
                     onChange={(e)=> {setCoverPhoto(e.target.value)}} />
 

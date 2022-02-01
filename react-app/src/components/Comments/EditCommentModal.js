@@ -18,7 +18,7 @@ function EditCommentModal({comment, projectId}) {
 
     return (
         <div className='editCommentContainer'>
-            <button type='button' onClick={() => {setShowModal(true)}} className='editButton'>edit</button>
+            <button type='button' onClick={() => {setShowModal(true)}} className='editCommentButton'>edit</button>
             {showModal && (
                 <Modal onClose={()=> setShowModal(false)} >
                     <form onSubmit={editCom} className='editCommentForm'>

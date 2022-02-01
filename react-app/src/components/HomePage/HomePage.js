@@ -21,7 +21,7 @@ const HomePage = () => {
     return (
         <div className='homePageContainer'>
             <div className='homeHeaderContainer'>
-                <h1 className='wipHeader'>everything is a work in progress...</h1>
+                <h1 className='wipHeader' />
             </div>
 
             <div className='exploreProjectsContainer'>
