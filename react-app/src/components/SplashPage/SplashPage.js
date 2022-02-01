@@ -34,24 +34,22 @@ const SplashPage = () => {
                         <NavLink to='/search-results' className='link' >
                             <i className="fas fa-search fa-2x"></i>
                         </NavLink>
+                            <p className='linkyBit'>Search</p>
                     </div>
                     <div className='links'>
                         <NavLink to='/home' className='link' >
                             <i className="far fa-compass fa-2x"></i>
                         </NavLink>
+                            <p className='linkyBit'>Explore</p>
                     </div>
                     <div className='links'>
                         <NavLink to='/newProject' className='link'>
                             <i className="fas fa-pencil-alt fa-2x"></i>
                         </NavLink>
+                            <p className='linkyBit'>Share</p>
                     </div>
                 </div>
 
-                <div className='underLinks'>
-                    <p className='linkyBit'>Search</p>
-                    <p className='linkyBit'>Explore</p>
-                    <p className='linkyBit'>Share</p>
-                </div>
             </div>
 
             {/* <div className='devInfo'>

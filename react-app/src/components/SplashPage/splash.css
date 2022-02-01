@@ -164,13 +164,12 @@
     color: white;
     margin: 10px;
     padding: 20px;
+    padding-top: 85px;
     font-size: 20px;
     text-align: center;
 }
 
-.underLinks {
-    display: flex;
-    justify-content: space-around;
-    margin-top: -8vh;
+.linkyBit {
+    margin-top: 30px;
     color: white;
 }
