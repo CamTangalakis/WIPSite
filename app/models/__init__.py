@@ -4,5 +4,5 @@ from .project import Project
 from .comment import Comment
 from .category import Category
 from .album import Album
-from .favorite import Favorite 
+from .favorite import Favorite
 from .post import Post

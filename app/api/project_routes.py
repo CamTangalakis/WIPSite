@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from app.models import db, Project, Comment, Favorite, Album, Post
-from app.forms import NewProjectForm, EditProjectForm, NewCommentForm, EditCommentForm, NewFavForm, NewAlbumForm
+from app.forms import NewProjectForm, EditProjectForm, NewCommentForm, EditCommentForm, NewFavForm, NewAlbumForm, NewPostForm, EditPostForm
 
 from .auth_routes import validation_errors_to_error_messages
 
@@ -117,12 +117,44 @@ def delete_fav(favId):
     db.session.commit()
     return {'message': 'Favorite Deleted!'}
 
-# ---------------------- posts -----------------------------
+# ------------------------ posts ------------------------------
 
-@project_routes.route('/posts/')
-def get_posts():
-    posts = Post.query.all()
-    return {'posts': [post.to_dict() for post in posts]}
+@project_routes.route('/<int:id>/posts/', methods=['POST'])
+def make_post(id):
+    form = NewPostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        post = Post(projectId=id,
+                content=form.data['content'],
+                title=form.data['title'],
+                coverPhoto=form.data['coverPhoto'])
+        db.session.add(post)
+        db.session.commit()
+        return post.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@project_routes.route('/<int:id>/posts/<int:postId>/', methods=['PUT'])
+def edit_post(id, postId):
+    form = EditPostForm()
+    post = Post.query.get(int(postId))
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        post.content = form.data['content']
+        post.title = form.data['title']
+        post.coverPhoto = form.data['coverPhoto']
+        db.session.commit()
+        return post.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@project_routes.route('/<int:id>/posts/<int:postId>/', methods=['DELETE'])
+def delete_post(id, postId):
+    post = Post.query.get(int(postId))
+    db.session.delete(post)
+    db.session.commit()
+    return {'message': 'Post Deleted!'}
 
 
 # ---------------- albums ---------------------

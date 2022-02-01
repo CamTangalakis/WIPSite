@@ -7,6 +7,7 @@ import CommentForm from "../Comments/CommentForm"
 import EditProjectModal from "./EditProjectModal"
 import { delProject } from "../../store/project"
 import EditCommentModal from "../Comments/EditCommentModal"
+import MakePost from "../Posts/MakePost"
 import './projectpage.css'
 import { delAlbum, makeAlbum } from "../../store/album"
 
@@ -21,8 +22,11 @@ function ProjectPage() {
     const categories = ['baking', 'carpentry', 'ceramics', 'coding', 'cooking', 'crafts', 'gardening', 'painting', 'textile', 'woodworking', 'writing']
     const category = categories[project?.categoryId - 1]
 
+    const users = useSelector(state => state.session.users)
     const user = useSelector(state=>state.session.user)
     const [showComments, setShowComments] = useState(false)
+    const [showPosts, setShowPosts] = useState(false)
+
 
     useEffect(()=>{
         const func = async() => {
@@ -53,6 +57,10 @@ function ProjectPage() {
 
     const deleteComment = (id, projectId) => {
         dispatch(delComment({id, projectId}))
+    }
+
+    const getUser = (id) => {
+        return users?.find(user => user.id === id)
     }
 
     return (
@@ -101,6 +109,27 @@ function ProjectPage() {
             </form> */}
 
             <button
+                type='button'
+                className="postButton"
+                onClick={()=> setShowPosts(!showPosts)}>
+                Add Posts
+                {showPosts ? (
+                    <i className="fas fa-chevron-up"></i>
+                ): <i className="fas fa-chevron-down"></i>}</button>
+            {showPosts && <MakePost className='addPosts' projectId={projectId}/>}
+
+            <div className='posts'>
+                <p className="postTitle">Lorem ipsum</p>
+                <p className="postBody">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <div className='posts'>
+                <p className="postTitle">Lorem ipsum</p>
+                <img src={project?.coverPhoto} className="postPhoto"/>
+                <p className="postBody">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <button
             type='button'
             className='commentToggleButton'
             onClick={()=>setShowComments(!showComments)} >
@@ -115,8 +144,13 @@ function ProjectPage() {
                 {Object.keys(project?.comments).length ? (
                     Object.keys(project?.comments).map((id) => (
                         <div className='projectCommentContainer'>
+                            <div className='commentUser'>
+                                <img className='commentUserPic' src={getUser(project?.comments[id].userId)?.profilePic} />
+                                <p className='commentUsername'>{getUser(project?.comments[id].userId)?.username}</p>
+                            </div>
 
                             <p className='comment'>{project?.comments[id].content}</p>
+
                             {user?.id == project?.comments[id].userId ? (
                                 <div className='commentButtons'>
                                     <EditCommentModal comment={project?.comments[id]} projectId={project?.id}/>
